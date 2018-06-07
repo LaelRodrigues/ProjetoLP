@@ -1,16 +1,31 @@
 package telas;
 
-
 import javax.swing.JFrame;
 
 import classes.Musica;
 import javazoom.jl.player.Player;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
+
+import arvoreBinariaDeBusca.No;
+
+/**
+ * Implementacao da tela onde as musicas
+ * seram reproduzidas
+ * @see     MediaPlayer
+ * @author	Robson Lael
+ * @since   06.06.2018
+ * @version 0.0.1
+ */
 
 public class MediaPlayer {
 
@@ -19,16 +34,19 @@ public class MediaPlayer {
 	JButton play, pause;
 	Musica m;
 	int contador;
-	boolean aux = true;
-
+	boolean startMusica = true;
 	
+	
+	/** Construtor padrao */
 	public MediaPlayer() {
 		initialize();
-		BotoesMusica();
+		botaoPlayPause();
 		barraProgresso();
 	}
 
-	
+	/**
+     * Inicializar a tela da classe MediaPlayer
+     */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -38,28 +56,42 @@ public class MediaPlayer {
 				
 	}
 	
-	private void BotoesMusica() {
+	/**
+     * Adicionar um botao com a funcao de play/pause 
+     * na tela
+     */
+	private void botaoPlayPause() {
 		
-		String path = "/home/lael/music";
-		File mp3File = new File(path);
+		String caminho = "/home/lael/music";
+		File arquivoMp3 = new File(caminho);
 		
 		contador = 0;
-		play = new JButton("Play/Pause");
-		play.setBounds(42, 214, 112, 25);
+		play = new JButton("");
+		
+		String caminhoImagem = "./imagensParaGui/play_pause.png";
+		File arquivoImagem = new File(caminhoImagem);
+		if(arquivoImagem.exists()) {
+			play.setIcon(new ImageIcon(caminhoImagem));  
+		}
+		else {
+			System.out.println("Erro ao abrir o arquivo Imagem!!!");
+		}
+		
+		play.setBounds(76, 189, 43, 43);
 		play.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				if(aux) {
+				if(startMusica) {
 					Musica musica = new Musica();
-					musica.tocar(mp3File);
+					musica.tocar(arquivoMp3);
 			 		musica.start();
-			 		aux = false;
+			 		startMusica = false;
 			 		m = musica;
 				}
 				else {
 					if(m.getPlayer().isComplete()) {
 						m.getPlayer().close();
-						aux = true;
+						startMusica = true;
 					}
 					else if(contador % 2 == 1) {
 						m.resume();
@@ -74,15 +106,20 @@ public class MediaPlayer {
 			 
 		});
 		frame.getContentPane().add(play);
+		play.setBorderPainted(false);
+		play.setOpaque(false);
+		play.setFocusPainted( false );
 	}
 	
 	
 	private void barraProgresso() {
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(239, 214, 148, 25);
+		progressBar.setBounds(222, 240, 148, 25);
 		frame.getContentPane().add(progressBar);
 	}
-	
+	/**
+     * retorna a tela do reprodutor de musica
+     */
 	public JFrame getFrame() {
 		return frame;
 	}
