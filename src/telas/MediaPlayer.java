@@ -38,6 +38,8 @@ import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.JScrollBar;
 
 /**
  * Implementacao da tela onde as musicas
@@ -57,17 +59,23 @@ public class MediaPlayer {
 	int contador;
 	boolean startMusica = true;
 	
-	JButton addDiretorio;
+	JButton addDiretorio; 
 	JButton addArquivo;
 	JButton novaPlaylist;
 	
 	/** 
 	 * Construtor padrão 
-	 * */
+	 */
 	public MediaPlayer() {
 		initialize();
 		botaoPlayPause();
 		barraProgresso();
+		separador();
+		rotuloBotaoAddDiretorio();
+		botaoAddDiretorio();
+		rotuloBotaoAddArquivo();
+		botaoAddArquivo();
+		textAreaListaDeMusicas();
 	}
 
 	/**
@@ -75,7 +83,7 @@ public class MediaPlayer {
      */
 	private void initialize() {
 		frmPlayer = new JFrame();
-		frmPlayer.getContentPane().setBackground(new Color(211, 211, 211));
+		frmPlayer.getContentPane().setBackground(new Color(255, 140, 0));
 		frmPlayer.setTitle("Reprodutor");
 		frmPlayer.setBounds(100, 100, 900, 650);
 		frmPlayer.setLocationRelativeTo(null);
@@ -182,24 +190,34 @@ public class MediaPlayer {
 		play.setFocusPainted( false );
 	}
 	
-	
-	private void barraProgresso() {
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(161, 522, 555, 20);
-		frmPlayer.getContentPane().add(progressBar);
+	/**
+     * Adiciona um separador na tela
+     */
+	private void separador() {
 		
 		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(0, 0, 0));
 		separator.setBounds(0, 571, 884, 8);
 		frmPlayer.getContentPane().add(separator);
 
-		
+	}
+
+	/**
+     * Adiciona um rótulo na tela para o botão addDiretório
+     */
+	private void rotuloBotaoAddDiretorio() {
+
 		JLabel lblAddDiretrio = new JLabel("Add Diret\u00F3rio");
-		lblAddDiretrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAddDiretrio.setBounds(48, 130, 113, 26);
+		lblAddDiretrio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblAddDiretrio.setBounds(36, 130, 113, 26);
 		frmPlayer.getContentPane().add(lblAddDiretrio);
 
-		
-		// -> Botão addDiretorio
+	}
+	
+	/**
+     * Adiciona um botão na tela com a função de adicionar diretório
+     */
+	private void botaoAddDiretorio() {
 
 		addDiretorio = new JButton("");
 		addDiretorio.addActionListener(new ActionListener() {
@@ -234,8 +252,25 @@ public class MediaPlayer {
 
 		frmPlayer.getContentPane().add(addDiretorio);
 
-		// -> Botão addArquivo 
+	}
+	
+	/**
+     * Adiciona um rótulo na tela para o botão addArquivo
+     */
+	private void rotuloBotaoAddArquivo(){
+	
+		JLabel lblAddArquivo = new JLabel("Add Arquivo");
+		lblAddArquivo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblAddArquivo.setBounds(47, 291, 92, 20);
+		frmPlayer.getContentPane().add(lblAddArquivo);
 		
+	}
+	
+	/**
+     * Adiciona um botão na tela com a função de adicionar um arquivo
+     */
+	private void botaoAddArquivo() {
+
 		addArquivo = new JButton("");
 		addArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -270,25 +305,39 @@ public class MediaPlayer {
 		addArquivo.setFocusPainted( false );
 
 		frmPlayer.getContentPane().add(addArquivo);
+
+	}
+	
+	/**
+     * Adiciona na tela uma barra de progresso
+     */
+	private void barraProgresso() {
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBackground(Color.WHITE);
+		progressBar.setForeground(new Color(0, 0, 0));
+		progressBar.setBounds(161, 522, 555, 20);
+		frmPlayer.getContentPane().add(progressBar);
 		
-		JLabel lblAddArquivo = new JLabel("Add Arquivo");
-		lblAddArquivo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAddArquivo.setBounds(48, 289, 84, 20);
-		frmPlayer.getContentPane().add(lblAddArquivo);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(206, 53, 225, 436);
-		frmPlayer.getContentPane().add(textArea);
 		
 		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBackground(Color.WHITE);
 		textArea_1.setBounds(448, 53, 225, 436);
 		frmPlayer.getContentPane().add(textArea_1);
 		
 		JLabel lblMsicas = new JLabel("M\u00FAsicas");
-		lblMsicas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMsicas.setBounds(294, 28, 46, 14);
+		lblMsicas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMsicas.setBounds(294, 28, 58, 14);
 		frmPlayer.getContentPane().add(lblMsicas);
 	
+	}
+	
+	private void textAreaListaDeMusicas() {
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBackground(Color.WHITE);
+		textArea.setBounds(206, 53, 225, 436);
+		frmPlayer.getContentPane().add(textArea);
+		
 	}
 	
 	/**
