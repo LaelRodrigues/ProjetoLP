@@ -28,6 +28,16 @@ import javax.swing.JCheckBoxMenuItem;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JToolBar;
+import javax.swing.JLabel;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.Font;
+import javax.swing.JTextArea;
 
 /**
  * Implementacao da tela onde as musicas
@@ -65,6 +75,7 @@ public class MediaPlayer {
      */
 	private void initialize() {
 		frmPlayer = new JFrame();
+		frmPlayer.getContentPane().setBackground(new Color(211, 211, 211));
 		frmPlayer.setTitle("Reprodutor");
 		frmPlayer.setBounds(100, 100, 900, 650);
 		frmPlayer.setLocationRelativeTo(null);
@@ -75,12 +86,26 @@ public class MediaPlayer {
 		frmPlayer.setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("Arquivo");
+		mnFile.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnFile);
 		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		
+		mntmSair.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+			
+		mnFile.add(mntmSair);
+		
 		JMenu mnEditar = new JMenu("Editar");
+		mnEditar.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnEditar);
 		
 		JMenu mnVer = new JMenu("Ver");
+		mnVer.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnVer);
 		
 		JSeparator separator = new JSeparator();
@@ -88,6 +113,7 @@ public class MediaPlayer {
 		menuBar.add(separator);
 		
 		JMenu mnNewMenu = new JMenu("Ajuda");
+		mnNewMenu.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu);
 				
 	}
@@ -122,7 +148,7 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		play.setBounds(61, 446, 43, 43);
+		play.setBounds(58, 469, 43, 43);
 		play.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -165,6 +191,104 @@ public class MediaPlayer {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 571, 884, 8);
 		frmPlayer.getContentPane().add(separator);
+
+		
+		JLabel lblAddDiretrio = new JLabel("Add Diret\u00F3rio");
+		lblAddDiretrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddDiretrio.setBounds(48, 130, 113, 26);
+		frmPlayer.getContentPane().add(lblAddDiretrio);
+
+		
+		// -> Botão addDiretorio
+
+		addDiretorio = new JButton("");
+		addDiretorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		addDiretorio.setBackground(new Color(255, 255, 255));
+		
+		String caminhoImagem = "./imagensParaGui/mais.png";
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			}
+			
+			addDiretorio.setIcon(new ImageIcon(caminhoImagem));  
+		}
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		
+		addDiretorio.setBounds(26, 183, 113, 107);
+		addDiretorio.setVisible(true);
+		addDiretorio.setBorderPainted(false);
+		addDiretorio.setOpaque(false);
+		addDiretorio.setFocusPainted( false );
+
+		frmPlayer.getContentPane().add(addDiretorio);
+
+		// -> Botão addArquivo 
+		
+		addArquivo = new JButton("");
+		addArquivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		addArquivo.setBackground(new Color(255, 255, 255));
+		
+		
+		String caminhoImagem2 = "./imagensParaGui/mais.png";
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem2);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			}
+			
+			addArquivo.setIcon(new ImageIcon(caminhoImagem2));  
+		
+		}
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		
+		addArquivo.setBounds(26, 23, 113, 107);
+		addArquivo.setVisible(true);
+		addArquivo.setBorderPainted(false);
+		addArquivo.setOpaque(false);
+		addArquivo.setFocusPainted( false );
+
+		frmPlayer.getContentPane().add(addArquivo);
+		
+		JLabel lblAddArquivo = new JLabel("Add Arquivo");
+		lblAddArquivo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddArquivo.setBounds(48, 289, 84, 20);
+		frmPlayer.getContentPane().add(lblAddArquivo);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(206, 53, 225, 436);
+		frmPlayer.getContentPane().add(textArea);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBounds(448, 53, 225, 436);
+		frmPlayer.getContentPane().add(textArea_1);
+		
+		JLabel lblMsicas = new JLabel("M\u00FAsicas");
+		lblMsicas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblMsicas.setBounds(294, 28, 46, 14);
+		frmPlayer.getContentPane().add(lblMsicas);
+	
 	}
 	
 	/**
