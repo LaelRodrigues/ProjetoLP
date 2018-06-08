@@ -8,10 +8,19 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.UIManager;
 
+/**
+ * Implementação da tela de acesso 
+ * @author	Robson Lael
+ * @author 	Samuel Lucas de Moura Ferino
+ * @since   06.06.2018
+ * @version 0.0.4
+ */
 public class Login {
 
-	private JFrame frame;
+	private JFrame frmTelaDeLogin;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	
@@ -27,35 +36,36 @@ public class Login {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
+		frmTelaDeLogin = new JFrame();
+		frmTelaDeLogin.setTitle("Tela de acesso");
+		frmTelaDeLogin.getContentPane().setBackground(new Color(255, 255, 255));
+		frmTelaDeLogin.setBounds(100, 100, 450, 300);
+		frmTelaDeLogin.setLocationRelativeTo(null);
+		frmTelaDeLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTelaDeLogin.getContentPane().setLayout(null);
 	}
 	
 	public void LabelUsuario() {
 		
-		JLabel lblUsurio = new JLabel("UsuÃ¡rio:");
-		lblUsurio.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblUsurio.setBounds(97, 80, 70, 15);
-		frame.getContentPane().add(lblUsurio);
+		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
+		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblUsurio.setBounds(91, 79, 70, 15);
+		frmTelaDeLogin.getContentPane().add(lblUsurio);
 	}
 	
 	public void LabelSenha() {
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Dialog", Font.BOLD, 13));
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSenha.setBounds(106, 122, 70, 15);
-		frame.getContentPane().add(lblSenha);
+		frmTelaDeLogin.getContentPane().add(lblSenha);
 	}
 	
 	public void CampoTextoUsuario(){
 		
 		textField = new JTextField();
 		textField.setBounds(171, 78, 114, 23);
-		frame.getContentPane().add(textField);
+		frmTelaDeLogin.getContentPane().add(textField);
 		textField.setColumns(10);
 	}
 	
@@ -63,12 +73,15 @@ public class Login {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(171, 119, 114, 23);
-		frame.getContentPane().add(passwordField);
+		frmTelaDeLogin.getContentPane().add(passwordField);
 	}
 	
 	public void BotaoAcesso() {
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEntrar.setForeground(new Color(0, 0, 0));
+		btnEntrar.setBackground(new Color(255, 255, 255));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -77,14 +90,14 @@ public class Login {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				frame.dispose();
+				frmTelaDeLogin.dispose();
 			}
 		});
 		btnEntrar.setBounds(207, 154, 78, 23);
-		frame.getContentPane().add(btnEntrar);
+		frmTelaDeLogin.getContentPane().add(btnEntrar);
 	}
 	
 	public JFrame getFrame() {
-		return frame;
+		return frmTelaDeLogin;
 	}
 }

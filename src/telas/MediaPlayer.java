@@ -17,27 +17,43 @@ import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 
 import arvoreBinariaDeBusca.No;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.JTextPane;
+import javax.swing.JList;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.JSlider;
 
 /**
  * Implementacao da tela onde as musicas
  * seram reproduzidas
  * @see     MediaPlayer
  * @author	Robson Lael
+ * @author 	Samuel Lucas de Moura Ferino
  * @since   06.06.2018
- * @version 0.0.1
+ * @version 0.0.3
  */
-
 public class MediaPlayer {
 
-	JFrame frame;
+	JFrame frmPlayer;
 	Player tocar;
 	JButton play, pause;
 	Musica m;
 	int contador;
 	boolean startMusica = true;
 	
+	JButton addDiretorio;
+	JButton addArquivo;
+	JButton novaPlaylist;
 	
-	/** Construtor padrao */
+	/** 
+	 * Construtor padrão 
+	 * */
 	public MediaPlayer() {
 		initialize();
 		botaoPlayPause();
@@ -45,20 +61,39 @@ public class MediaPlayer {
 	}
 
 	/**
-     * Inicializar a tela da classe MediaPlayer
+     * Inicializa a tela da classe MediaPlayer
      */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmPlayer = new JFrame();
+		frmPlayer.setTitle("Reprodutor");
+		frmPlayer.setBounds(100, 100, 900, 650);
+		frmPlayer.setLocationRelativeTo(null);
+		frmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPlayer.getContentPane().setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmPlayer.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("Arquivo");
+		menuBar.add(mnFile);
+		
+		JMenu mnEditar = new JMenu("Editar");
+		menuBar.add(mnEditar);
+		
+		JMenu mnVer = new JMenu("Ver");
+		menuBar.add(mnVer);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(255, 255, 255));
+		menuBar.add(separator);
+		
+		JMenu mnNewMenu = new JMenu("Ajuda");
+		menuBar.add(mnNewMenu);
 				
 	}
 	
 	/**
-     * Adicionar um botao com a funcao de play/pause 
-     * na tela
+     * Adiciona um botão com a função de play/pause na tela
      */
 	private void botaoPlayPause() {
 		
@@ -67,17 +102,27 @@ public class MediaPlayer {
 		
 		contador = 0;
 		play = new JButton("");
+		play.setBackground(new Color(255, 255, 255));
 		
 		String caminhoImagem = "./imagensParaGui/play_pause.png";
-		File arquivoImagem = new File(caminhoImagem);
-		if(arquivoImagem.exists()) {
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			}
+			
 			play.setIcon(new ImageIcon(caminhoImagem));  
 		}
-		else {
-			System.out.println("Erro ao abrir o arquivo Imagem!!!");
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
 		}
 		
-		play.setBounds(76, 189, 43, 43);
+		play.setBounds(61, 446, 43, 43);
 		play.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -105,7 +150,7 @@ public class MediaPlayer {
 			}
 			 
 		});
-		frame.getContentPane().add(play);
+		frmPlayer.getContentPane().add(play);
 		play.setBorderPainted(false);
 		play.setOpaque(false);
 		play.setFocusPainted( false );
@@ -114,13 +159,18 @@ public class MediaPlayer {
 	
 	private void barraProgresso() {
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(222, 240, 148, 25);
-		frame.getContentPane().add(progressBar);
+		progressBar.setBounds(161, 522, 555, 20);
+		frmPlayer.getContentPane().add(progressBar);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 571, 884, 8);
+		frmPlayer.getContentPane().add(separator);
 	}
+	
 	/**
-     * retorna a tela do reprodutor de musica
+     * @return A tela do reprodutor de musica
      */
 	public JFrame getFrame() {
-		return frame;
+		return frmPlayer;
 	}
 }
