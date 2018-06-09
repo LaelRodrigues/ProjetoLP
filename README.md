@@ -6,7 +6,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a li
 
 ## Tela de acesso
 <p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/200px-Binary_search_tree.svg.png" width="50%"  />
+<img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/telaLogin.png" width="50%"  />
 </p>
 
 
