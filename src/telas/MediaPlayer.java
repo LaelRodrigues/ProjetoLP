@@ -3,15 +3,20 @@ package telas;
 import javax.swing.JFrame;
 
 import classes.Musica;
+import classes.TocarMusica;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
@@ -54,17 +59,19 @@ public class MediaPlayer {
 
 	JFrame frmPlayer;
 	Player tocar;
-	JButton play, pause;
-	Musica m;
+	TocarMusica m;
 	int contador;
 	boolean startMusica = true;
+	String nomeMusicaLista, nomeTemporario;
 	
-	JButton addDiretorio; 
-	JButton addArquivo;
-	JButton novaPlaylist;
+	JButton addDiretorio, addArquivo, novaPlaylist;
+	JButton play, botaoAnterior, botaoProximo;
+	JList<String> listaMusicas;
+	
+	ArrayList<Musica> musicas;
 	
 	/** 
-	 * Construtor padrão 
+	 * Construtor padrï¿½o 
 	 */
 	public MediaPlayer() {
 		initialize();
@@ -75,7 +82,9 @@ public class MediaPlayer {
 		botaoAddDiretorio();
 		rotuloBotaoAddArquivo();
 		botaoAddArquivo();
-		textAreaListaDeMusicas();
+		ListaDeMusicas();
+		botaoAnteriorMusica();
+		botaoProximaMusica();
 	}
 
 	/**
@@ -127,12 +136,14 @@ public class MediaPlayer {
 	}
 	
 	/**
-     * Adiciona um botão com a função de play/pause na tela
+     * Adiciona um botï¿½o com a funï¿½ï¿½o de play/pause na tela
      */
 	private void botaoPlayPause() {
-		
-		String caminho = "/home/lael/music";
-		File arquivoMp3 = new File(caminho);
+		Musica m1 = new Musica("music","/home/lael/music");
+		Musica m2 = new Musica("music2","/home/lael/music2");
+		musicas = new ArrayList<>();
+		musicas.add(m1);
+		musicas.add(m2);
 		
 		contador = 0;
 		play = new JButton("");
@@ -144,31 +155,48 @@ public class MediaPlayer {
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			play.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
 		}
-		
-		play.setBounds(58, 469, 43, 43);
-		play.addActionListener(new ActionListener() {
+		play.setBounds(79, 450, 43, 43);
+		play.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				if(startMusica) {
-					Musica musica = new Musica();
+					String caminho = PercorrerListaMusica(musicas);
+					File arquivoMp3 = new File(caminho);
+					System.out.println(caminho);
+					TocarMusica musica = new TocarMusica();
 					musica.tocar(arquivoMp3);
 			 		musica.start();
 			 		startMusica = false;
 			 		m = musica;
 				}
-				else {
-					if(m.getPlayer().isComplete()) {
+				else 
+				{
+					if(!nomeMusicaLista.equals(nomeTemporario)) {
+						m.getPlayer().close();
+						String caminho = PercorrerListaMusica(musicas);
+						if(caminho.equals("")) {
+							return;
+						}
+						File arquivoMp3 = new File(caminho);
+						System.out.println(caminho);
+						TocarMusica musica = new TocarMusica();
+						musica.tocar(arquivoMp3);
+				 		musica.start();
+				 		startMusica = false;
+				 		m = musica;
+					}
+					else if(m.getPlayer().isComplete()) {
 						m.getPlayer().close();
 						startMusica = true;
 					}
@@ -203,19 +231,19 @@ public class MediaPlayer {
 	}
 
 	/**
-     * Adiciona um rótulo na tela para o botão addDiretório
+     * Adiciona um rï¿½tulo na tela para o botï¿½o addDiretï¿½rio
      */
 	private void rotuloBotaoAddDiretorio() {
 
-		JLabel lblAddDiretrio = new JLabel("Add Diret\u00F3rio");
+		JLabel lblAddDiretrio = new JLabel("Adicionar Diret\u00F3rio");
 		lblAddDiretrio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddDiretrio.setBounds(36, 130, 113, 26);
+		lblAddDiretrio.setBounds(24, 134, 157, 26);
 		frmPlayer.getContentPane().add(lblAddDiretrio);
 
 	}
 	
 	/**
-     * Adiciona um botão na tela com a função de adicionar diretório
+     * Adiciona um botï¿½o na tela com a funï¿½ï¿½o de adicionar diretï¿½rio
      */
 	private void botaoAddDiretorio() {
 
@@ -226,25 +254,25 @@ public class MediaPlayer {
 		});
 		addDiretorio.setBackground(new Color(255, 255, 255));
 		
-		String caminhoImagem = "./imagensParaGui/mais.png";
+		String caminhoImagem = "./imagensParaGui/mais2.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			addDiretorio.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
 		}
 		
-		addDiretorio.setBounds(26, 183, 113, 107);
+		addDiretorio.setBounds(36, 190, 113, 107);
 		addDiretorio.setVisible(true);
 		addDiretorio.setBorderPainted(false);
 		addDiretorio.setOpaque(false);
@@ -255,19 +283,19 @@ public class MediaPlayer {
 	}
 	
 	/**
-     * Adiciona um rótulo na tela para o botão addArquivo
+     * Adiciona um rï¿½tulo na tela para o botï¿½o addArquivo
      */
 	private void rotuloBotaoAddArquivo(){
 	
-		JLabel lblAddArquivo = new JLabel("Add Arquivo");
+		JLabel lblAddArquivo = new JLabel("Adicionar Arquivo");
 		lblAddArquivo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddArquivo.setBounds(47, 291, 92, 20);
+		lblAddArquivo.setBounds(36, 291, 145, 20);
 		frmPlayer.getContentPane().add(lblAddArquivo);
 		
 	}
 	
 	/**
-     * Adiciona um botão na tela com a função de adicionar um arquivo
+     * Adiciona um botï¿½o na tela com a funï¿½ï¿½o de adicionar um arquivo
      */
 	private void botaoAddArquivo() {
 
@@ -279,26 +307,26 @@ public class MediaPlayer {
 		addArquivo.setBackground(new Color(255, 255, 255));
 		
 		
-		String caminhoImagem2 = "./imagensParaGui/mais.png";
+		String caminhoImagem2 = "./imagensParaGui/mais2.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem2);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			addArquivo.setIcon(new ImageIcon(caminhoImagem2));  
 		
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
 		}
 		
-		addArquivo.setBounds(26, 23, 113, 107);
+		addArquivo.setBounds(36, 41, 113, 107);
 		addArquivo.setVisible(true);
 		addArquivo.setBorderPainted(false);
 		addArquivo.setOpaque(false);
@@ -326,18 +354,29 @@ public class MediaPlayer {
 		
 		JLabel lblMsicas = new JLabel("M\u00FAsicas");
 		lblMsicas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMsicas.setBounds(294, 28, 58, 14);
+		lblMsicas.setBounds(294, 28, 79, 14);
 		frmPlayer.getContentPane().add(lblMsicas);
 	
 	}
 	
-	private void textAreaListaDeMusicas() {
+	private void ListaDeMusicas() {
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(Color.WHITE);
-		textArea.setBounds(206, 53, 225, 436);
-		frmPlayer.getContentPane().add(textArea);
+		DefaultListModel<String> modeloLista = new DefaultListModel<>();
+		modeloLista.addElement("music");
+		modeloLista.addElement("music2");	
 		
+		listaMusicas = new JList<>(modeloLista);
+		listaMusicas.setBounds(199, 53, 225, 436);
+		frmPlayer.getContentPane().add(listaMusicas);
+		
+		listaMusicas.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				nomeMusicaLista = (String)listaMusicas.getModel()
+			   .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
+				System.out.println(nomeMusicaLista);
+				contador = 0;
+			}
+		});
 	}
 	
 	/**
@@ -345,5 +384,107 @@ public class MediaPlayer {
      */
 	public JFrame getFrame() {
 		return frmPlayer;
+	}
+	
+	
+	public void botaoAnteriorMusica() {
+		
+		botaoAnterior = new JButton("");
+		botaoAnterior.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(listaMusicas.getSelectedIndex() == 0) {
+					return;
+				}	
+				int posicaoSelecao = listaMusicas.getSelectedIndex();
+				posicaoSelecao -= 1;
+				listaMusicas.setSelectedIndex(posicaoSelecao);
+				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+				System.out.println(nomeMusicaLista);
+				contador = 0;
+			}
+		});
+		
+		botaoAnterior.setBounds(24, 450, 43, 43);
+		botaoAnterior.setBackground(new Color(255, 255, 255));
+		String caminhoImagem = "./imagensParaGui/anterior.png";
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+			}
+			
+			botaoAnterior.setIcon(new ImageIcon(caminhoImagem));  
+		}
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		frmPlayer.getContentPane().add(botaoAnterior);
+		botaoAnterior.setBorderPainted(false);
+		botaoAnterior.setOpaque(false);
+		botaoAnterior.setFocusPainted( false );
+		
+	}
+	
+	public void botaoProximaMusica() {
+		botaoProximo = new JButton("");
+		botaoProximo.setBounds(138, 450, 43, 43);
+				
+		botaoProximo.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int posicaoSelecao = listaMusicas.getSelectedIndex();
+				if(posicaoSelecao == musicas.size()-1) {
+					listaMusicas.setSelectedIndex(0);
+					nomeMusicaLista = musicas.get(0).getNome();
+					return;
+				}	
+				posicaoSelecao += 1;
+				listaMusicas.setSelectedIndex(posicaoSelecao);
+				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+				System.out.println(nomeMusicaLista);
+				contador = 0;
+			}
+		});
+		
+		botaoProximo.setBackground(new Color(255, 255, 255));
+		String caminhoImagem = "./imagensParaGui/proxima.png";
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+			}
+			
+			botaoProximo.setIcon(new ImageIcon(caminhoImagem));  
+		}
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		frmPlayer.getContentPane().add(botaoProximo);
+		botaoProximo.setBorderPainted(false);
+		botaoProximo.setOpaque(false);
+		botaoProximo.setFocusPainted( false );
+	}
+	
+	
+	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
+		String caminhoAtualizado="";
+		for(int i = 0; i < 2; i++) {
+			if(musicas.get(i).getNome().equals(nomeMusicaLista)) {
+				System.out.println(musicas.get(i).getNome());
+				caminhoAtualizado = musicas.get(i).getCaminho();
+				nomeTemporario = nomeMusicaLista;
+			}
+		}
+		
+		return caminhoAtualizado;
 	}
 }

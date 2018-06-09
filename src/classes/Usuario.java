@@ -34,8 +34,8 @@ public class Usuario {
 	}
 	
 	/**
-     * 
-     * @return
+     * Funcao que retorna o identificador do usuario
+     * @return id do usuario
      */
 	public String getId() {
 		return id;

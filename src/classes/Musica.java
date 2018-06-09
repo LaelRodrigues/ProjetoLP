@@ -1,34 +1,61 @@
 package classes;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import javazoom.jl.player.Player;
-  
-public class Musica extends Thread {
+/**
+ * Implementacao da classe Musica
+ * @see     Musica
+ * @author	Robson Lael
+ * @since   08.06.2018
+ * @version 0.0.1
+ */
+
+public class Musica {
 	
-	private File mp3;
-	public Player player;
+	private String nome;
+	private String caminho;
 	
+	/**
+     * Construtor padrao
+     */
+	public Musica() {}
 	
-	public void tocar(File mp3) {
-		this.mp3 = mp3;
+	/**
+     * Construtor parametrizado
+     */
+	public Musica(String nome, String caminho) {
+		super();
+		this.nome = nome;
+		this.caminho = caminho;
 	}
 	
-	public void run() {
-		try {	
-			FileInputStream fis = new FileInputStream(mp3);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			this.player = new Player(bis);
-			this.player.play(); 
-			
-		} catch (Exception e) {
-			System.out.println("Problema ao tocar Musica" + mp3);
-		e.printStackTrace();
-		}
+	/**
+     * Funcao que retorna o nome da musica
+     * @return nome da musica
+     */
+	public String getNome() {
+		return nome;
 	}
 	
-	public Player getPlayer() {
-		return player;
+	/**
+     * Funcao para alterar o nome da musica
+     * @param nome da musica
+     */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	/**
+     * Funcao que retorna o caminho da musica
+     * @return caminho da musica
+     */
+	public String getCaminho() {
+		return caminho;
+	}
+	
+	/**
+     * Funcao para alterar o nome da musica
+     * @param caminho da musica
+     */
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
 	}
 }

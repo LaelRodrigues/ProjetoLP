@@ -12,7 +12,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 /**
- * Implementação da tela de acesso 
+ * Implementaï¿½ï¿½o da tela de acesso 
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
  * @since   06.06.2018
@@ -49,7 +49,7 @@ public class Login {
 		
 		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
 		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblUsurio.setBounds(91, 79, 70, 15);
+		lblUsurio.setBounds(91, 79, 78, 15);
 		frmTelaDeLogin.getContentPane().add(lblUsurio);
 	}
 	
@@ -93,7 +93,7 @@ public class Login {
 				frmTelaDeLogin.dispose();
 			}
 		});
-		btnEntrar.setBounds(207, 154, 78, 23);
+		btnEntrar.setBounds(203, 154, 82, 23);
 		frmTelaDeLogin.getContentPane().add(btnEntrar);
 	}
 	

@@ -1,7 +1,7 @@
 package arvoreBinariaDeBusca;
 
 /**
- * Representa um nó de uma árvore binária
+ * Representa um nï¿½ de uma ï¿½rvore binï¿½ria
  * @see     Object
  * @author  Samuel Lucas de Moura Ferino
  * @since   05.06.2018 
@@ -11,15 +11,15 @@ public class No{
     
     // -> ATRIBUTOS
     
-    private int chave;  // -> Chave do nó
-    private No pai;   // -> Endereço do nó pai
-    private No filhoEsquerdo;   // -> Endereço do nó filho à esquerda
-    private No filhoDireito;   // -> Endereço do nó filho à direita
+    private int chave;  // -> Chave do nï¿½
+    private No pai;   // -> Endereï¿½o do nï¿½ pai
+    private No filhoEsquerdo;   // -> Endereï¿½o do nï¿½ filho ï¿½ esquerda
+    private No filhoDireito;   // -> Endereï¿½o do nï¿½ filho ï¿½ direita
     
-    // -> MÉTODOS
+    // -> Mï¿½TODOS
     
     /**
-     * Construtor padrão
+     * Construtor padrï¿½o
      */
     public No(){
     
@@ -31,8 +31,8 @@ public class No{
     }
     
     /**
-     * Constrói o nó a partir da chave dada (Construtor parametrizado)
-     * @param chave Conteúdo da chave
+     * Constrï¿½i o nï¿½ a partir da chave dada (Construtor parametrizado)
+     * @param chave Conteï¿½do da chave
      */
     public No(int chave){
  
@@ -44,11 +44,11 @@ public class No{
     }
     
     /**
-     * Constrói o nó com todos os atributos (Construtor parametrizado)
-     * @param chave Conteúdo da chave
-     * @param pai   Endereço do nó pai
-     * @param filhoEsquerdo Endereço/Ponteiro para o nó filho esquerdo
-     * @param filhoDireito Endereço/Ponteiro 
+     * Constrï¿½i o nï¿½ com todos os atributos (Construtor parametrizado)
+     * @param chave Conteï¿½do da chave
+     * @param pai   Endereï¿½o do nï¿½ pai
+     * @param filhoEsquerdo Endereï¿½o/Ponteiro para o nï¿½ filho esquerdo
+     * @param filhoDireito Endereï¿½o/Ponteiro 
      */
     public No(int chave, No pai, No filhoEsquerdo, No filhoDireito){
     	
@@ -88,50 +88,50 @@ public class No{
     }
     
     /**
-     * Método get do atributo chave
-     * @return  Chave do nó
+     * Mï¿½todo get do atributo chave
+     * @return  Chave do nï¿½
      */
     public int getChave(){ return this.chave; }
     
     /**
-     * Método set do atributo chave
-     * @param  chave Chave do nó
+     * Mï¿½todo set do atributo chave
+     * @param  chave Chave do nï¿½
      */
     public void setChave(int chave){ this.chave = chave; }
    
     /**
-     * Método get do atributo pai
-     * @return  Endereço pai do nó
+     * Mï¿½todo get do atributo pai
+     * @return  Endereï¿½o pai do nï¿½
      */
     public No getPai(){ return this.pai; }
     
     /**
-     * Método set do atributo pai
-     * @param   pai  Endereço pai do nó
+     * Mï¿½todo set do atributo pai
+     * @param   pai  Endereï¿½o pai do nï¿½
      */
     public void setPai(No pai){ this.pai = pai; }
     
     /**
-     * Método get do atributo filhoEsquerdo
-     * @return  Endereço do filho esquerdo do nó
+     * Mï¿½todo get do atributo filhoEsquerdo
+     * @return  Endereï¿½o do filho esquerdo do nï¿½
      */
     public No getFilhoEsquerdo(){ return this.filhoEsquerdo; }
     
     /**
-     * Método set do atributo filhoEsquerdo
-     * @param   filhoEsquerdo  Endereço do filho esquerdo do nó
+     * Mï¿½todo set do atributo filhoEsquerdo
+     * @param   filhoEsquerdo  Endereï¿½o do filho esquerdo do nï¿½
      */
     public void setFilhoEsquerdo(No filhoEsquerdo){ this.filhoEsquerdo = filhoEsquerdo; }
     
     /**
-     * Método get do atributo filhoDireito
-     * @return  Endereço do filho direito do nó
+     * Mï¿½todo get do atributo filhoDireito
+     * @return  Endereï¿½o do filho direito do nï¿½
      */
     public No getFilhoDireito(){ return this.filhoDireito; }
     
     /**
-     * Método set do atributo filhoDireito
-     * @param   filhoDireito  Endereço do filho direito do nó
+     * Mï¿½todo set do atributo filhoDireito
+     * @param   filhoDireito  Endereï¿½o do filho direito do nï¿½
      */
     public void setFilhoDireito(No filhoDireito){ this.filhoDireito = filhoDireito; }
     
