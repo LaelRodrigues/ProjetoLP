@@ -1,6 +1,6 @@
 # ProjetoLP
 
-Neste repositório contém a implementação de um reprodutor de mp3 usando a linguagem [Java] com interface gráfica com Swing/AWT.Este tocador de mp3 � capaz de produzir arquivos de �udio individualmente ou como parte de uma _playlist_.
+Neste repositório contém a implementação de um reprodutor de mp3 usando a linguagem [Java] com interface gráfica com Swing/AWT.Este tocador de mp3 é capaz de produzir arquivos de áudio individualmente ou como parte de uma _playlist_.
 
 [Java]: https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)
 
