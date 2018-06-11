@@ -78,7 +78,9 @@ public class No{
      * M�todo set do atributo pai
      * @param   pai  Endere�o pai do n�
      */
-    protected void setPai(No pai){ this.pai = pai; }
+    protected void setPai(No pai){
+    		this.pai = pai;
+    }
     
     /**
      * M�todo get do atributo filhoEsquerdo
@@ -90,7 +92,9 @@ public class No{
      * M�todo set do atributo filhoEsquerdo
      * @param   filhoEsquerdo  Endere�o do filho esquerdo do n�
      */
-    protected void setFilhoEsquerdo(No filhoEsquerdo){ this.filhoEsquerdo = filhoEsquerdo; }
+    protected void setFilhoEsquerdo(No filhoEsquerdo){ 
+    	this.filhoEsquerdo = filhoEsquerdo;
+    }
     
     /**
      * M�todo get do atributo filhoDireito
@@ -102,6 +106,8 @@ public class No{
      * M�todo set do atributo filhoDireito
      * @param   filhoDireito  Endere�o do filho direito do n�
      */
-    protected void setFilhoDireito(No filhoDireito){ this.filhoDireito = filhoDireito; }
+    protected void setFilhoDireito(No filhoDireito){
+    	this.filhoDireito = filhoDireito;    	
+    }
     
 }

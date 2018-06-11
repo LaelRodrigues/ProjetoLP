@@ -87,7 +87,19 @@ public class NoABB extends No{
      * Método set do atributo chave
      * @param  chave Chave do nó
      */
-    public void setUsuario(Usuario usuario){ this.usuario = usuario; }
+    public void setUsuario(Usuario usuario){ 
+    	
+    	try {
+    		this.usuario = usuario;
+    	}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
+	
+    }
    
 	/**
 	 * Método get do atributo pai da super classe

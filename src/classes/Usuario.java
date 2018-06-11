@@ -83,7 +83,15 @@ public class Usuario implements Comparable<Usuario>{
      * @param id 	Número de identificação do usuário
      */
 	public void setId(String id) {
-		this.id = id;
+		try{
+			this.id = id;
+		}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
 	}
 	
 	/**
@@ -91,7 +99,7 @@ public class Usuario implements Comparable<Usuario>{
      * @return nome do usuário
      */
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	
 	/**
@@ -99,7 +107,16 @@ public class Usuario implements Comparable<Usuario>{
      * @param nome Nome do usuário
      */
 	public void setNome(String nome) {
-		this.nome = nome;
+		
+		try {
+			this.nome = nome;
+		}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
 	}
 	
 	/**
@@ -107,7 +124,7 @@ public class Usuario implements Comparable<Usuario>{
      * @return senha Senha do usuário
      */
 	public String getSenha() {
-		return senha;
+		return this.senha;
 	}
 	
 	/**
@@ -115,7 +132,16 @@ public class Usuario implements Comparable<Usuario>{
      * @param senha Senha do usuário
      */
 	public void setSenha(String senha) {
-		this.senha = senha;
+		
+		try{	
+			this.senha = senha;
+		}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
 	}
 	
 	/**
@@ -123,7 +149,7 @@ public class Usuario implements Comparable<Usuario>{
      * @return Status do acesso do usuário
      */
 	public boolean isVip() {
-		return vip;
+		return this.vip;
 	}
 	
 	/**

@@ -45,7 +45,7 @@ public class ABB {
     
     /**
      * Buscando o nó com a chave correspondente entrada - O(log n)
-     * @param value Chave a ser buscada na ABB
+     * @param usuario Usuário a ser buscado na ABB
      * @return True caso tenha encontrado algum nó com a correspondente chave senão false
      */
     public boolean busca(Usuario usuario) {
@@ -62,7 +62,7 @@ public class ABB {
 
             auxPai = aux;
 
-            if( aux.getUsuario().compareTo(usuario) == 1 ){ 	// -> Procurando na subárvore direita
+            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na subárvore direita
                 aux = aux.getDireito();
             }
             else{							// -> Procurando na subárvore esquerda
@@ -81,10 +81,10 @@ public class ABB {
     
     /**
      * Insere um nó na ABB caso ele não exista previamente 
-     * @param value Conteúdo da chave do nó a ser adicionado
+     * @param usuario Usuário a ser adicionado à ABB
      * @return True caso seja inserido com sucesso senão false
      */
-    public boolean insere(Usuario value){
+    public boolean insere(Usuario usuario){
     	
     	if(this.quantidadeDeNos == 0) { // -> Primeira inserção na ABB
     	
@@ -92,12 +92,12 @@ public class ABB {
     			this.raiz = new NoABB();
     		}
     		
-    		this.raiz.setChave(value);
+    		this.raiz.setUsuario(usuario);
     		++this.quantidadeDeNos;
     		return true;
     	}
     	
-        if( busca(value) == true ){	// -> Nó já existe na ABB
+        if( busca(usuario) == true ){	// -> Nó já existe na ABB
         	return false;
         }
         
@@ -108,22 +108,22 @@ public class ABB {
         	
         	auxPai = aux;
         	
-            if( value > aux.getChave() ){
-                aux = aux.getFilhoDireito();
+            if( usuario.compareTo(aux.getUsuario()) == 1 ){
+                aux = aux.getDireito();
             }
             else{
-                aux = aux.getFilhoEsquerdo();
+                aux = aux.getEsquerdo();
             }    
 
         }
         
-        NoABB novoNo = new NoABB(value);
+        NoABB novoNo = new NoABB(usuario);
         
-        if( value > auxPai.getChave() ){   // -> É o filho direito de "auxPai" 
-        	auxPai.setFilhoDireito(novoNo);
+        if( usuario.compareTo(auxPai.getUsuario() ) == 1){   // -> É o filho direito de "auxPai" 
+        	auxPai.setDireito(novoNo);
         }
         else{   						// -> É o filho esquerdo de "auxPai"
-        	auxPai.setFilhoEsquerdo(novoNo);
+        	auxPai.setEsquerdo(novoNo);
         }    
         
         ++this.quantidadeDeNos;
@@ -133,57 +133,57 @@ public class ABB {
     
     /**
      * Remove um nó na ABB caso ele exista previamente 
-     * @param value	Chave a ser excluída
+     * @param usuario	Usuário a ser excluído
      * @return True caso seja removido com sucesso senão false
      */
-	public boolean remove(int value){
+	public boolean remove(Usuario usuario){
 		
 		if(this.quantidadeDeNos == 0 ){  // -> ABB vazia	
 			return false;
 		}
-		if( busca(value) == false ){  // -> Nó com chave correspondente não encontrado
+		if( busca(usuario) == false ){  // -> Nó com chave correspondente não encontrado
 			return false;
 		}
 
-        No aux = this.raiz;
-        No auxPai = null;
+        NoABB aux = this.raiz;
+        NoABB auxPai = null;
         
-        while( aux.getChave() != value ){     // -> BUSCANDO LOCAL ONDE DO NÓ QUE SERÁ  E ARMAZENANDO NA VARIÁVEL "auxPai"
+        while( usuario.compareTo(aux.getUsuario()) != 0 ){     // -> BUSCANDO LOCAL ONDE DO NÓ QUE SERÁ  E ARMAZENANDO NA VARIÁVEL "auxPai"
         	
         	auxPai = aux;
         	
-            if( value > aux.getChave() ){
-                aux = aux.getFilhoDireito();
+            if( usuario.compareTo(aux.getUsuario()) == 1 ){
+                aux = aux.getDireito();
             }
             else{
-                aux = aux.getFilhoEsquerdo();
+                aux = aux.getEsquerdo();
             }    
 
         }
 		
-        if( aux.getFilhoEsquerdo() == null ){	// -> O nó a ser removido, "aux", não tem filho à esquerda
-        	transplant(aux, aux.getFilhoDireito() );
+        if( aux.getEsquerdo() == null ){	// -> O nó a ser removido, "aux", não tem filho à esquerda
+        	transplant(aux, aux.getDireito() );
         }
-        else if( aux.getFilhoDireito() == null ){	// -> O nó a ser removido, "aux", não tem filho à direita
-        	transplant(aux, aux.getFilhoEsquerdo() );
+        else if( aux.getDireito() == null ){	// -> O nó a ser removido, "aux", não tem filho à direita
+        	transplant(aux, aux.getEsquerdo() );
         }
         else{
         	
-        	No temporario = aux;
+        	NoABB temporario = aux;
         	
-        	while( temporario.getFilhoEsquerdo() != null ){
-        		temporario = temporario.getFilhoEsquerdo();
+        	while( temporario.getEsquerdo() != null ){
+        		temporario = temporario.getEsquerdo();
         	}
         	
         	if(temporario.getPai() != aux) {
-        		transplant(temporario, temporario.getFilhoDireito() );
-        		temporario.setFilhoDireito( aux.getFilhoDireito() );
-        		temporario.getPai().setFilhoDireito(temporario);
+        		transplant(temporario, temporario.getDireito() );
+        		temporario.setDireito( aux.getDireito() );
+        		temporario.getPai().setDireito(temporario);
         	}
         	
         	transplant(aux, temporario);
-        	temporario.setFilhoEsquerdo(aux.getFilhoEsquerdo() );
-        	temporario.getPai().setFilhoEsquerdo(temporario);
+        	temporario.setEsquerdo(aux.getEsquerdo() );
+        	temporario.getPai().setEsquerdo(temporario);
         	
         }
         
@@ -207,13 +207,13 @@ public class ABB {
 	 * Percorre as subárvores de x em InOrdem
 	 * @param x	Nó que a partir do qual será feito o percorrimento
 	 */
-	private void inOrdem(No x){
+	private void inOrdem(NoABB x){
 		
 		if(x != null) {
 			
-			inOrdem( x.getFilhoEsquerdo() );
-			System.out.print( x.getChave() + " " );
-			inOrdem( x.getFilhoDireito() );
+			inOrdem( x.getEsquerdo() );
+			System.out.println( x.getUsuario().getId() + " " + x.getUsuario().getNome() );
+			inOrdem( x.getDireito() );
 			
 		}
 		
@@ -224,15 +224,15 @@ public class ABB {
      * @param   u 	Nó que será substituído pelo nó v
      * @param   v 	Nó que substituirá o nó u
      */
-	private void transplant(No u, No v) {
+	private void transplant(NoABB u, NoABB v) {
 		if( u.getPai() == null ){ // -> Caso em que será removida a raiz por isso "v" será a nova raiz 		
 				this.raiz = v;
 	    }
-        else if( u == u.getPai().getFilhoEsquerdo() ){ /// "u" é o filho à esquerda
-          u.getPai().setFilhoEsquerdo(v);
+        else if( u == u.getPai().getEsquerdo() ){ /// "u" é o filho à esquerda
+          u.getPai().setEsquerdo(v);
         }
         else{ /// "u" é o filho à direita
-          u.getPai().setFilhoDireito(v);
+          u.getPai().setDireito(v);
         }
         if(v != null){ /// Já que foi movido um filho não nulo, falta dizer quem é o pai dele
           v.setPai( u.getPai() );
