@@ -24,7 +24,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
   
 
 
-## :art:Interface gráfica (GUI)
+## :art: Interface gráfica (GUI)
 ### Tela de acesso
 <p align="center">
 <img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/telaLogin.png" width="50%"  />
