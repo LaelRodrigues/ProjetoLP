@@ -10,7 +10,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
  	Contém a implementação da TAD árvore de busca binária  
  	
  
- - arvoreDePatricia [ :construction: _Imcompleta_ ]  
+ - arvoreDePatricia [ :construction: _Imcompleto_ ]  
  	Contém a implementação da TAD árvore de patrícia  
   
  - classes  
