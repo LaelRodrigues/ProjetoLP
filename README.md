@@ -7,28 +7,24 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 ## :file_folder: Pacotes
 
  - arvoreBinariaDeBusca [ :hammer:_Atualizado_ ]  
- 
  	Contém a implementação da TAD árvore de busca binária  
  	
  
  - arvoreDePatricia [ :construction: _Imcompleta_ ]  
- 
  	Contém a implementação da TAD árvore de patrícia  
   
  - classes  
-
  	Contém as classes usadas na reprodução das músicas 
   
  - no [ :heavy_check_mark:_Adicionado_ ]  
    	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
     
  - telas  
- 
  	Contém as classes que implementam a GUI  
   
 
 
-## Interface gráfica (GUI)
+## :art:Interface gráfica (GUI)
 ### Tela de acesso
 <p align="center">
 <img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/telaLogin.png" width="50%"  />
@@ -55,4 +51,4 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 ## Autor :smile:
 
 Robson Lael Rodrigues  
-Samuel Lucas de Moura Ferino	(:mailbox:<samuel1797@gmail.com>)
+Samuel Lucas de Moura Ferino	( :mailbox: <samuel1797@gmail.com> )
