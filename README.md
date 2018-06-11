@@ -19,7 +19,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
  - no [ :heavy_check_mark:_Adicionado_ ]  
    	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
     
- - telas  
+ - telas [ :construction: _Imcompleto_ ]  
  	Contém as classes que implementam a GUI  
   
 
