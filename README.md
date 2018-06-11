@@ -13,18 +13,18 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
  
  - arvoreDePatricia [ _Imcompleta_ ]  
  
-  Contém a implementação da TAD árvore de patrícia  
+ 	Contém a implementação da TAD árvore de patrícia  
   
  - classes  
- 
-  Contém as classes usadas na reprodução das músicas 
+
+ 	Contém as classes usadas na reprodução das músicas 
   
  - no  
-    Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
+   	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
     
  - telas  
  
- Contém as classes que implementam a GUI  
+ 	Contém as classes que implementam a GUI  
   
 
 
