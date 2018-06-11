@@ -4,17 +4,47 @@ Neste repositÃ³rio contÃ©m a implementaÃ§Ã£o de um reprodutor de mp3 usando a li
 
 [Java]: https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)
 
-## Tela de acesso
+## Pacotes
+
+ - arvoreBinariaDeBusca
+ > Contém a implementação da TAD árvore de busca binária
+ >
+ - arvoreDePatricia [_Imcompleta_]
+ > Contém a implementação da TAD árvore de patrícia
+ >
+ - classes
+ > Contém as classes usadas na reprodução das músicas
+ >
+ - no
+ > Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia
+ > 
+ - telas
+ > Contém as classes que implementam a GUI 
+
+
+## Interface gráfica (GUI)
+### Tela de acesso
 <p align="center">
 <img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/telaLogin.png" width="50%"  />
 </p>
 
 
-## Tela do reprodutor
+### Tela do reprodutor
 <p align="center">
 <img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/reprodutor.png" width="50%"  />
 </p>
 
+
+## Referências 
+
+
+<p align="left">
+<img src="https://cdn-images-1.medium.com/max/982/1*AiTBjfsoj3emarTpaeNgKQ.png" width="14%"  />
+</p>
+
+[https://junit.org/junit5/]
+
+[https://junit.org/junit5/]: https://junit.org/junit5/
 
 ## Autor :smile:
 
