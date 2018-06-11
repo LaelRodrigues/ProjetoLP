@@ -1,25 +1,31 @@
 # ProjetoLP
 
-Neste repositÃ³rio contÃ©m a implementaÃ§Ã£o de um reprodutor de mp3 usando a linguagem [Java] com interface grÃ¡fica com Swing/AWT. Este tocador de mp3 Ã© capaz de produzir arquivos de Ã¡udio individualmente ou como parte de uma _playlist_.
+Neste repositório contém a implementação de um reprodutor de mp3 usando a linguagem [Java] com interface gráfica com Swing/AWT. Este tocador de mp3 é capaz de produzir arquivos de áudio individualmente ou como parte de uma _playlist_.
 
 [Java]: https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)
 
 ## Pacotes
 
- - arvoreBinariaDeBusca
- > Contém a implementação da TAD árvore de busca binária
- >
- - arvoreDePatricia [_Imcompleta_]
- > Contém a implementação da TAD árvore de patrícia
- >
- - classes
- > Contém as classes usadas na reprodução das músicas
- >
- - no
- > Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia
- > 
- - telas
- > Contém as classes que implementam a GUI 
+ - arvoreBinariaDeBusca  
+ 
+ 	Contém a implementação da TAD árvore de busca binária  
+ 	
+ 
+ - arvoreDePatricia [ _Imcompleta_ ]  
+ 
+  Contém a implementação da TAD árvore de patrícia  
+  
+ - classes  
+ 
+  Contém as classes usadas na reprodução das músicas 
+  
+ - no  
+    Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
+    
+ - telas  
+ 
+ Contém as classes que implementam a GUI  
+  
 
 
 ## Interface gráfica (GUI)
