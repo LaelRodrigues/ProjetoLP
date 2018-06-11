@@ -1,9 +1,11 @@
 package arvoreBinariaDeBusca;
 
+import classes.Usuario;
 
 /**
  * Representa uma árvore de busca binária (ABB) 
- * @see     Node
+ * @see     NodeABB
+ * @see		No
  * @author  Samuel Lucas de Moura Ferino
  * @since   05.06.2018
  * @version 0.0.1
@@ -12,7 +14,7 @@ public class ABB {
 
     // -> ATRIBUTOS
     
-    private No raiz;  // -> Nó raiz da ABB
+    private NoABB raiz;  // -> Nó raiz da ABB
     private int quantidadeDeNos;	// -> Quantidade de nó que compõem a ABB
     
     // -> MÉTODOS
@@ -21,7 +23,7 @@ public class ABB {
      * Construtor padrão
      */
     public ABB(){
-        this.raiz = new No();
+        this.raiz = new NoABB();
         this.quantidadeDeNos = 0;
     }
     
@@ -29,38 +31,42 @@ public class ABB {
      * Método get do atributo raiz
      * @return Raiz da árvore
      */
-    public No getRaiz(){ return this.raiz; }
+    public NoABB getRaiz(){ 
+    	return this.raiz; 
+    }
 
     /**
      * Método get do atributo quantidadeDeNos
      * @return Quantidade de nós que compõem a árvore
      */
-    public int getQuantidadeDeNos(){ return this.quantidadeDeNos; }
+    public int getQuantidadeDeNos(){ 
+    	return this.quantidadeDeNos; 
+    }
     
     /**
      * Buscando o nó com a chave correspondente entrada - O(log n)
      * @param value Chave a ser buscada na ABB
      * @return True caso tenha encontrado algum nó com a correspondente chave senão false
      */
-    public boolean busca(int value) {
+    public boolean busca(Usuario usuario) {
     	
     	if(this.quantidadeDeNos == 0) { // -> A árvore é vazia
     		return false;
     	}
     	
     	// -> Nós auxiliares usados na busca
-    	No aux = this.raiz;
-        No auxPai = null;
+    	NoABB aux = this.raiz;
+        NoABB auxPai = null;
         
-        while( aux != null && aux.getChave() != value ){     
+        while( aux != null && aux.getUsuario().compareTo(usuario) != 0 ){     
 
             auxPai = aux;
 
-            if( value > aux.getChave() ){ 	// -> Procurando na subárvore direita
-                aux = aux.getFilhoDireito();
+            if( aux.getUsuario().compareTo(usuario) == 1 ){ 	// -> Procurando na subárvore direita
+                aux = aux.getDireito();
             }
             else{							// -> Procurando na subárvore esquerda
-                aux = aux.getFilhoEsquerdo();
+                aux = aux.getEsquerdo();
             }    
             
         }
@@ -78,12 +84,12 @@ public class ABB {
      * @param value Conteúdo da chave do nó a ser adicionado
      * @return True caso seja inserido com sucesso senão false
      */
-    public boolean insere(int value){
+    public boolean insere(Usuario value){
     	
     	if(this.quantidadeDeNos == 0) { // -> Primeira inserção na ABB
     	
     		if( this.raiz == null) {
-    			this.raiz = new No();
+    			this.raiz = new NoABB();
     		}
     		
     		this.raiz.setChave(value);
@@ -95,8 +101,8 @@ public class ABB {
         	return false;
         }
         
-        No aux = this.raiz;
-        No auxPai = null;
+        NoABB aux = this.raiz;
+        NoABB auxPai = null;
         
         while( aux != null ){     // -> BUSCANDO LOCAL ONDE O NÓ SERÁ INSERIDO E ARMAZENANDO NA VARIÁVEL "auxPai"
         	
@@ -111,7 +117,7 @@ public class ABB {
 
         }
         
-        No novoNo = new No(value);
+        NoABB novoNo = new NoABB(value);
         
         if( value > auxPai.getChave() ){   // -> É o filho direito de "auxPai" 
         	auxPai.setFilhoDireito(novoNo);

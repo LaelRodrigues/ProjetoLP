@@ -21,7 +21,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 
-import arvoreBinariaDeBusca.No;
+import arvoreBinariaDeBusca.NoABB;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JTextPane;

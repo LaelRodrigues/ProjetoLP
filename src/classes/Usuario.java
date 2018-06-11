@@ -1,6 +1,5 @@
 package classes;
 
-
 /**
  * Implementacao da classe do Usuario 
  * @see     Usuario
@@ -8,92 +7,150 @@ package classes;
  * @since   07.06.2018
  * @version 0.0.1
  */
-
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
 	
-	private String id;
-	private String nome;
-	private String senha;
-	private boolean vip; 
+	// -> ATRIBUTOS
+	
+	private String id; // -> Número de identificação do usuário
+	private String nome; // -> Nome do usuário
+	private String senha; // -> Senha do usuário
+	private boolean vip; // -> Status de acesso do usuário
 	
 	/**
-     * Construtor padrao
+     * Construtor padrão
      */
 	public Usuario() {
+		
+		this.id = new String();
+		this.nome = new String();
+		this.senha = new String();
+		this.vip = false;
+		
 	}
 	
 	/**
-     * Construtor parametrizado
+     *  (Construtor parametrizado)
+     * @param id	Número de identificação do usuário
+     * @param nome 	Nome do usuário
+     * @param senha	Senha do usuário
+     * @param vip	Status do usuário
      */
 	public Usuario(String id, String nome, String senha, boolean vip) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.senha = senha;
-		this.vip = vip;
+		try{
+			if( id == null) {
+				throw new NullPointerException("variável id está nulo");
+			}
+			else {
+				this.id = id;
+			}	
+			
+			if( nome == null){
+				throw new NullPointerException("variável nome está nulo");	
+			}
+			else{
+				this.nome = nome;
+			}
+			
+			if( senha == null) {
+				throw new NullPointerException("variável senha está nulo");
+			}
+			else{
+				this.senha = senha;
+			}
+			
+			this.vip = vip;
+			
+		}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
+		
 	}
 	
 	/**
-     * Funcao que retorna o identificador do usuario
-     * @return id do usuario
+     * Método get do atributo id
+     * @return Número de identificação do usuário
      */
 	public String getId() {
-		return id;
+		return this.id;
 	}
 	
 	/**
-     * Funcao para a alterar o identificador do usuario
-     * @param id do usuario
+     * Método set do atributo id
+     * @param id 	Número de identificação do usuário
      */
 	public void setId(String id) {
 		this.id = id;
 	}
 	
 	/**
-     * Funcao que retorna o nome do usuario
-     * @return nome do usuario
+     * Método get do atributo nome
+     * @return nome do usuário
      */
 	public String getNome() {
 		return nome;
 	}
 	
 	/**
-     * Funcao para a alterar o nome do usuario
-     * @param nome do usuario
+     * Método set do atributo nome
+     * @param nome Nome do usuário
      */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
 	/**
-     * Funcao que retorna a senha do usuario
-     * @return senha do usuario
+     * Método get do atributo senha
+     * @return senha Senha do usuário
      */
 	public String getSenha() {
 		return senha;
 	}
 	
 	/**
-     * Funcao para alterar a senha do usuario
-     * @param senha do usuario
+     * Método set do atributo senha
+     * @param senha Senha do usuário
      */
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	
 	/**
-     * Funcao que define se o tipo de usuario e vip ou comum
-     * @return se o usuario e vip ou comum
+     * Método get do atributo vip
+     * @return Status do acesso do usuário
      */
 	public boolean isVip() {
 		return vip;
 	}
 	
 	/**
-     * Funcao que altera o tipo do usuario
-     * @param true se e vip ou false se e usuairo comum
+     * Método set do atributo vip
+     * @param vip Status do acesso do usuário
      */
 	public void setVip(boolean vip) {
 		this.vip = vip;
 	}
+	
+	/**
+	 * @brief   Compara dois objetos da classe Usuario
+	 * @param   usuario   Objeto da classe Usuario usada na comparação
+	 * @return  -1 indica que o objeto atual é menor que o objeto usuario
+	 *          0 indica que ambos objetos são iguais
+	 *          1 indica que o objeto atual é maior que o objeto usuario
+	 */ 
+	  public int compareTo( Usuario usuario ){
+	    
+	    if( this.id.compareTo(usuario.getId() ) == -1 ){
+	    	return -1;
+	    }
+	    else if( this.id.compareTo(usuario.getId() ) == 0 ){
+		     return 0;
+		} 
+	    else{
+	    	return 1;
+	    }
+	 }	 
 }
