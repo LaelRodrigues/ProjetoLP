@@ -48,7 +48,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 
 [https://junit.org/junit5/]: https://junit.org/junit5/
 
-## Autor :smile:
+## Autores :smile:
 
 Robson Lael Rodrigues  
 Samuel Lucas de Moura Ferino	( :mailbox: <samuel1797@gmail.com> )
