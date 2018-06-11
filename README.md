@@ -4,14 +4,14 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 
 [Java]: https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)
 
-## Pacotes
+## :file_folder: Pacotes
 
- - arvoreBinariaDeBusca  
+ - arvoreBinariaDeBusca [ :hammer:_Atualizado_ ]  
  
  	Contém a implementação da TAD árvore de busca binária  
  	
  
- - arvoreDePatricia [ _Imcompleta_ ]  
+ - arvoreDePatricia [ :construction: _Imcompleta_ ]  
  
  	Contém a implementação da TAD árvore de patrícia  
   
@@ -48,11 +48,11 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 <img src="https://cdn-images-1.medium.com/max/982/1*AiTBjfsoj3emarTpaeNgKQ.png" width="14%"  />
 </p>
 
-[https://junit.org/junit5/]
+:link:[https://junit.org/junit5/]
 
 [https://junit.org/junit5/]: https://junit.org/junit5/
 
 ## Autor :smile:
 
 Robson Lael Rodrigues  
-Samuel Lucas de Moura Ferino (<samuel1797@gmail.com>)
+Samuel Lucas de Moura Ferino :email:(<samuel1797@gmail.com>)
