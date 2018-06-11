@@ -19,7 +19,7 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 
  	Contém as classes usadas na reprodução das músicas 
   
- - no  
+ - no  [ :heavy_check_mark:_Adicionado_ ]
    	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
     
  - telas  
@@ -55,4 +55,4 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a lingua
 ## Autor :smile:
 
 Robson Lael Rodrigues  
-Samuel Lucas de Moura Ferino :email:(<samuel1797@gmail.com>)
+Samuel Lucas de Moura Ferino :mailbox:<samuel1797@gmail.com>
