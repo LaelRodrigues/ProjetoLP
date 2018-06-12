@@ -92,7 +92,7 @@ public class MediaPlayer {
      */
 	private void initialize() {
 		frmPlayer = new JFrame();
-		frmPlayer.getContentPane().setBackground(new Color(255, 140, 0));
+		frmPlayer.getContentPane().setBackground(new Color(0, 204, 255));
 		frmPlayer.setTitle("Reprodutor");
 		frmPlayer.setBounds(100, 100, 900, 650);
 		frmPlayer.setLocationRelativeTo(null);
@@ -166,7 +166,7 @@ public class MediaPlayer {
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
 		}
-		play.setBounds(79, 450, 43, 43);
+		play.setBounds(77, 450, 43, 43);
 		play.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
@@ -432,7 +432,7 @@ public class MediaPlayer {
 	
 	public void botaoProximaMusica() {
 		botaoProximo = new JButton("");
-		botaoProximo.setBounds(138, 450, 43, 43);
+		botaoProximo.setBounds(130, 450, 43, 43);
 				
 		botaoProximo.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

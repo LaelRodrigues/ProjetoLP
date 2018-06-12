@@ -1,11 +1,11 @@
 package classes;
 
 /**
- * Implementacao da classe Musica
- * @see     Musica
+ * Representa uma música
  * @author	Robson Lael
+ * @author 	Samuel Lucas de Moura Ferino
  * @since   08.06.2018
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class Musica {
 	
@@ -13,19 +13,30 @@ public class Musica {
 	private String caminho;
 	
 	/**
-     * Construtor padrao
+     * Construtor padrão
      */
-	public Musica() {}
+	public Musica(){}
 	
 	/**
      * Construtor parametrizado
      * @param	nome Nome da música
-     * @param 	caminhao Caminho do local onde a música foi armazenada
+     * @param 	caminho Caminho do local onde a música foi armazenada
      */
 	public Musica(String nome, String caminho) {
+		
 		super();
-		this.nome = nome;
-		this.caminho = caminho;
+		
+		try {
+			this.nome = nome;
+			this.caminho = caminho;
+		}
+		catch( NullPointerException e ){
+			System.err.println(e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println(e.getMessage() );
+		}
+		
 	}
 	
 	/**
@@ -42,7 +53,16 @@ public class Musica {
      */
 	public void setNome(String nome) {
 		
-		this.nome = nome;
+		try{
+			this.nome = nome;
+		}
+		catch( NullPointerException e ){
+			System.err.println(e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println(e.getMessage() );
+		}
+		
 	}
 	
 	/**

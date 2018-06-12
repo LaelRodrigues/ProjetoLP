@@ -1,7 +1,9 @@
 package dados;
 
-import java.util.ArrayList;
+
+import classes.ManipulaArquivo;
 import classes.Usuario;
+import java.util.ArrayList;
 
 public class DadosUsuario {
 	

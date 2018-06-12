@@ -4,7 +4,13 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import javazoom.jl.player.Player;
-  
+
+/**
+ * Representa o ato de tocar música
+ * @see     Musica
+ * @author	Robson Lael
+ * @version 0.0.1
+ */
 public class TocarMusica extends Thread {
 	
 	private File mp3;

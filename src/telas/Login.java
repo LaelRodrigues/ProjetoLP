@@ -25,7 +25,9 @@ public class Login {
 	private JPasswordField passwordField;
 	
 	
-	/** Construtor padrao */
+	/** 
+	 * Construtor padrão 
+	 */
 	public Login() {
 		initialize();
 		LabelUsuario();
@@ -33,6 +35,7 @@ public class Login {
 		CampoTextoUsuario();
 		CampoTextoSenha();
 		BotaoAcesso();
+		botaoRegistrar();
 	}
 
 	private void initialize() {
@@ -93,8 +96,29 @@ public class Login {
 				frmTelaDeLogin.dispose();
 			}
 		});
-		btnEntrar.setBounds(203, 154, 82, 23);
+		btnEntrar.setBounds(203, 153, 82, 23);
 		frmTelaDeLogin.getContentPane().add(btnEntrar);
+	}
+	
+	public void botaoRegistrar(){
+		JButton btnRegistrar = new JButton("Registrar-se");
+		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRegistrar.setForeground(Color.WHITE);
+		btnRegistrar.setBackground(new Color(0, 102, 255));
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					MediaPlayer window = new MediaPlayer();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				frmTelaDeLogin.dispose();
+			}
+		});
+		btnRegistrar.setBounds(302, 227, 122, 23);
+		frmTelaDeLogin.getContentPane().add(btnRegistrar);
+
 	}
 	
 	public JFrame getFrame() {
