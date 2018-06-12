@@ -1,4 +1,4 @@
-package classes;
+package dadosDosArquivos;
 
 // -> MANIPULAÇÃO DE ARQUIVO
 import java.io.BufferedReader;
