@@ -86,7 +86,7 @@ public class MediaPlayer {
 		botaoAnteriorMusica();
 		botaoProximaMusica();
 		listaDePlaylists();
-		
+		botaoAddPlayLists();
 	}
 
 	/**
@@ -240,9 +240,45 @@ public class MediaPlayer {
 		JLabel lblAddDiretrio = new JLabel("Adicionar Diret\u00F3rio");
 		lblAddDiretrio.setForeground(new Color(255, 255, 255));
 		lblAddDiretrio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddDiretrio.setBounds(24, 134, 157, 26);
+		lblAddDiretrio.setBounds(36, 126, 157, 26);
 		frmPlayer.getContentPane().add(lblAddDiretrio);
 
+	}
+	
+	private void botaoAddPlayLists(){
+		JButton addPlayList = new JButton("");
+		addPlayList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		addPlayList.setBackground(new Color(255, 255, 255));
+		
+		String caminhoImagem = "./imagensParaGui/imagensEditadas/mais2Branco.png";
+		
+		try {
+			File arquivoImagem = new File(caminhoImagem);
+			
+			if(!arquivoImagem.exists()) {
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			}
+			
+			addPlayList.setIcon(new ImageIcon(caminhoImagem));  
+		}
+		catch(NullPointerException e){
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+		}
+		catch(Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		
+		addPlayList.setBounds(677, 423, 72, 66);
+		addPlayList.setVisible(true);
+		addPlayList.setBorderPainted(false);
+		addPlayList.setOpaque(false);
+		addPlayList.setFocusPainted( false );
+
+		frmPlayer.getContentPane().add(addPlayList);
+		
 	}
 	
 	/**
@@ -275,7 +311,7 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		addDiretorio.setBounds(36, 190, 113, 107);
+		addDiretorio.setBounds(36, 190, 113, 88);
 		addDiretorio.setVisible(true);
 		addDiretorio.setBorderPainted(false);
 		addDiretorio.setOpaque(false);
@@ -293,7 +329,7 @@ public class MediaPlayer {
 		JLabel lblAddArquivo = new JLabel("Adicionar Arquivo");
 		lblAddArquivo.setForeground(new Color(255, 255, 255));
 		lblAddArquivo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddArquivo.setBounds(36, 289, 145, 20);
+		lblAddArquivo.setBounds(36, 277, 145, 20);
 		frmPlayer.getContentPane().add(lblAddArquivo);
 		
 	}
@@ -331,7 +367,7 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		addArquivo.setBounds(36, 41, 113, 107);
+		addArquivo.setBounds(36, 41, 113, 88);
 		addArquivo.setVisible(true);
 		addArquivo.setBorderPainted(false);
 		addArquivo.setOpaque(false);
