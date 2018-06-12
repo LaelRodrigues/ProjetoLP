@@ -7,7 +7,6 @@ package classes;
  * @since   08.06.2018
  * @version 0.0.1
  */
-
 public class Musica {
 	
 	private String nome;
@@ -20,6 +19,8 @@ public class Musica {
 	
 	/**
      * Construtor parametrizado
+     * @param	nome Nome da música
+     * @param 	caminhao Caminho do local onde a música foi armazenada
      */
 	public Musica(String nome, String caminho) {
 		super();
@@ -28,34 +29,43 @@ public class Musica {
 	}
 	
 	/**
-     * Funcao que retorna o nome da musica
-     * @return nome da musica
+     * Método get do atributo nome
+     * @return Nome da música
      */
 	public String getNome() {
 		return nome;
 	}
 	
 	/**
-     * Funcao para alterar o nome da musica
-     * @param nome da musica
+     * Método set do atributo nome
+     * @param nome 	Nome da música
      */
 	public void setNome(String nome) {
+		
 		this.nome = nome;
 	}
 	
 	/**
-     * Funcao que retorna o caminho da musica
-     * @return caminho da musica
+     * Método get do atributo caminho
+     * @return Caminho da música
      */
 	public String getCaminho() {
 		return caminho;
 	}
 	
 	/**
-     * Funcao para alterar o nome da musica
-     * @param caminho da musica
+     * Método set do atributo caminho
+     * @param caminho Caminho da música
      */
 	public void setCaminho(String caminho) {
-		this.caminho = caminho;
+		try{
+			this.caminho = caminho;
+		}
+		catch( NullPointerException e ){
+			System.err.println(e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println(e.getMessage() );
+		}
 	}
 }
