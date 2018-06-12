@@ -147,6 +147,8 @@ public class MediaPlayer {
 		musicas.add(m1);
 		musicas.add(m2);
 		
+		nomeMusicaLista = musicas.get(0).getNome();
+		
 		contador = 0;
 		play = new JButton("");
 		play.setBackground(new Color(255, 255, 255));
@@ -170,47 +172,8 @@ public class MediaPlayer {
 		}
 		play.setBounds(66, 438, 64, 66);
 		play.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				if(startMusica) {
-					String caminho = PercorrerListaMusica(musicas);
-					File arquivoMp3 = new File(caminho);
-					System.out.println(caminho);
-					TocarMusica musica = new TocarMusica();
-					musica.tocar(arquivoMp3);
-			 		musica.start();
-			 		startMusica = false;
-			 		m = musica;
-				}
-				else 
-				{
-					if(!nomeMusicaLista.equals(nomeTemporario)) {
-						m.getPlayer().close();
-						String caminho = PercorrerListaMusica(musicas);
-						if(caminho.equals("")) {
-							return;
-						}
-						File arquivoMp3 = new File(caminho);
-						System.out.println(caminho);
-						TocarMusica musica = new TocarMusica();
-						musica.tocar(arquivoMp3);
-				 		musica.start();
-				 		startMusica = false;
-				 		m = musica;
-					}
-					else if(m.getPlayer().isComplete()) {
-						m.getPlayer().close();
-						startMusica = true;
-					}
-					else if(contador % 2 == 1) {
-						m.resume();
-						contador++;
-					}
-					else {
-						m.suspend();
-						contador++;
-					}
-				}
+				tocarMusica();
 			}
 			 
 		});
@@ -259,13 +222,13 @@ public class MediaPlayer {
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			addPlayList.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -305,13 +268,13 @@ public class MediaPlayer {
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			addDiretorio.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -328,7 +291,7 @@ public class MediaPlayer {
 	}
 	
 	/**
-     * Adiciona um rótulo na tela para o botï¿½o addArquivo
+     * Adiciona um rï¿½tulo na tela para o botï¿½o addArquivo
      */
 	private void rotuloBotaoAddArquivo(){
 	
@@ -360,14 +323,14 @@ public class MediaPlayer {
 			File arquivoImagem = new File(caminhoImagem2);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 			}
 			
 			addArquivo.setIcon(new ImageIcon(caminhoImagem2));  
 		
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -422,15 +385,24 @@ public class MediaPlayer {
 		modeloLista.addElement("music2");	
 		
 		listaMusicas = new JList<>(modeloLista);
+		
+		listaMusicas.setSelectedIndex(0); //setando o item padrao do JList para a primeira musica
 		listaMusicas.setBounds(199, 53, 225, 436);
 		frmPlayer.getContentPane().add(listaMusicas);
 		
 		listaMusicas.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				nomeMusicaLista = (String)listaMusicas.getModel()
-			   .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
-				System.out.println(nomeMusicaLista);
 				contador = 0;
+				if(e.getClickCount() == 2 && m!= null) {
+					nomeMusicaLista = (String)listaMusicas.getModel()
+				    .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
+					startMusica = true;
+					m.getPlayer().close();
+					tocarMusica();
+					return;
+				}
+				nomeMusicaLista = (String)listaMusicas.getModel()
+				.getElementAt(listaMusicas.locationToIndex(e.getPoint()));
 			}
 		});
 	}
@@ -448,15 +420,7 @@ public class MediaPlayer {
 		botaoAnterior = new JButton("");
 		botaoAnterior.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(listaMusicas.getSelectedIndex() == 0) {
-					return;
-				}	
-				int posicaoSelecao = listaMusicas.getSelectedIndex();
-				posicaoSelecao -= 1;
-				listaMusicas.setSelectedIndex(posicaoSelecao);
-				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
-				System.out.println(nomeMusicaLista);
-				contador = 0;
+			    anteriorMusica();
 			}
 		});
 		
@@ -492,17 +456,7 @@ public class MediaPlayer {
 				
 		botaoProximo.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int posicaoSelecao = listaMusicas.getSelectedIndex();
-				if(posicaoSelecao == musicas.size()-1) {
-					listaMusicas.setSelectedIndex(0);
-					nomeMusicaLista = musicas.get(0).getNome();
-					return;
-				}	
-				posicaoSelecao += 1;
-				listaMusicas.setSelectedIndex(posicaoSelecao);
-				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
-				System.out.println(nomeMusicaLista);
-				contador = 0;
+				proximaMusica();
 			}
 		});
 		
@@ -530,12 +484,102 @@ public class MediaPlayer {
 		botaoProximo.setFocusPainted( false );
 	}
 	
+	public void proximaMusica() {
+		try {
+			contador = 0;
+			int posicaoSelecao = listaMusicas.getSelectedIndex();
+			
+			if(posicaoSelecao == musicas.size()-1) {
+				listaMusicas.setSelectedIndex(0);
+				nomeMusicaLista = musicas.get(0).getNome();
+				return;
+			}	
+			posicaoSelecao += 1;
+			listaMusicas.setSelectedIndex(posicaoSelecao);
+			nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+		} catch(NullPointerException e) {
+			System.out.println("selecione primeiro a musica!!!");
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void tocarMusica() {
+	
+		if(startMusica) {
+			String caminho = PercorrerListaMusica(musicas);
+			if(caminho == "") {
+				System.out.println("Musica nao seleciona ou encontrada!!!");
+				return;
+			}
+			File arquivoMp3 = new File(caminho);
+			TocarMusica musica = new TocarMusica();
+			musica.tocar(arquivoMp3);
+	 		musica.start();
+	 		startMusica = false;
+	 		m = musica;
+		}
+		else 
+		{
+			if(!nomeMusicaLista.equals(nomeTemporario)) {
+				m.getPlayer().close();
+				String caminho = PercorrerListaMusica(musicas);
+				if(caminho.equals("")) {
+					return;
+				}
+				File arquivoMp3 = new File(caminho);
+				TocarMusica musica = new TocarMusica();
+				musica.tocar(arquivoMp3);
+		 		musica.start();
+		 		startMusica = false;
+		 		m = musica;
+			}
+			else if(!m.isAlive()) {
+				proximaMusica();
+				String caminho = PercorrerListaMusica(musicas);
+				if(caminho.equals("")) {
+					return;
+				}
+				File arquivoMp3 = new File(caminho);
+				TocarMusica musica = new TocarMusica();
+				musica.tocar(arquivoMp3);
+		 		musica.start();
+		 		startMusica = false;
+		 		m = musica;
+			}
+			else if(contador % 2 == 1) {
+				m.resume();
+				contador++;
+			}
+			else {
+				m.suspend();
+				contador++;
+			}
+		}
+	}
+	
+	public void anteriorMusica() {
+		try {
+			contador = 0;
+			if(listaMusicas.getSelectedIndex() == 0) {
+				int ultimaMusica = musicas.size()-1;
+				listaMusicas.setSelectedIndex(ultimaMusica);
+				nomeMusicaLista = musicas.get(ultimaMusica).getNome();
+				return;
+			}	
+			int posicaoSelecao = listaMusicas.getSelectedIndex();
+			posicaoSelecao -= 1;
+			listaMusicas.setSelectedIndex(posicaoSelecao);
+			nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+		} catch(NullPointerException e) {
+			System.out.println("selecione primerio a musica!");
+		}
+	}
+	
 	
 	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
 		String caminhoAtualizado="";
 		for(int i = 0; i < 2; i++) {
 			if(musicas.get(i).getNome().equals(nomeMusicaLista)) {
-				System.out.println(musicas.get(i).getNome());
 				caminhoAtualizado = musicas.get(i).getCaminho();
 				nomeTemporario = nomeMusicaLista;
 			}
