@@ -85,6 +85,8 @@ public class MediaPlayer {
 		ListaDeMusicas();
 		botaoAnteriorMusica();
 		botaoProximaMusica();
+		listaDePlaylists();
+		
 	}
 
 	/**
@@ -350,11 +352,6 @@ public class MediaPlayer {
 		frmPlayer.getContentPane().add(progressBar);
 		
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBackground(Color.WHITE);
-		textArea_1.setBounds(448, 53, 225, 436);
-		frmPlayer.getContentPane().add(textArea_1);
-		
 		JLabel lblMsicas = new JLabel("M\u00FAsicas");
 		lblMsicas.setForeground(new Color(255, 255, 255));
 		lblMsicas.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -363,6 +360,19 @@ public class MediaPlayer {
 	
 	}
 	
+	private void listaDePlaylists() {
+
+		JTextArea listaPlaylists = new JTextArea();
+		listaPlaylists.setBackground(Color.WHITE);
+		listaPlaylists.setBounds(448, 53, 225, 436);
+		frmPlayer.getContentPane().add(listaPlaylists);
+		
+	}
+	
+	private void rotuloListaDeMusicas(){
+		
+		
+	}
 	private void ListaDeMusicas() {
 		
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
