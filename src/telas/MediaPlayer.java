@@ -149,7 +149,7 @@ public class MediaPlayer {
 		play = new JButton("");
 		play.setBackground(new Color(255, 255, 255));
 		
-		String caminhoImagem = "./imagensParaGui/play_pause.png";
+		String caminhoImagem = "./imagensParaGui/imagensEditadas/play_pause2Branco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem);
@@ -166,7 +166,7 @@ public class MediaPlayer {
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
 		}
-		play.setBounds(77, 450, 43, 43);
+		play.setBounds(66, 438, 64, 66);
 		play.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
@@ -236,6 +236,7 @@ public class MediaPlayer {
 	private void rotuloBotaoAddDiretorio() {
 
 		JLabel lblAddDiretrio = new JLabel("Adicionar Diret\u00F3rio");
+		lblAddDiretrio.setForeground(new Color(255, 255, 255));
 		lblAddDiretrio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblAddDiretrio.setBounds(24, 134, 157, 26);
 		frmPlayer.getContentPane().add(lblAddDiretrio);
@@ -254,19 +255,19 @@ public class MediaPlayer {
 		});
 		addDiretorio.setBackground(new Color(255, 255, 255));
 		
-		String caminhoImagem = "./imagensParaGui/mais2.png";
+		String caminhoImagem = "./imagensParaGui/imagensEditadas/mais2Branco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			addDiretorio.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -283,13 +284,14 @@ public class MediaPlayer {
 	}
 	
 	/**
-     * Adiciona um rï¿½tulo na tela para o botï¿½o addArquivo
+     * Adiciona um rótulo na tela para o botï¿½o addArquivo
      */
 	private void rotuloBotaoAddArquivo(){
 	
 		JLabel lblAddArquivo = new JLabel("Adicionar Arquivo");
+		lblAddArquivo.setForeground(new Color(255, 255, 255));
 		lblAddArquivo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddArquivo.setBounds(36, 291, 145, 20);
+		lblAddArquivo.setBounds(36, 289, 145, 20);
 		frmPlayer.getContentPane().add(lblAddArquivo);
 		
 	}
@@ -307,20 +309,21 @@ public class MediaPlayer {
 		addArquivo.setBackground(new Color(255, 255, 255));
 		
 		
-		String caminhoImagem2 = "./imagensParaGui/mais2.png";
+		//String caminhoImagem2 = "./imagensParaGui/mais2.png";
+		String caminhoImagem2 = "./imagensParaGui/imagensEditadas/mais2Branco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem2);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			addArquivo.setIcon(new ImageIcon(caminhoImagem2));  
 		
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nï¿½o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -353,8 +356,9 @@ public class MediaPlayer {
 		frmPlayer.getContentPane().add(textArea_1);
 		
 		JLabel lblMsicas = new JLabel("M\u00FAsicas");
+		lblMsicas.setForeground(new Color(255, 255, 255));
 		lblMsicas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMsicas.setBounds(294, 28, 79, 14);
+		lblMsicas.setBounds(281, 28, 79, 14);
 		frmPlayer.getContentPane().add(lblMsicas);
 	
 	}
@@ -406,7 +410,7 @@ public class MediaPlayer {
 		
 		botaoAnterior.setBounds(24, 450, 43, 43);
 		botaoAnterior.setBackground(new Color(255, 255, 255));
-		String caminhoImagem = "./imagensParaGui/anterior.png";
+		String caminhoImagem = "./imagensParaGui/imagensEditadas/anteriorBranco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem);
@@ -451,7 +455,7 @@ public class MediaPlayer {
 		});
 		
 		botaoProximo.setBackground(new Color(255, 255, 255));
-		String caminhoImagem = "./imagensParaGui/proxima.png";
+		String caminhoImagem = "./imagensParaGui/imagensEditadas/proximaBranco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem);
