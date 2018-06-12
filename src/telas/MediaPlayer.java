@@ -239,8 +239,8 @@ public class MediaPlayer {
 
 		JLabel lblAddDiretrio = new JLabel("Adicionar Diret\u00F3rio");
 		lblAddDiretrio.setForeground(new Color(255, 255, 255));
-		lblAddDiretrio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddDiretrio.setBounds(36, 126, 157, 26);
+		lblAddDiretrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddDiretrio.setBounds(36, 113, 157, 26);
 		frmPlayer.getContentPane().add(lblAddDiretrio);
 
 	}
@@ -271,13 +271,19 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		addPlayList.setBounds(677, 423, 72, 66);
+		addPlayList.setBounds(690, 423, 72, 66);
 		addPlayList.setVisible(true);
 		addPlayList.setBorderPainted(false);
 		addPlayList.setOpaque(false);
 		addPlayList.setFocusPainted( false );
 
 		frmPlayer.getContentPane().add(addPlayList);
+		
+		JLabel lblAddPlaylist = new JLabel("Add Playlist");
+		lblAddPlaylist.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAddPlaylist.setForeground(new Color(255, 255, 255));
+		lblAddPlaylist.setBounds(764, 446, 90, 26);
+		frmPlayer.getContentPane().add(lblAddPlaylist);
 		
 	}
 	
@@ -311,7 +317,7 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		addDiretorio.setBounds(36, 190, 113, 88);
+		addDiretorio.setBounds(36, 190, 113, 76);
 		addDiretorio.setVisible(true);
 		addDiretorio.setBorderPainted(false);
 		addDiretorio.setOpaque(false);
@@ -328,8 +334,8 @@ public class MediaPlayer {
 	
 		JLabel lblAddArquivo = new JLabel("Adicionar Arquivo");
 		lblAddArquivo.setForeground(new Color(255, 255, 255));
-		lblAddArquivo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAddArquivo.setBounds(36, 277, 145, 20);
+		lblAddArquivo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddArquivo.setBounds(46, 268, 145, 20);
 		frmPlayer.getContentPane().add(lblAddArquivo);
 		
 	}
@@ -367,7 +373,7 @@ public class MediaPlayer {
 			System.err.println( e.getMessage() );
 		}
 		
-		addArquivo.setBounds(36, 41, 113, 88);
+		addArquivo.setBounds(36, 41, 113, 74);
 		addArquivo.setVisible(true);
 		addArquivo.setBorderPainted(false);
 		addArquivo.setOpaque(false);
@@ -390,7 +396,7 @@ public class MediaPlayer {
 		
 		JLabel lblMsicas = new JLabel("M\u00FAsicas");
 		lblMsicas.setForeground(new Color(255, 255, 255));
-		lblMsicas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMsicas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMsicas.setBounds(281, 28, 79, 14);
 		frmPlayer.getContentPane().add(lblMsicas);
 	
