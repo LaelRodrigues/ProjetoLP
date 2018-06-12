@@ -48,7 +48,7 @@ public class ABB {
      * @param usuario Usuário a ser buscado na ABB
      * @return True caso tenha encontrado algum nó com a correspondente chave senão false
      */
-    public boolean busca(Usuario usuario) {
+    public boolean busca(Usuario usuario){
     	
     	if(this.quantidadeDeNos == 0) { // -> A árvore é vazia
     		return false;
@@ -76,6 +76,42 @@ public class ABB {
     	}
 
     	return false;
+    	
+    }
+    
+    /**
+     * Buscando o nó com a chave correspondente entrada - O(log n)
+     * @param usuario Usuário a ser buscado na ABB
+     * @return Usuario se existir ou null senão
+     */
+    public Usuario buscaLocal(Usuario usuario) throws NullPointerException {
+    	
+    	if(this.quantidadeDeNos == 0) { // -> A árvore é vazia
+    		return null;
+    	}
+    	
+    	// -> Nós auxiliares usados na busca
+    	NoABB aux = this.raiz;
+        NoABB auxPai = null;
+        
+        while( aux != null && aux.getUsuario().compareTo(usuario) != 0 ){     
+
+            auxPai = aux;
+
+            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na subárvore direita
+                aux = aux.getDireito();
+            }
+            else{							// -> Procurando na subárvore esquerda
+                aux = aux.getEsquerdo();
+            }    
+            
+        }
+    	
+    	if( aux != null) {
+    		return aux.getUsuario();
+    	}
+
+    	return null;
     	
     }
     
