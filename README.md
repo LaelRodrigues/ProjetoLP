@@ -1,44 +1,33 @@
 # ProjetoLP
 
-Neste repositório contém a implementação de um reprodutor de mp3 usando a linguagem [Java] com interface gráfica com Swing/AWT. Este tocador de mp3 é capaz de produzir arquivos de áudio individualmente ou como parte de uma _playlist_.
+Neste repositÃ³rio contÃ©m a implementaÃ§Ã£o de um reprodutor de mp3 usando a linguagem [Java] com interface grÃ¡fica com Swing/AWT. Este tocador de mp3 Ã© capaz de produzir arquivos de Ã¡udio individualmente ou como parte de uma _playlist_.
 
 [Java]: https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)
 
 ## :file_folder: Pacotes
 
  - arvoreBinariaDeBusca [ :hammer:_Atualizado_ ]  
- 	Contém a implementação da TAD árvore de busca binária  
+ 	ContÃ©m a implementaÃ§Ã£o da TAD Ã¡rvore de busca binÃ¡ria  
  	
  
  - arvoreDePatricia [ :construction: _Imcompleto_ ]  
- 	Contém a implementação da TAD árvore de patrícia  
+ 	ContÃ©m a implementaÃ§Ã£o da TAD Ã¡rvore de patrÃ­cia  
   
  - classes  
- 	Contém as classes usadas na reprodução das músicas 
+ 	ContÃ©m as classes usadas na reproduÃ§Ã£o das mÃºsicas 
   
  - no [ :heavy_check_mark:_Adicionado_ ]  
-   	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
+   	ContÃ©m a classe abstrata nÃ³ que contÃ©m a essÃªncias dos nÃ³s das Ã¡rvore de binÃ¡ria de busca e Ã¡rvore de patrÃ­cia  
     
  - telas [ :construction: _Imcompleto_ ]  
- 	Contém as classes que implementam a GUI  
+ 	ContÃ©m as classes que implementam a GUI  
   
 
 
-## :art: Interface gráfica (GUI)
-### 	Tela de acesso
-<p align="center">
-<img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/telaLogin.png" width="50%"  />
-</p>
+## :art: Interface grÃ¡fica (GUI)
 
 
-### 	Tela do reprodutor
-
-<p align="center">
-<img src="https://github.com/LaelRodrigues/ProjetoLP/blob/master/imagensParaGui/imagensReadme/reprodutor.png" width="50%"  />
-</p>
-
-
-## Referências 
+## ReferÃªncias 
 
 
 <p align="left">
