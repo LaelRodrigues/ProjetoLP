@@ -39,6 +39,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JDesktopPane;
 import javax.swing.JToolBar;
+import javax.swing.RepaintManager;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
@@ -111,7 +112,6 @@ public class MediaPlayer {
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		
 		mntmSair.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
@@ -486,17 +486,20 @@ public class MediaPlayer {
 	
 	public void proximaMusica() {
 		try {
-			contador = 0;
 			int posicaoSelecao = listaMusicas.getSelectedIndex();
-			
 			if(posicaoSelecao == musicas.size()-1) {
 				listaMusicas.setSelectedIndex(0);
 				nomeMusicaLista = musicas.get(0).getNome();
-				return;
-			}	
-			posicaoSelecao += 1;
-			listaMusicas.setSelectedIndex(posicaoSelecao);
-			nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+			} else {	
+				posicaoSelecao += 1;
+				listaMusicas.setSelectedIndex(posicaoSelecao);
+				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+			}
+			if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 0) {
+				contador = 0;
+			} else if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 1) {
+				contador = 1;
+			}
 		} catch(NullPointerException e) {
 			System.out.println("selecione primeiro a musica!!!");
 		}
@@ -521,11 +524,16 @@ public class MediaPlayer {
 		else 
 		{
 			if(!nomeMusicaLista.equals(nomeTemporario)) {
+				System.out.println("estou aqui");
+				m.resume();
 				m.getPlayer().close();
+				System.out.println("estou aqui");
 				String caminho = PercorrerListaMusica(musicas);
 				if(caminho.equals("")) {
 					return;
 				}
+				contador = 0;
+				System.out.println("aaa"+ caminho);
 				File arquivoMp3 = new File(caminho);
 				TocarMusica musica = new TocarMusica();
 				musica.tocar(arquivoMp3);
@@ -552,24 +560,30 @@ public class MediaPlayer {
 			}
 			else {
 				m.suspend();
-				contador++;
+	            contador++;
 			}
 		}
 	}
-	
+
 	public void anteriorMusica() {
+
 		try {
-			contador = 0;
 			if(listaMusicas.getSelectedIndex() == 0) {
 				int ultimaMusica = musicas.size()-1;
 				listaMusicas.setSelectedIndex(ultimaMusica);
 				nomeMusicaLista = musicas.get(ultimaMusica).getNome();
 				return;
-			}	
-			int posicaoSelecao = listaMusicas.getSelectedIndex();
-			posicaoSelecao -= 1;
-			listaMusicas.setSelectedIndex(posicaoSelecao);
-			nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+			}else { 
+				int posicaoSelecao = listaMusicas.getSelectedIndex();
+				posicaoSelecao -= 1;
+				listaMusicas.setSelectedIndex(posicaoSelecao);
+				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+			}
+			if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 0) {
+				contador = 0;
+			} else if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 1) {
+				contador = 1;
+			}
 		} catch(NullPointerException e) {
 			System.out.println("selecione primerio a musica!");
 		}
