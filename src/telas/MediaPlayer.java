@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
@@ -56,8 +57,8 @@ import javax.swing.JScrollBar;
  * @since   06.06.2018
  * @version 0.0.3
  */
-public class MediaPlayer {
-
+public class MediaPlayer{
+	
 	JFrame frmPlayer;
 	Player tocar;
 	TocarMusica m;
@@ -70,7 +71,6 @@ public class MediaPlayer {
 	JList<String> listaMusicas;
 	
 	ArrayList<Musica> musicas;
-	
 	/** 
 	 * Construtor padr�o 
 	 */
@@ -589,7 +589,6 @@ public class MediaPlayer {
 		}
 	}
 	
-	
 	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
 		String caminhoAtualizado="";
 		for(int i = 0; i < 2; i++) {
@@ -598,7 +597,6 @@ public class MediaPlayer {
 				nomeTemporario = nomeMusicaLista;
 			}
 		}
-		
 		return caminhoAtualizado;
 	}
 }

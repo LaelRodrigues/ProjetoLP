@@ -26,7 +26,7 @@ public class Login {
 	
 	
 	/** 
-	 * Construtor padrão 
+	 * Construtor padrï¿½o 
 	 */
 	public Login() {
 		initialize();
