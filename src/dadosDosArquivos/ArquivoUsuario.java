@@ -4,11 +4,14 @@ package dadosDosArquivos;
 import classes.Usuario;
 import java.util.ArrayList;
 
-public class ArquivoUsuario {
+public class ArquivoUsuario extends TipoManipulacaoArquivo{
+
+	@Override
+	public String tratamentoString(String strings) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	public void lerDados(String caminho, ArrayList<Usuario> usuario) {
-	}
-	public void escreverDados(String caminho, ArrayList<Usuario> usuario) {
-	}
+	
 }	
 

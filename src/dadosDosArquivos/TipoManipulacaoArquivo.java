@@ -1,3 +1,4 @@
+
 package dadosDosArquivos;
 
 // -> MANIPULAÇÃO DE ARQUIVO
@@ -15,16 +16,10 @@ import java.io.IOException;
  * @since   21.05.2018   
  * @version 0.0.6
  */
-public class ManipulaArquivo {
-	
-    /**
-     * Lê o arquivo entrado com o nome  
-     * @param   nomeDoArquivo   Nome do arquivo a ser lido
-     * @return  String com o conteudo do arquivo se a leitura for feita corretamente, senão string nula
-     */
-    public static String lerArquivo( String nomeDoArquivo ){
+public abstract class TipoManipulacaoArquivo{
 
-        String conteudo = new String("");
+    protected void lerArquivo(String nomeDoArquivo){
+      String conteudo = new String("");
         
         try{
 
@@ -37,18 +32,15 @@ public class ManipulaArquivo {
             }
             
             buffReader.close();
-            return conteudo;
 
         }
         catch(FileNotFoundException e){  // -> ARQUIVO NÃO EXISTE
 
-            System.err.println( e.getMessage() );   
-            return "";
+            System.err.println( e.getMessage() );
         }  
         catch(IOException e){  // -> OCORREU OUTRO ERRO, SENDO ESSE DESCONHECIDO
 
             System.err.println( e.getMessage() );
-            return "";
         
         }
 
@@ -60,7 +52,7 @@ public class ManipulaArquivo {
      * @param   conteudo        Conteúdo 
      * @return  True se a leitura for feita corretamente, senão false
      */
-    public static boolean salvarArquivo(String nomeDoArquivo, String conteudo){
+    protected boolean salvarArquivo(String nomeDoArquivo, String conteudo){
         
         try{
 
@@ -82,5 +74,7 @@ public class ManipulaArquivo {
             return false;
         }
     }
+
+    public abstract String tratamentoString(String strings);
 
 }
