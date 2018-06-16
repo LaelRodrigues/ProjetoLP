@@ -37,8 +37,19 @@ public class NoPatricia extends No{
 	 */
 	public NoPatricia( char letra, boolean fimDePalavra){
 		
-		super();		
-		this.letra = 0;
+		super();
+		
+		try {
+			if( (letra <= 64) || (letra >= 91 && letra <= 96) || ( letra >= 123)){ 
+				throw new IllegalArgumentException("letra invalida... \nPode-se apenas usar as letras do alfabeto");
+			}
+				
+			this.letra = letra;
+		}
+		catch( Exception e) {
+			System.err.println( e.getMessage() );
+		}
+		
 		this.fimDePalavra = fimDePalavra;
 	
 	}
@@ -54,7 +65,7 @@ public class NoPatricia extends No{
 	public NoPatricia(NoPatricia pai, NoPatricia esquerdo, NoPatricia direito, char letra, boolean fimDePalavra){
 		
 		super(pai, esquerdo, direito);		
-		this.letra = 0;
+		this.letra = letra;
 		this.fimDePalavra = fimDePalavra;
 	
 	}
