@@ -1,5 +1,6 @@
 package arvoreDePatricia;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -11,25 +12,51 @@ import java.util.HashSet;
  */
 public class ArvPatricia {
 	
-	private HashSet<NoPatricia> raizLetrasIniciais;
+	private HashSet<Character> letrasIniciaisAdicionadas;  // -> USANDO NA INSERCAO PARA GARANTIR QUE NAO SERA ADICIONADO DUAS VEZES O NO INCIAL COM A MESMA LETRA 
+	private ArrayList<NoPatricia> raizLetrasIniciais;
 	
 	/**
 	 * Construtor padrao
 	 */
 	public ArvPatricia() {
-		raizLetrasIniciais = new HashSet<NoPatricia>();
+		letrasIniciaisAdicionadas = new HashSet<Character>();
+		raizLetrasIniciais = new ArrayList<NoPatricia>();
 	}
 	
 	/**
-	 * Busca na arvore se o nome da musica existe
+	 * Busca na arvore se o nome da musica existe verificando caractere por caractere
 	 * @param nomeMusica	Nome da musica a ser buscada
 	 * @return	True se for encontrada senao false
 	 */
 	public boolean busca(String nomeMusica) {
-		if( ! raizLetrasIniciais.contains(new NoPatricia(nomeMusica.charAt(0), true) ) || 
-				!raizLetrasIniciais.contains(new NoPatricia(nomeMusica.charAt(0), false) )) { // -> CASO EM QUE NAO EXISTE NO COM LETRA
+		
+		if( !( letrasIniciaisAdicionadas.contains(nomeMusica.charAt(0) ) ) )  { // -> CASO EM QUE NAO EXISTE PALAVRA COM LETRA INICIAL CORRESPONDENTE
 			return false;
-		}	
+		}
+		
+		NoPatricia nohAlvo = new NoPatricia();
+		
+		for( NoPatricia i: raizLetrasIniciais){   // -> ENCONTRANDO O NOH INICIAL NO VETOR/LISTA 
+			if( i.getLetra() == nomeMusica.charAt(0)){
+				nohAlvo = i;
+			}
+		}
+		
+		if( nomeMusica.length() == 1 ){
+			
+			if( nohAlvo.getFimDePalavra() == false ){
+				return false;
+					
+			}
+			
+			return true; // -> O NOME DA MUSICA EH FORMADO POR UMA UNICA LETRA
+
+		}
+		
+		
+		
+		
+		
 		return false;
 	}
 	
