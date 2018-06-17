@@ -79,6 +79,7 @@ public abstract class TipoManipulacaoArquivo{
     
     }
 
-    protected abstract void tratamentoString(String strings);
+    protected abstract void tratamentoStringLeitura(String strings);
+    protected abstract void tratamentoStringEscrita(String strings);
 
 }

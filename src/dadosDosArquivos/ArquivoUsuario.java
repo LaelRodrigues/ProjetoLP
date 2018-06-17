@@ -8,7 +8,11 @@ import java.util.HashSet;
 public class ArquivoUsuario extends TipoManipulacaoArquivo{
 
 	private ArrayList<Usuario> listaUsuarios;
-	private HashSet<Usuario> usuarios;
+	private HashSet<Usuario> usuarios;  // -> PREVINE QUE NAO SEJAM ADICIONADO USUARIOS REPETIDOS
+	
+	public ArquivoUsuario() {
+		super();
+	}
 	
 	public ArquivoUsuario(String nomeArquivo) {
 		
@@ -18,7 +22,7 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 		this.usuarios = new HashSet<Usuario>();
 		
 		this.conteudoArquivo = lerArquivo(nomeArquivo);
-		tratamentoString(conteudoArquivo);
+		tratamentoStringLeitura(conteudoArquivo);
 	}
 	
 	/**
@@ -27,7 +31,7 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	 * @param	strings	String a ser tratada
 	 */
 	@Override
-	protected void tratamentoString(String strings) {
+	protected void tratamentoStringLeitura(String strings) {
 		
 		String id = new String();
 		String nome = new String();
@@ -56,7 +60,12 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	public ArrayList<Usuario> getListaUsuarios(){
 		return this.listaUsuarios;
 	}
+
+	@Override
+    protected void tratamentoStringEscrita(String strings){
+		
+	}
+
 	
 }	
-/// id: 
 
