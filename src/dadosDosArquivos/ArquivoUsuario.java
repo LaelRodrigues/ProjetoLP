@@ -103,4 +103,19 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 		return this.listaUsuarios;
 	}
 	
+	/**
+	 * Adiciona usuario a lista de usuarios cadastrados
+	 * @param usuario	Usuario a ser cadastrado
+	 * @return	True se for adiiconado com sucesso senao false
+	 */
+	public boolean add( Usuario usuario) {
+		
+		if( !this.usuarios.add( usuario )  ) {  // -> SE JA NAO TIVER SIDO ADICIONADO NO CONJUNTO, ADICIONA-O 
+			return false;
+		}
+		
+		return	listaUsuarios.add( usuario  );
+		
+	}
+	
 }	
