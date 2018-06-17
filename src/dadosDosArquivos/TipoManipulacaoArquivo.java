@@ -20,9 +20,9 @@ public abstract class TipoManipulacaoArquivo{
 
 	protected String conteudoArquivo;
 	
-    protected String lerArquivo(String nomeDoArquivo) throws NullPointerException{
+    protected void lerArquivo(String nomeDoArquivo) throws NullPointerException{
       
-    	String conteudo = new String("");
+    	//String conteudo = new String("");
         
         try{
 
@@ -31,46 +31,47 @@ public abstract class TipoManipulacaoArquivo{
 
             while( buffReader.ready() ){              // -> LENDO CADA LINHA  
                 linha = buffReader.readLine();
-                conteudo += linha + "\n";
+                this.conteudoArquivo += linha + "\n";
             }
             
             buffReader.close();
-            return conteudo;
+          //  return conteudo;
         }
         catch(FileNotFoundException e){  // -> ARQUIVO NÃO EXISTE
             System.err.println( e.getMessage() );
-            return null;
+            //return null;
         }  
         catch(IOException e){  // -> OCORREU OUTRO ERRO, SENDO ESSE DESCONHECIDO
 
             System.err.println( e.getMessage() );
-            return null;
+          //  return null;
         }
 
     }
     
     /**
-     * Lê o arquivo entrado com o nome  
-     * @param   nomeDoArquivo   Nome do arquivo a ser lido
-     * @param   conteudo        Conteúdo 
-     * @return  True se a leitura for feita corretamente, senão false
+     * Salva   
+     * @param   nomeDoArquivo   Nome do arquivo no qual haverá a escrita
+     * @return  True se a escrita for feita corretamente, senão false
      */
-    protected boolean salvarArquivo(String nomeDoArquivo, String conteudo){
-        
+	protected boolean salvarArquivo(String nomeArquivo, String conteudoArquivo){
+		
         try{
 
-          FileWriter writer = new FileWriter(nomeDoArquivo);     
-
-          writer.write(conteudo);
-
-          writer.close();  
-
-          return true;
+        	nomeArquivo += ".txt";
+        	
+		  FileWriter writer = new FileWriter(nomeArquivo);     
+		
+		  writer.write(this.conteudoArquivo);
+		
+		  writer.close();  
+		
+		  return true;
 
         }
         catch(FileNotFoundException e){   // -> ARQUIVO NÃO EXISTE
-            System.err.println( e.getMessage() );
-            return false;        
+	        System.err.println( e.getMessage() );
+	        return false;        
         }
         catch(IOException e){  // -> OCORREU OUTRO ERRO, SENDO ESSE DESCONHECIDO
             System.err.println( e.getMessage() );
@@ -79,7 +80,8 @@ public abstract class TipoManipulacaoArquivo{
     
     }
 
-    protected abstract void tratamentoStringLeitura(String strings);
-    protected abstract void tratamentoStringEscrita(String strings);
+    protected abstract void tratamentoStringLeitura();
+    protected abstract String atributosConvertidosEmString();
+    protected abstract boolean criaOuAtualiza();
 
 }
