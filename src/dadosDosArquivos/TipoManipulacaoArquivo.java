@@ -18,8 +18,11 @@ import java.io.IOException;
  */
 public abstract class TipoManipulacaoArquivo{
 
-    protected void lerArquivo(String nomeDoArquivo){
-      String conteudo = new String("");
+	protected String conteudoArquivo;
+	
+    protected String lerArquivo(String nomeDoArquivo) throws NullPointerException{
+      
+    	String conteudo = new String("");
         
         try{
 
@@ -32,16 +35,16 @@ public abstract class TipoManipulacaoArquivo{
             }
             
             buffReader.close();
-
+            return conteudo;
         }
         catch(FileNotFoundException e){  // -> ARQUIVO NÃO EXISTE
-
             System.err.println( e.getMessage() );
+            return null;
         }  
         catch(IOException e){  // -> OCORREU OUTRO ERRO, SENDO ESSE DESCONHECIDO
 
             System.err.println( e.getMessage() );
-        
+            return null;
         }
 
     }
@@ -73,8 +76,9 @@ public abstract class TipoManipulacaoArquivo{
             System.err.println( e.getMessage() );
             return false;
         }
+    
     }
 
-    public abstract String tratamentoString(String strings);
+    protected abstract void tratamentoString(String strings);
 
 }

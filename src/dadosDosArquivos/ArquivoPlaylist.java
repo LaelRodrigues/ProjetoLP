@@ -6,9 +6,8 @@ import java.util.ArrayList;
 public class ArquivoPlaylist extends TipoManipulacaoArquivo  {
 
 	@Override
-	public String tratamentoString(String strings) {
+	protected void tratamentoString(String strings) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -14,7 +14,7 @@ public class Usuario implements Comparable<Usuario>{
 	private String id; // -> Número de identificação do usuário
 	private String nome; // -> Nome do usuário
 	private String senha; // -> Senha do usuário
-	private boolean vip; // -> Status de acesso do usuário
+	private Boolean vip; // -> Status de acesso do usuário
 	
 	/**
      * Construtor padrão
@@ -35,7 +35,7 @@ public class Usuario implements Comparable<Usuario>{
      * @param senha	Senha do usuário
      * @param vip	Status do usuário
      */
-	public Usuario(String id, String nome, String senha, boolean vip) {
+	public Usuario(String id, String nome, String senha, Boolean vip) {
 		try{
 			if( id == null) {
 				throw new NullPointerException("variável id está nulo");
@@ -148,7 +148,7 @@ public class Usuario implements Comparable<Usuario>{
      * Método get do atributo vip
      * @return Status do acesso do usuário
      */
-	public boolean isVip() {
+	public Boolean isVip() {
 		return this.vip;
 	}
 	
@@ -156,8 +156,17 @@ public class Usuario implements Comparable<Usuario>{
      * Método set do atributo vip
      * @param vip Status do acesso do usuário
      */
-	public void setVip(boolean vip) {
-		this.vip = vip;
+	public void setVip(Boolean vip) {
+		
+		try {
+			this.vip = vip;
+		}
+		catch( NullPointerException e){
+			System.err.println( e.getMessage() );
+		}
+		catch( Exception e){
+			System.err.println( e.getMessage() );
+		}
 	}
 	
 	/**
