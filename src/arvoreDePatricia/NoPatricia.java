@@ -3,7 +3,7 @@ package arvoreDePatricia;
 import no.No;
 
 /**
- * Representa um nÛ da ·rvore de PatrÌcia
+ * Representa um n√≥ da √°rvore de Patr√≠cia
  * @see		No
  * @author 	Samuel Lucas de Moura Ferino
  * @since 	09.06.2018
@@ -13,137 +13,126 @@ public class NoPatricia extends No{
 	
 	// -> ATRIBUTOS
 		
-	private char letra;
-	private boolean fimDePalavra;
+	private char compararCom;
+	private int avancar;
 	
-	// -> M…TODOS 
+	// -> M√âTODOS 
 	
 	/**
-	 * Construtor padr„o
+	 * Construtor padr√£o
 	 */
 	public NoPatricia(){
 		
 		super();
 		
-		this.letra = 0;
-		this.fimDePalavra = false;
+		this.compararCom = ' ';
+		this.avancar = 1;
 
 	}
 
 	/**
 	 * Construtor parametrizado
-	 * @param letra		Letra atual
-	 * @param fimDePalavra	Indica se foi formada palavra v·lida
+	 * @param compararCom		
+	 * @param avancar	
 	 */
-	public NoPatricia( char letra, boolean fimDePalavra){
+	public NoPatricia( char compararCom, int avancar){
 		
 		super();
-		
-		try {
-			if( (letra <= 64) || (letra >= 91 && letra <= 96) || ( letra >= 123)){ 
-				throw new IllegalArgumentException("letra invalida... \nPode-se apenas usar as letras do alfabeto");
-			}
-				
-			this.letra = letra;
-		}
-		catch( Exception e) {
-			System.err.println( e.getMessage() );
-		}
-		
-		this.fimDePalavra = fimDePalavra;
+		this.compararCom = comparaCom;	
+		this.avancar = avancar;
 	
 	}
 		
 	/**
 	 * Construtor parametrizado
-	 * @param pai 		NÛ pai
-	 * @param esquerdo	NÛ filho ‡ esquerda
-	 * @param direito	NÛ filho ‡ direita
+	 * @param pai 		N√≥ pai
+	 * @param esquerdo	N√≥ filho √† esquerda
+	 * @param direito	N√≥ filho √† direita
 	 * @param letra		Letra atual
-	 * @param fimDePalavra	Indica se foi formada palavra v·lida
+	 * @param fimDePalavra	Indica se foi formada palavra v√°lida
 	 */
-	public NoPatricia(NoPatricia pai, NoPatricia esquerdo, NoPatricia direito, char letra, boolean fimDePalavra){
+	public NoPatricia(NoPatricia pai, NoPatricia esquerdo, NoPatricia direito, char compararCom, int avancar){
 		
 		super(pai, esquerdo, direito);		
-		this.letra = letra;
-		this.fimDePalavra = fimDePalavra;
+		this.compararCom = compararCom;
+		this.avancar = avancar;
 	
 	}
 	
 	/**
-	 * MÈtodo get do atributo letra
+	 * M√©todo get do atributo 	 
 	 * @return	Caractere atual
 	 */
-	public char getLetra(){
-		return this.letra;
+	public char getComparaCom(){
+		return this.CompararCom;
 	}
 	
 	/**
-	 * MÈtodo get do atributo letra
-	 * @param	letra Caractere atual
+	 * M√©todo get do atributo 
+	 * @param	
 	 */
-	public void setLetra(char letra){ 
-		this.letra = letra; 
+	public void setCompararCom(char CompararCom){ 
+		this.compararCom = compararCom; 
 	}
 	
 	/**
-	 * MÈtodo get do atributo fimDePalavra
-	 * @param Indica se o caminho pela ·rvore formou uma palavra v·lida 
+	 * M√©todo get do atributo 
+	 * @return 
 	 */
-	public boolean getFimDePalavra() {
-		return this.fimDePalavra;
+	public boolean getAvancar() {
+		return this.avancar;
 	}
 	
 	/**
-	 * MÈtodo set do atributo fimDePalavra
-	 * @param fimDePalavra 	Indica se o caminho pela ·rvore formou uma palavra v·lida 
+	 * M√©todo set do atributo 
+	 * @param  
 	 */
-	public void setFimDePalavra(boolean fimDePalavra){
-		this.fimDePalavra = fimDePalavra;
+	public void setAvancar(int avancar){
+		this.avancar = avancar;
 	}
 	
 	/**
-	 * MÈtodo get do atributo pai da super classe
-	 * @return	NÛ pai
+	 * M√©todo get do atributo pai da super classe
+	 * @return	N√≥ pai
 	 */
 	public NoPatricia getPai(){
 		return (NoPatricia)getPai(); 
 	}
 	
 	/**
-	 * MÈtodo set do atributo pai da super classe
-	 * @return	pai	NÛ pai
+	 * M√©todo set do atributo pai da super classe
+	 * @return	pai	N√≥ pai
 	 */
 	public void setPai( NoPatricia pai){
 		setPai(pai); 
 	}	
 	
 	/**
-	 * MÈtodo get do atributo esquerdo da super classe
-	 * @return	NÛ filho ‡ esquerda
+	 * M√©todo get do atributo esquerdo da super classe
+	 * @return	N√≥ filho √† esquerda
 	 */
 	public NoPatricia getEsquerdo(){
 		return (NoPatricia)getFilhoEsquerdo(); 
 	}
 	
 	/**
-	 * MÈtodo set do atributo esquerdo da super classe
-	 * @return	esquerdo	NÛ filho ‡ esquerda
+	 * M√©todo set do atributo esquerdo da super classe
+	 * @return	esquerdo	N√≥ filho √† esquerda
 	 */
 	public void setEsquerdo( NoPatricia esquerdo){
 		setFilhoEsquerdo(esquerdo); 
 	}
 	/**
-	 * MÈtodo get do atributo direito da super classe
-	 * @return	NÛ filho ‡ direita
+	 * M√©todo get do atributo direito da super classe
+	 * @return	N√≥ filho √† direita
 	 */
 	public NoPatricia getDireito(){
 		return (NoPatricia)getFilhoDireito(); 
 	}
 	
 	/**
-	 * MÈtodo set do atributo direito da super classe
-	 * @return	esquerdo	NÛ filho ‡ direita
+	 * M√©todo set do atributo direito da super classe
+	 * @return	esquerdo	N√≥ filho √† direita
 	 */
 	public void setDireito( NoPatricia direito){
 		setFilhoDireito(direito); 
