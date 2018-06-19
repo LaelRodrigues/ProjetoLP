@@ -87,6 +87,7 @@ public class Login {
 		btnEntrar.setBackground(new Color(255, 255, 255));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				arg0.getSource();
 				try {
 					MediaPlayer window = new MediaPlayer();
 					window.getFrame().setVisible(true);
