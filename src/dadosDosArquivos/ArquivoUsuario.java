@@ -3,7 +3,7 @@ package dadosDosArquivos;
 import classes.Usuario;
 import java.util.ArrayList;
 import java.util.HashSet;
-
+import arvoreBinariaDeBusca.ABB;
 /**
  * Realiza a manipulacao de arquivo relacionada a classe usuario
  * @see		Usuario
@@ -14,8 +14,7 @@ import java.util.HashSet;
  */
 public class ArquivoUsuario extends TipoManipulacaoArquivo{
 
-	private ArrayList<Usuario> listaUsuarios; // -> CONTEM TODOS OS USUARIOS CADASTRADOS **ATUALMENTE**
-	private HashSet<Usuario> usuarios;  // -> PREVINE QUE NAO SEJAM ADICIONADO USUARIOS REPETIDOS
+	private ABB listaUsuarios; // -> CONTEM TODOS OS USUARIOS CADASTRADOS **ATUALMENTE**
 	
 	/**
 	 * Construtor padrao
@@ -24,10 +23,9 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 		
 		super();
 		
-		this.listaUsuarios = new ArrayList<Usuario>();
-		this.usuarios = new HashSet<Usuario>();
+		this.listaUsuarios = new ABB();
 		
-		lerArquivo("usuarios.txt");
+		lerArquivo("./arquivos.txt/usuarios.txt");
 		tratamentoStringLeitura();
 	}
 	
@@ -53,9 +51,8 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 			senha = i.split(";")[2].split(":")[1];
 			vip = i.split(";")[3].split(":")[1];
 			
-			if( this.usuarios.add( new Usuario(id, nome, senha, Boolean.getBoolean(vip) ) ) ) {  // -> SE JA NAO TIVER SIDO ADICIONADO NO CONJUNTO, ADICIONA-O 
-				listaUsuarios.add( new Usuario(id, nome, senha, Boolean.getBoolean(vip) ) );
-			}
+			listaUsuarios.insere( new Usuario(id, nome, senha, Boolean.getBoolean(vip) ) );
+			
 		}
 	}
 	/**
@@ -63,27 +60,8 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	 * @return 	String contendo todos os atributos de todos os usuarios cadastrados   
 	 */
 	protected String atributosConvertidosEmString() {
-		
-		String dadosDeTodosUsuarios = new String("");
-		
-		for(Usuario i: this.listaUsuarios) {
-			
-			dadosDeTodosUsuarios += "id:";
-			dadosDeTodosUsuarios += i.getId();
-			dadosDeTodosUsuarios += ";";
-			dadosDeTodosUsuarios += "nome:"; 
-			dadosDeTodosUsuarios += i.getNome(); 
-			dadosDeTodosUsuarios += ";"; 
-			dadosDeTodosUsuarios += "senha:";
-			dadosDeTodosUsuarios += i.getSenha(); 
-			dadosDeTodosUsuarios += ";";
-			dadosDeTodosUsuarios += "vip:"; 
-			dadosDeTodosUsuarios += i.isVip();
-			dadosDeTodosUsuarios += "\n";
-		
-		}
-		
-		return dadosDeTodosUsuarios;
+						
+		return listaUsuarios.percorre();
 	}
 	
 	/**
@@ -99,7 +77,7 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	 * Metodo get do atributo listaUsuarios
 	 * @return Lista de todos os usuarios cadastrados
 	 */
-	public ArrayList<Usuario> getListaUsuarios(){
+	public ABB getListaUsuarios(){
 		return this.listaUsuarios;
 	}
 	
@@ -110,12 +88,19 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	 */
 	public boolean add( Usuario usuario) {
 		
-		if( !this.usuarios.add( usuario )  ) {  // -> SE JA NAO TIVER SIDO ADICIONADO NO CONJUNTO, ADICIONA-O 
-			return false;
-		}
+		return	listaUsuarios.insere( usuario  );
 		
-		return	listaUsuarios.add( usuario  );
+	}
+	
+	public static void main(String[] args) {
 		
+		ABB teste = new ABB();
+		
+		teste.insere(  new Usuario("usuario2", "Moura", "fea", true) );
+		teste.insere(  new Usuario("usuario1", "Lucas", "sa", false) );
+		
+		System.out.println( teste.percorre() );
+	
 	}
 	
 }	

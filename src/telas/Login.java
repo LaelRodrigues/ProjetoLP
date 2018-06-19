@@ -2,6 +2,7 @@ package telas;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -11,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.UIManager;
 
+import dadosDosArquivos.ArquivoUsuario;
+import arvoreBinariaDeBusca.ABB;
+import classes.Usuario;
 /**
  * Implementa��o da tela de acesso 
  * @author	Robson Lael
@@ -24,11 +28,17 @@ public class Login {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	
+	private ABB arvoreUsuarios;
+	private ArquivoUsuario arqUsuario;
 	
 	/** 
 	 * Construtor padr�o 
 	 */
 	public Login() {
+		
+		arvoreUsuarios = new ABB();
+		arqUsuario = new ArquivoUsuario();
+		
 		initialize();
 		LabelUsuario();
 		LabelSenha();
@@ -87,14 +97,27 @@ public class Login {
 		btnEntrar.setBackground(new Color(255, 255, 255));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				arg0.getSource();
+			
+				
+				String loginTemporaria = textField.getText();
+				String senhaTemporaria = passwordField.getText();
+								
+				arvoreUsuarios = arqUsuario.getListaUsuarios();
+				
+				if( arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, false) ) != null ) {
+					
 				try {
 					MediaPlayer window = new MediaPlayer();
 					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 				frmTelaDeLogin.dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Usuario nao encontrado...");
+				}
 			}
 		});
 		btnEntrar.setBounds(203, 153, 82, 23);

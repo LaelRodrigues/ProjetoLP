@@ -230,10 +230,9 @@ public class ABB {
 	/**
 	 * Percorre a ABB em InOrdem
 	 */
-	public void percorre(){
+	public String percorre(){
 		
-		inOrdem(this.raiz);
-	    System.out.println();
+		return inOrdem(this.raiz);
 	    
 	}	
 	
@@ -243,15 +242,26 @@ public class ABB {
 	 * Percorre as subárvores de x em InOrdem
 	 * @param x	Nó que a partir do qual será feito o percorrimento
 	 */
-	private void inOrdem(NoABB x){
+	private String inOrdem(NoABB x){
 		
 		if(x != null) {
 			
-			inOrdem( x.getEsquerdo() );
-			System.out.println( x.getUsuario().getId() + " " + x.getUsuario().getNome() );
-			inOrdem( x.getDireito() );
+			String ladoEsquerdo = inOrdem( x.getEsquerdo() );
+			
+			String centro = ("id:" + x.getUsuario().getId() + ";" + "nome:" + 
+						x.getUsuario().getNome() + ";" + "senha:" + x.getUsuario().getSenha() + ";" + 
+							"vip:" + x.getUsuario().isVip() + "\n");
+			
+			
+			String ladoDireito = inOrdem( x.getDireito() );
+			
+			
+			ladoEsquerdo += centro;
+			return ladoEsquerdo	+= ladoDireito;
 			
 		}
+		
+		return "";
 		
 	}
 	
