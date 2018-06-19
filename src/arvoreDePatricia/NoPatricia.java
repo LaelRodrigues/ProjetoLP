@@ -1,7 +1,5 @@
 package arvoreDePatricia;
 
-import no.No;
-
 /**
  * Representa um nó da árvore de Patrícia
  * @see		No
@@ -9,12 +7,13 @@ import no.No;
  * @since 	09.06.2018
  * @version 0.0.3
  */
-public class NoPatricia extends No{
+public class NoPatricia {
 	
 	// -> ATRIBUTOS
 		
-	private char compararCom;
+	private String palavra;
 	private int avancar;
+	private NoPatricia filhos[];
 	
 	// -> MÉTODOS 
 	
