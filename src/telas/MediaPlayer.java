@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import classes.Musica;
 import classes.TocarMusica;
+import classes.Usuario;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
@@ -66,6 +67,8 @@ public class MediaPlayer{
 	boolean startMusica = true;
 	String nomeMusicaLista, nomeTemporario;
 	
+	private Usuario usuarioLogadoAtual;
+	
 	JButton addDiretorio, addArquivo, novaPlaylist;
 	JButton play, botaoAnterior, botaoProximo;
 	JList<String> listaMusicas;
@@ -74,7 +77,10 @@ public class MediaPlayer{
 	/** 
 	 * Construtor padrï¿½o 
 	 */
-	public MediaPlayer() {
+	public MediaPlayer( Usuario usuarioLogadoAtual ) {
+		
+		this.usuarioLogadoAtual = usuarioLogadoAtual;
+		
 		initialize();
 		botaoPlayPause();
 		barraProgresso();
@@ -88,6 +94,7 @@ public class MediaPlayer{
 		botaoProximaMusica();
 		listaDePlaylists();
 		botaoAddPlayLists();
+		
 	}
 
 	/**
@@ -108,6 +115,18 @@ public class MediaPlayer{
 		JMenu mnFile = new JMenu("Arquivo");
 		mnFile.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnFile);
+		
+		JMenuItem mntmCadastrarUsuario = new JMenuItem("Cadastrar usuário");
+		
+		mntmCadastrarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			  Cadastro cadastro = new Cadastro(usuarioLogadoAtual);
+			  cadastro.getFrame().setVisible(true);
+			  
+			}
+		});
+		
+		mnFile.add(mntmCadastrarUsuario);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		
@@ -249,7 +268,7 @@ public class MediaPlayer{
 		frmPlayer.getContentPane().add(lblAddPlaylist);
 		
 	}
-	
+		
 	/**
      * Adiciona um botï¿½o na tela com a funï¿½ï¿½o de adicionar diretï¿½rio
      */
@@ -366,11 +385,6 @@ public class MediaPlayer{
 	}
 	
 	private void listaDePlaylists() {
-
-		JTextArea listaPlaylists = new JTextArea();
-		listaPlaylists.setBackground(Color.WHITE);
-		listaPlaylists.setBounds(448, 53, 225, 436);
-		frmPlayer.getContentPane().add(listaPlaylists);
 		
 	}
 	
@@ -378,35 +392,6 @@ public class MediaPlayer{
 		
 		
 	}
-	private void ListaDeMusicas() {
-		
-		DefaultListModel<String> modeloLista = new DefaultListModel<>();
-		modeloLista.addElement("music");
-		modeloLista.addElement("music2");	
-		
-		listaMusicas = new JList<>(modeloLista);
-		
-		listaMusicas.setSelectedIndex(0); //setando o item padrao do JList para a primeira musica
-		listaMusicas.setBounds(199, 53, 225, 436);
-		frmPlayer.getContentPane().add(listaMusicas);
-		
-		listaMusicas.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				contador = 0;
-				if(e.getClickCount() == 2 && m!= null) {
-					nomeMusicaLista = (String)listaMusicas.getModel()
-				    .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
-					startMusica = true;
-					m.getPlayer().close();
-					tocarMusica();
-					return;
-				}
-				nomeMusicaLista = (String)listaMusicas.getModel()
-				.getElementAt(listaMusicas.locationToIndex(e.getPoint()));
-			}
-		});
-	}
-	
 	/**
      * @return A tela do reprodutor de musica
      */
@@ -588,7 +573,35 @@ public class MediaPlayer{
 			System.out.println("selecione primerio a musica!");
 		}
 	}
-	
+	private void ListaDeMusicas() {
+		
+		DefaultListModel<String> modeloLista = new DefaultListModel<>();
+		modeloLista.addElement("music");
+		modeloLista.addElement("music2");	
+		
+		listaMusicas = new JList<>(modeloLista);
+		
+		listaMusicas.setSelectedIndex(0); //setando o item padrao do JList para a primeira musica
+		listaMusicas.setBounds(199, 53, 225, 436);
+		frmPlayer.getContentPane().add(listaMusicas);
+		
+		listaMusicas.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				contador = 0;
+				if(e.getClickCount() == 2 && m!= null) {
+					nomeMusicaLista = (String)listaMusicas.getModel()
+				    .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
+					startMusica = true;
+					m.getPlayer().close();
+					tocarMusica();
+					return;
+				}
+				nomeMusicaLista = (String)listaMusicas.getModel()
+				.getElementAt(listaMusicas.locationToIndex(e.getPoint()));
+			}
+		});
+	}
+
 	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
 		String caminhoAtualizado="";
 		for(int i = 0; i < 2; i++) {

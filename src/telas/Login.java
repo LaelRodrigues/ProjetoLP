@@ -45,7 +45,7 @@ public class Login {
 		CampoTextoUsuario();
 		CampoTextoSenha();
 		BotaoAcesso();
-		botaoRegistrar();
+
 	}
 
 	private void initialize() {
@@ -60,16 +60,16 @@ public class Login {
 	
 	public void LabelUsuario() {
 		
-		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
-		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblUsurio.setBounds(91, 79, 78, 15);
+		JLabel lblUsurio = new JLabel("ID");
+		lblUsurio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblUsurio.setBounds(126, 80, 78, 15);
 		frmTelaDeLogin.getContentPane().add(lblUsurio);
 	}
 	
 	public void LabelSenha() {
 		
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSenha.setBounds(106, 122, 70, 15);
 		frmTelaDeLogin.getContentPane().add(lblSenha);
 	}
@@ -77,7 +77,7 @@ public class Login {
 	public void CampoTextoUsuario(){
 		
 		textField = new JTextField();
-		textField.setBounds(171, 78, 114, 23);
+		textField.setBounds(171, 78, 144, 23);
 		frmTelaDeLogin.getContentPane().add(textField);
 		textField.setColumns(10);
 	}
@@ -85,7 +85,7 @@ public class Login {
 	public void CampoTextoSenha(){
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(171, 119, 114, 23);
+		passwordField.setBounds(171, 119, 144, 23);
 		frmTelaDeLogin.getContentPane().add(passwordField);
 	}
 	
@@ -104,45 +104,30 @@ public class Login {
 								
 				arvoreUsuarios = arqUsuario.getListaUsuarios();
 				
-				if( arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, false) ) != null ) {
-					
-				try {
-					MediaPlayer window = new MediaPlayer();
-					window.getFrame().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				Usuario usuarioLogadoAtual = arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, true) );
 				
-				frmTelaDeLogin.dispose();
+				System.out.println(usuarioLogadoAtual.isVip());
+				
+				if( usuarioLogadoAtual != null ) {
+					
+					try {
+						MediaPlayer window = new MediaPlayer(usuarioLogadoAtual);
+						window.getFrame().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					frmTelaDeLogin.dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Usuario nao encontrado...");
+					textField.setText("");
+					passwordField.setText("");
 				}
 			}
 		});
-		btnEntrar.setBounds(203, 153, 82, 23);
+		btnEntrar.setBounds(269, 182, 82, 23);
 		frmTelaDeLogin.getContentPane().add(btnEntrar);
-	}
-	
-	public void botaoRegistrar(){
-		JButton btnRegistrar = new JButton("Registrar-se");
-		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRegistrar.setForeground(Color.WHITE);
-		btnRegistrar.setBackground(new Color(0, 102, 255));
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					MediaPlayer window = new MediaPlayer();
-					window.getFrame().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				frmTelaDeLogin.dispose();
-			}
-		});
-		btnRegistrar.setBounds(302, 227, 122, 23);
-		frmTelaDeLogin.getContentPane().add(btnRegistrar);
-
 	}
 	
 	public JFrame getFrame() {
