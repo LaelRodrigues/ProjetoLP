@@ -16,7 +16,7 @@ import dadosDosArquivos.ArquivoUsuario;
 import arvoreBinariaDeBusca.ABB;
 import classes.Usuario;
 /**
- * Implementaï¿½ï¿½o da tela de acesso 
+ * Implementacao da tela de acesso 
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
  * @since   06.06.2018
@@ -32,12 +32,12 @@ public class Login {
 	private ArquivoUsuario arqUsuario;
 	
 	/** 
-	 * Construtor padrï¿½o 
+	 * Construtor padrao 
 	 */
 	public Login() {
-		
-		arvoreUsuarios = new ABB();
+
 		arqUsuario = new ArquivoUsuario();
+		arvoreUsuarios = arqUsuario.getListaUsuarios();
 		
 		initialize();
 		LabelUsuario();
@@ -105,10 +105,8 @@ public class Login {
 				arvoreUsuarios = arqUsuario.getListaUsuarios();
 				
 				Usuario usuarioLogadoAtual = arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, true) );
-				
-				System.out.println(usuarioLogadoAtual.isVip());
-				
-				if( usuarioLogadoAtual != null ) {
+					
+				if( usuarioLogadoAtual != null && usuarioLogadoAtual.getSenha().equals(senhaTemporaria) == true) { // -> A BUSCA DA ARVORE COMPARA APENAS O ID
 					
 					try {
 						MediaPlayer window = new MediaPlayer(usuarioLogadoAtual);
@@ -120,9 +118,17 @@ public class Login {
 					frmTelaDeLogin.dispose();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Usuario nao encontrado...");
-					textField.setText("");
+					
+					if( usuarioLogadoAtual != null &&  usuarioLogadoAtual.getSenha().equals(senhaTemporaria) == false) {
+						JOptionPane.showMessageDialog(null, "Senha errada. Tente novamente!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Usuário não encontrado...");
+					}	
+					
+					textField.setText("");	// -> LIMPANDO AS CAIXAS DE TEXTO
 					passwordField.setText("");
+				
 				}
 			}
 		});

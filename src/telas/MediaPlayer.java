@@ -241,13 +241,13 @@ public class MediaPlayer{
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nao existe...");
 			}
 			
 			addPlayList.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nao existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -270,7 +270,7 @@ public class MediaPlayer{
 	}
 		
 	/**
-     * Adiciona um bot�o na tela com a fun��o de adicionar diret�rio
+     * Adiciona um botao na tela com a funcao de adicionar diret�rio
      */
 	private void botaoAddDiretorio() {
 
