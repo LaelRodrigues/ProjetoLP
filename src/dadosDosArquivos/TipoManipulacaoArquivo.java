@@ -56,6 +56,13 @@ public abstract class TipoManipulacaoArquivo{
      */
 	protected boolean salvarArquivo(String nomeArquivo, String conteudoArquivo){
 		
+		if(!this.conteudoArquivo.equals("")) {
+			this.conteudoArquivo += conteudoArquivo;
+			conteudoArquivo = this.conteudoArquivo;
+		}
+	
+		//System.out.println("LINHA 64 - " + conteudoArquivo);	
+			
         try{
 
         	nomeArquivo += ".txt";

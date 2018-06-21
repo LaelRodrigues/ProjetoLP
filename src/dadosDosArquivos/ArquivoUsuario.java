@@ -75,7 +75,7 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 		
 		System.out.println("LINHA 76 - " + atributosConvertidosEmString() );
 		
-		return salvarArquivo("usuarios", atributosConvertidosEmString() );	
+		return salvarArquivo("./arquivos.txt/usuarios", atributosConvertidosEmString() );	
 	} 
 		
 	/**

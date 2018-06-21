@@ -1,1 +1,3 @@
-id:admin;nome:Mojra;senha:123;vip:true\n
+nullid:admin;nome:Mojra;senha:123;vip:true\n
+id:admin;nome:Mojra;senha:123;vip:true
+id:samuel;nome:Sam;senha:123;vip:true
