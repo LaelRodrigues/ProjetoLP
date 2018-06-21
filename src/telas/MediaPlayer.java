@@ -40,13 +40,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JToolBar;
 import javax.swing.RepaintManager;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JScrollBar;
 
 /**
@@ -66,6 +67,7 @@ public class MediaPlayer{
 	int contador;
 	boolean startMusica = true;
 	String nomeMusicaLista, nomeTemporario;
+	DefaultListModel<String> modeloLista;
 	
 	private Usuario usuarioLogadoAtual;
 	
@@ -116,7 +118,7 @@ public class MediaPlayer{
 		mnFile.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmCadastrarUsuario = new JMenuItem("Cadastrar usuário");
+		JMenuItem mntmCadastrarUsuario = new JMenuItem("Cadastrar usuï¿½rio");
 		
 		mntmCadastrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -299,7 +301,7 @@ public class MediaPlayer{
 			System.err.println( e.getMessage() );
 		}
 		
-		addDiretorio.setBounds(36, 190, 113, 76);
+		addDiretorio.setBounds(46, 38, 113, 76);
 		addDiretorio.setVisible(true);
 		addDiretorio.setBorderPainted(false);
 		addDiretorio.setOpaque(false);
@@ -330,6 +332,18 @@ public class MediaPlayer{
 		addArquivo = new JButton("");
 		addArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				"Arquivos com extensÃ£o mp3", "mp3");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(null);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					String nomeMusica = chooser.getSelectedFile().getName();
+					String caminho = chooser.getSelectedFile().getAbsolutePath();
+					modeloLista.addElement(chooser.getSelectedFile().getName());
+					Musica m = new Musica(nomeMusica, caminho);
+					musicas.add(m);
+				}
 			}
 		});
 		addArquivo.setBackground(new Color(255, 255, 255));
@@ -355,7 +369,7 @@ public class MediaPlayer{
 			System.err.println( e.getMessage() );
 		}
 		
-		addArquivo.setBounds(36, 41, 113, 74);
+		addArquivo.setBounds(46, 202, 113, 74);
 		addArquivo.setVisible(true);
 		addArquivo.setBorderPainted(false);
 		addArquivo.setOpaque(false);
@@ -388,8 +402,7 @@ public class MediaPlayer{
 		
 	}
 	
-	private void rotuloListaDeMusicas(){
-		
+	private void rotuloListaDeMusicas() {
 		
 	}
 	/**
@@ -575,7 +588,7 @@ public class MediaPlayer{
 	}
 	private void ListaDeMusicas() {
 		
-		DefaultListModel<String> modeloLista = new DefaultListModel<>();
+		modeloLista = new DefaultListModel<>();
 		modeloLista.addElement("music");
 		modeloLista.addElement("music2");	
 		
@@ -598,13 +611,14 @@ public class MediaPlayer{
 				}
 				nomeMusicaLista = (String)listaMusicas.getModel()
 				.getElementAt(listaMusicas.locationToIndex(e.getPoint()));
+				System.out.println(nomeMusicaLista);
 			}
 		});
 	}
 
 	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
 		String caminhoAtualizado="";
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < musicas.size(); i++) {
 			if(musicas.get(i).getNome().equals(nomeMusicaLista)) {
 				caminhoAtualizado = musicas.get(i).getCaminho();
 				nomeTemporario = nomeMusicaLista;
