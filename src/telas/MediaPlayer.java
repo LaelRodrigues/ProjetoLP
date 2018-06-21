@@ -12,6 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -279,6 +281,33 @@ public class MediaPlayer{
 		addDiretorio = new JButton("");
 		addDiretorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser diretorio = new JFileChooser();
+				diretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int retorneVal = diretorio.showSaveDialog(null);
+				if(retorneVal == JFileChooser.APPROVE_OPTION) {
+					String caminhoDiretorio = diretorio.getSelectedFile().getAbsolutePath();
+				    File[] files = new File(caminhoDiretorio).listFiles();
+				    for (File file : files) {
+				        String nome = file.getName();
+				        String caminho = file.getAbsolutePath();
+				        modeloLista.addElement(nome);
+						Musica m = new Musica(nome, caminho);
+						musicas.add(m);
+				    }
+					System.out.println();
+				}
+				
+				/*FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				"Arquivos com extensão mp3", "mp3");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(null);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					String nomeMusica = chooser.getSelectedFile().getName();
+					String caminho = chooser.getSelectedFile().getAbsolutePath();
+					modeloLista.addElement(chooser.getSelectedFile().getName());
+					Musica m = new Musica(nomeMusica, caminho);
+					musicas.add(m);
+				}*/
 			}
 		});
 		addDiretorio.setBackground(new Color(255, 255, 255));
@@ -332,15 +361,15 @@ public class MediaPlayer{
 		addArquivo = new JButton("");
 		addArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				JFileChooser arquivo = new JFileChooser();
+				FileNameExtensionFilter filtrar = new FileNameExtensionFilter(
 				"Arquivos com extensão mp3", "mp3");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(null);
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					String nomeMusica = chooser.getSelectedFile().getName();
-					String caminho = chooser.getSelectedFile().getAbsolutePath();
-					modeloLista.addElement(chooser.getSelectedFile().getName());
+				arquivo.setFileFilter(filtrar);
+				int retorneVal = arquivo.showOpenDialog(null);
+				if(retorneVal == JFileChooser.APPROVE_OPTION) {
+					String nomeMusica = arquivo.getSelectedFile().getName();
+					String caminho = arquivo.getSelectedFile().getAbsolutePath();
+					modeloLista.addElement(nomeMusica);
 					Musica m = new Musica(nomeMusica, caminho);
 					musicas.add(m);
 				}
@@ -509,7 +538,6 @@ public class MediaPlayer{
 		if(startMusica) {
 			String caminho = PercorrerListaMusica(musicas);
 			if(caminho == "") {
-				System.out.println("Musica nao seleciona ou encontrada!!!");
 				return;
 			}
 			File arquivoMp3 = new File(caminho);
@@ -522,16 +550,13 @@ public class MediaPlayer{
 		else 
 		{
 			if(!nomeMusicaLista.equals(nomeTemporario)) {
-				System.out.println("estou aqui");
 				m.resume();
 				m.getPlayer().close();
-				System.out.println("estou aqui");
 				String caminho = PercorrerListaMusica(musicas);
 				if(caminho.equals("")) {
 					return;
 				}
 				contador = 0;
-				System.out.println("aaa"+ caminho);
 				File arquivoMp3 = new File(caminho);
 				TocarMusica musica = new TocarMusica();
 				musica.tocar(arquivoMp3);
@@ -598,6 +623,23 @@ public class MediaPlayer{
 		listaMusicas.setBounds(199, 53, 225, 436);
 		frmPlayer.getContentPane().add(listaMusicas);
 		
+		listaMusicas.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_DELETE) {
+					int posicao = listaMusicas.getSelectedIndex();
+					modeloLista.remove(posicao);
+					musicas.remove(posicao);
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+		});
+			
+		
 		listaMusicas.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				contador = 0;
@@ -611,7 +653,6 @@ public class MediaPlayer{
 				}
 				nomeMusicaLista = (String)listaMusicas.getModel()
 				.getElementAt(listaMusicas.locationToIndex(e.getPoint()));
-				System.out.println(nomeMusicaLista);
 			}
 		});
 	}
