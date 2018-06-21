@@ -251,7 +251,7 @@ public class ABB {
 			
 			String centro = ("id:" + x.getUsuario().getId() + ";" + "nome:" + 
 						x.getUsuario().getNome() + ";" + "senha:" + x.getUsuario().getSenha() + ";" + 
-							"vip:" + x.getUsuario().isVip() + "\n");
+							"vip:" + x.getUsuario().isVip() + ";\n");
 			
 			
 			String ladoDireito = inOrdem( x.getDireito() );

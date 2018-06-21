@@ -51,7 +51,9 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 			senha = i.split(";")[2].split(":")[1];
 			vip = i.split(";")[3].split(":")[1];
 			
-			vip = vip.substring(0, vip.length()-2); // -> RETIRANDO O "\n"
+			System.out.println("LINHA 54 - "+vip);
+			
+			//vip = vip.substring(0, vip.length()-2); // -> RETIRANDO O "\n"
 			
 			listaUsuarios.insere( new Usuario(id, nome, senha,  Boolean.valueOf(vip) ) );
 			
