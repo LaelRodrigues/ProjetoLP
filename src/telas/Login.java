@@ -16,7 +16,7 @@ import dadosDosArquivos.ArquivoUsuario;
 import arvoreBinariaDeBusca.ABB;
 import classes.Usuario;
 /**
- * Implementacao da tela de acesso 
+ * Implementação da tela de acesso 
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
  * @since   06.06.2018
@@ -123,7 +123,7 @@ public class Login {
 						JOptionPane.showMessageDialog(null, "Senha errada. Tente novamente!");
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Usu�rio n�o encontrado...");
+						JOptionPane.showMessageDialog(null, "Usuário não encontrado...");
 					}	
 					
 					textField.setText("");	// -> LIMPANDO AS CAIXAS DE TEXTO

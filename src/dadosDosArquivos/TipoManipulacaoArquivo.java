@@ -1,17 +1,17 @@
 
 package dadosDosArquivos;
 
-// -> MANIPULAÇÃO DE ARQUIVO
+// -> MANIPULAï¿½ï¿½O DE ARQUIVO
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.FileReader;
 
-// -> CLASSE DE EXCEÇÃO (MANIPULAÇÃO DE ARQUIVO)
+// -> CLASSE DE EXCEï¿½ï¿½O (MANIPULAï¿½ï¿½O DE ARQUIVO)
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * Contêm os métodos de leitura e escrita de arquivo
+ * ContÃ©m os mÃ©todos de leitura e escrita de arquivo
  * @author  Samuel Lucas de Moura Ferino
  * @since   21.05.2018   
  * @version 0.0.6
@@ -37,7 +37,7 @@ public abstract class TipoManipulacaoArquivo{
             buffReader.close();
           //  return conteudo;
         }
-        catch(FileNotFoundException e){  // -> ARQUIVO NÃO EXISTE
+        catch(FileNotFoundException e){  // -> ARQUIVO Nï¿½O EXISTE
             System.err.println( e.getMessage() );
             //return null;
         }  
@@ -51,8 +51,8 @@ public abstract class TipoManipulacaoArquivo{
     
     /**
      * Salva   
-     * @param   nomeDoArquivo   Nome do arquivo no qual haverá a escrita
-     * @return  True se a escrita for feita corretamente, senão false
+     * @param   nomeDoArquivo   Nome do arquivo no qual haverï¿½ a escrita
+     * @return  {@code true} se a escrita for feita corretamente, senÃ£o {@code false}
      */
 	protected boolean salvarArquivo(String nomeArquivo, String conteudoArquivo){
 		
@@ -64,12 +64,14 @@ public abstract class TipoManipulacaoArquivo{
 		
 		  writer.write(this.conteudoArquivo);
 		
+		  System.out.println("LINHA 67 - " + nomeArquivo);
+		  
 		  writer.close();  
 		
 		  return true;
 
         }
-        catch(FileNotFoundException e){   // -> ARQUIVO NÃO EXISTE
+        catch(FileNotFoundException e){   // -> ARQUIVO NÃ£O EXISTE
 	        System.err.println( e.getMessage() );
 	        return false;        
         }

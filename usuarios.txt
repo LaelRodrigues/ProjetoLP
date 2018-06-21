@@ -1,0 +1,1 @@
+id:admin;nome:Mojra;senha:123;vip:true\n

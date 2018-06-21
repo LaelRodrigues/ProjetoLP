@@ -53,8 +53,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JScrollBar;
 
 /**
- * Implementacao da tela onde as musicas
- * seram reproduzidas
+ * Implementacão da tela onde as músicas seram reproduzidas
  * @see     MediaPlayer
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
@@ -79,7 +78,7 @@ public class MediaPlayer{
 	
 	ArrayList<Musica> musicas;
 	/** 
-	 * Construtor padr�o 
+	 * Construtor padrão 
 	 */
 	public MediaPlayer( Usuario usuarioLogadoAtual ) {
 		
@@ -105,6 +104,7 @@ public class MediaPlayer{
      * Inicializa a tela da classe MediaPlayer
      */
 	private void initialize() {
+		
 		frmPlayer = new JFrame();
 		frmPlayer.getContentPane().setBackground(new Color(0, 204, 255));
 		frmPlayer.setTitle("Reprodutor");
@@ -120,7 +120,7 @@ public class MediaPlayer{
 		mnFile.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmCadastrarUsuario = new JMenuItem("Cadastrar usu�rio");
+		JMenuItem mntmCadastrarUsuario = new JMenuItem("Cadastrar usuário");
 		
 		mntmCadastrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -182,13 +182,13 @@ public class MediaPlayer{
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			play.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -219,11 +219,11 @@ public class MediaPlayer{
 	}
 
 	/**
-     * Adiciona um r�tulo na tela para o bot�o addDiret�rio
+     * Adiciona um rótulo na tela para o botão addDiretório
      */
 	private void rotuloBotaoAddDiretorio() {
 
-		JLabel lblAddDiretrio = new JLabel("Adicionar Diret\u00F3rio");
+		JLabel lblAddDiretrio = new JLabel("Adicionar Diretório");
 		lblAddDiretrio.setForeground(new Color(255, 255, 255));
 		lblAddDiretrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAddDiretrio.setBounds(36, 113, 157, 26);
@@ -245,13 +245,13 @@ public class MediaPlayer{
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente nao existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			addPlayList.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente nao existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -274,7 +274,7 @@ public class MediaPlayer{
 	}
 		
 	/**
-     * Adiciona um botao na tela com a funcao de adicionar diret�rio
+     * Adiciona um botao na tela com a função de adicionar diretório
      */
 	private void botaoAddDiretorio() {
 
@@ -318,7 +318,7 @@ public class MediaPlayer{
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			addDiretorio.setIcon(new ImageIcon(caminhoImagem));  
@@ -341,7 +341,7 @@ public class MediaPlayer{
 	}
 	
 	/**
-     * Adiciona um r�tulo na tela para o bot�o addArquivo
+     * Adiciona um rótulo na tela para o botão addArquivo
      */
 	private void rotuloBotaoAddArquivo(){
 	
@@ -354,7 +354,7 @@ public class MediaPlayer{
 	}
 	
 	/**
-     * Adiciona um bot�o na tela com a fun��o de adicionar um arquivo
+     * Adiciona um botão na tela com a função de adicionar um arquivo
      */
 	private void botaoAddArquivo() {
 
@@ -378,21 +378,20 @@ public class MediaPlayer{
 		addArquivo.setBackground(new Color(255, 255, 255));
 		
 		
-		//String caminhoImagem2 = "./imagensParaGui/mais2.png";
 		String caminhoImagem2 = "./imagensParaGui/imagensEditadas/mais2Branco.png";
 		
 		try {
 			File arquivoImagem = new File(caminhoImagem2);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			addArquivo.setIcon(new ImageIcon(caminhoImagem2));  
 		
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );
@@ -419,7 +418,7 @@ public class MediaPlayer{
 		frmPlayer.getContentPane().add(progressBar);
 		
 		
-		JLabel lblMsicas = new JLabel("M\u00FAsicas");
+		JLabel lblMsicas = new JLabel("Músicas");
 		lblMsicas.setForeground(new Color(255, 255, 255));
 		lblMsicas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMsicas.setBounds(281, 28, 79, 14);
@@ -494,13 +493,13 @@ public class MediaPlayer{
 			File arquivoImagem = new File(caminhoImagem);
 			
 			if(!arquivoImagem.exists()) {
-				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+				throw new Exception("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 			}
 			
 			botaoProximo.setIcon(new ImageIcon(caminhoImagem));  
 		}
 		catch(NullPointerException e){
-			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente n�o existe...");
+			System.err.println("Erro ao abrir o arquivo Imagem!\nProvavelmente não existe...");
 		}
 		catch(Exception e) {
 			System.err.println( e.getMessage() );

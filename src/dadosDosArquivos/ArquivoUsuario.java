@@ -67,12 +67,15 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	}
 	
 	/**
-	 * Atualiza o arquivo usuario.txt que contém os antigas usuarios cadastrados
+	 * Atualiza o arquivo usuario.txt que contï¿½m os antigas usuarios cadastrados
 	 * @return	True se o arquivo usuarios.txt foi atualizado corretamente senao false
 	 */
 	@Override
-	public boolean criaOuAtualiza() {		
-		return salvarArquivo("usuarios", atributosConvertidosEmString() );	
+	public boolean criaOuAtualiza() {	
+		
+		System.out.println("LINHA 76 - " + atributosConvertidosEmString() );
+		
+		return salvarArquivo("..\\usuarios", atributosConvertidosEmString() );	
 	} 
 		
 	/**

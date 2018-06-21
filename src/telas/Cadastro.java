@@ -18,23 +18,32 @@ import arvoreBinariaDeBusca.ABB;
 import classes.Usuario;
 import javax.swing.JRadioButton;
 	
+/**
+ * Representa a tela de cadastro
+ * @author	Samuel Lucas de Moura Ferino
+ * @since 	20.06.2018
+ * @version 0.0.3
+ */
 public class Cadastro {
 
 	private JFrame frmTelaDeCadastro;
+	
 	private JTextField textFieldNomeUsuario;
 	private JPasswordField passwordFieldSenha;
+	private JTextField textFieldID;
+	private JRadioButton rdbtnSim;
+	private JRadioButton rdbtnNao;
 	
 	private ABB arvoreUsuarios;
 	private ArquivoUsuario arqUsuario;
-	private JTextField textField;
 	
 	/** 
-	 * Construtor padrao 
+	 * Construtor padrão 
 	 */
 	public Cadastro( Usuario usuarioAtualLogado ) {
 		
-		arvoreUsuarios = new ABB();
 		arqUsuario = new ArquivoUsuario();
+		arvoreUsuarios = arqUsuario.getListaUsuarios();
 		
 		initialize();
 		labelNomeUsuario();
@@ -45,7 +54,7 @@ public class Cadastro {
 		labelAcessoVip();
 		labelID();
 		
-		if( usuarioAtualLogado.isVip() == true ) {  // -> SE O USUARIO ATUAL LOGADO FOR VIP � QUE APARECE A OPCAO PARA CADASTRAR CONTA VIP
+		if( usuarioAtualLogado.isVip() == true ) {  // -> SE O USUARIO ATUAL LOGADO FOR VIP � QUE APARECE A OPCAO PARA CADASTRAR CONTA VIP
 			btnsNaoSim();
 		}
 
@@ -101,38 +110,64 @@ public class Cadastro {
 		btnConfirmar.setBackground(new Color(255, 255, 255));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
 				
-		//		String loginTemporaria = textFieldNomeUsuario.getText();
-		//		String senhaTemporaria = passwordFieldSenha.getText();
+				String loginTemporaria = textFieldID.getText();
+				String nomeTemporario = textFieldNomeUsuario.getText();
+				String senhaTemporaria = passwordFieldSenha.getText();
+				boolean modoDeAcesso;
+				
+				if( rdbtnSim.isSelected()) {
+					modoDeAcesso = true;
+				}
+				else {
+					modoDeAcesso = false;
+				}
+				
 								
-		//		arvoreUsuarios = arqUsuario.getListaUsuarios();
+				arvoreUsuarios = arqUsuario.getListaUsuarios();
+				Usuario usuarioEncontrado = arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, false) );
 				
-		//		if( arvoreUsuarios.buscaLocal( new Usuario(loginTemporaria, "", senhaTemporaria, false) ) != null ) {
+				if(loginTemporaria.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Digite o id...");
+				}
+				else if(nomeTemporario.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Digite o nome...");
+				}
+				else if( !rdbtnSim.isSelected() && !rdbtnNao.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Selecione a opção do modo de acesso. É vip ou não?");
+				}else if(senhaTemporaria.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Digite a senha...");
+				}
+				else if( usuarioEncontrado != null ) {
 					
-			//	try {
-			//		MediaPlayer window = new MediaPlayer();
-				//	window.getFrame().setVisible(true);
-			//	} catch (Exception e) {
-				//	e.printStackTrace();
-			//	}
+					JOptionPane.showMessageDialog(null, "Um usuário com esse login já está cadastrado...");
+
+					textFieldID.setText("");
+					textFieldNomeUsuario.setText("");
+					passwordFieldSenha.setText("");
+					rdbtnSim.setSelected(false);
+					rdbtnNao.setSelected(false);
+				}
+				else {
+					arvoreUsuarios.insere( new Usuario(loginTemporaria, nomeTemporario, senhaTemporaria, modoDeAcesso) );
+					arqUsuario.add( new Usuario(loginTemporaria, nomeTemporario, senhaTemporaria, modoDeAcesso) );
+					
+					boolean a = arqUsuario.criaOuAtualiza();
+					System.out.println("LINHA 156" + a);
+					
+					frmTelaDeCadastro.setVisible(false);
+				}
 				
-				//frmTelaDeCadastro.dispose();
-				frmTelaDeCadastro.setVisible(false);
-	//			}
-		//		else {
-			//		JOptionPane.showMessageDialog(null, "Usuario nao encontrado...");
-	//			}
 			}
 		});
 		btnConfirmar.setBounds(194, 165, 114, 23);
 		frmTelaDeCadastro.getContentPane().add(btnConfirmar);
 		
 		
-		textField = new JTextField();
-		textField.setBounds(95, 23, 161, 23);
-		frmTelaDeCadastro.getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldID = new JTextField();
+		textFieldID.setBounds(95, 23, 161, 23);
+		frmTelaDeCadastro.getContentPane().add(textFieldID);
+		textFieldID.setColumns(10);
 		
 		
 	}
@@ -148,19 +183,19 @@ public class Cadastro {
 	
 	private void labelID() {
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblId.setBounds(42, 27, 46, 14);
-		frmTelaDeCadastro.getContentPane().add(lblId);
+		JLabel lblIDUsuario = new JLabel("ID");
+		lblIDUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblIDUsuario.setBounds(42, 27, 46, 14);
+		frmTelaDeCadastro.getContentPane().add(lblIDUsuario);
 		
 	}
 	
 	private void btnsNaoSim() {
 		
-		JRadioButton rdbtnSim = new JRadioButton("Sim");
+		rdbtnSim = new JRadioButton("Sim");
 		rdbtnSim.setBounds(105, 83, 55, 23);
 		
-		JRadioButton rdbtnNao = new JRadioButton("N�o");
+		rdbtnNao = new JRadioButton("Não");
 		rdbtnNao.setBounds(181, 84, 55, 23);
 		
 		rdbtnSim.addActionListener(new ActionListener() {
