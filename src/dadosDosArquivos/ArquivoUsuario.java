@@ -76,7 +76,6 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	public boolean criaOuAtualiza() {	
 		
 		System.out.println("LINHA 76 - " + atributosConvertidosEmString() );
-		
 		return salvarArquivo("./arquivos.txt/usuarios", atributosConvertidosEmString() );	
 	} 
 		

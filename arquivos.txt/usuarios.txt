@@ -1,6 +1,2 @@
-nullnullnullid:admin;nome:Mojra;senha:123;vip:true;
 id:admin;nome:Mojra;senha:123;vip:true;
-id:samuel;nome:Sam;senha:123;vip:true;
-id:admin;nome:Mojra;senha:123;vip:true;
-id:samuel;nome:Sam;senha:123;vip:true;
-id:samuellucas97;nome:sam;senha:123;vip:true;
+id:lael;nome:123;senha:123;vip:false;
