@@ -1,7 +1,7 @@
 package classes;
 
 /**
- * Implementacao da classe do Usuario 
+ * Implementa√ß√£o da classe do Usuario 
  * @see     Usuario
  * @author	Robson Lael
  * @since   07.06.2018
@@ -11,13 +11,13 @@ public class Usuario implements Comparable<Usuario>{
 	
 	// -> ATRIBUTOS
 	
-	private String id; // -> N˙mero de identificaÁ„o do usu·rio
-	private String nome; // -> Nome do usu·rio
-	private String senha; // -> Senha do usu·rio
-	private Boolean vip; // -> Status de acesso do usu·rio
+	private String id; // -> N√∫mero de identifica√ß√£o do usu√°rio
+	private String nome; // -> Nome do usu√°rio
+	private String senha; // -> Senha do usu√°rio
+	private Boolean vip; // -> Status de acesso do usu√°rio
 	
 	/**
-     * Construtor padr„o
+     * Construtor padr√£o
      */
 	public Usuario() {
 		
@@ -30,29 +30,29 @@ public class Usuario implements Comparable<Usuario>{
 	
 	/**
      *  (Construtor parametrizado)
-     * @param id	N˙mero de identificaÁ„o do usu·rio
-     * @param nome 	Nome do usu·rio
-     * @param senha	Senha do usu·rio
-     * @param vip	Status do usu·rio
+     * @param id	N√∫mero de identifica√ß√£o do usu√°rio
+     * @param nome 	Nome do usu√°rio
+     * @param senha	Senha do usu√°rio
+     * @param vip	Status do usu√°rio
      */
 	public Usuario(String id, String nome, String senha, Boolean vip) {
 		try{
 			if( id == null) {
-				throw new NullPointerException("vari·vel id est· nulo");
+				throw new NullPointerException("vari√°vel id est√° null");
 			}
 			else {
 				this.id = id;
 			}	
 			
 			if( nome == null){
-				throw new NullPointerException("vari·vel nome est· nulo");	
+				throw new NullPointerException("vari√°vel nome est√° null");	
 			}
 			else{
 				this.nome = nome;
 			}
 			
 			if( senha == null) {
-				throw new NullPointerException("vari·vel senha est· nulo");
+				throw new NullPointerException("vari√°vel senha est√° null");
 			}
 			else{
 				this.senha = senha;
@@ -71,18 +71,19 @@ public class Usuario implements Comparable<Usuario>{
 	}
 	
 	/**
-     * MÈtodo get do atributo id
-     * @return N˙mero de identificaÁ„o do usu·rio
+     * M√©todo get do atributo id
+     * @return 	N√∫mero de identifica√ß√£o do usu√°rio
      */
 	public String getId() {
 		return this.id;
 	}
 	
 	/**
-     * MÈtodo set do atributo id
-     * @param id 	N˙mero de identificaÁ„o do usu·rio
+     * M√©todo set do atributo id
+     * @param id 	N√∫mero de identifica√ß√£o do usu√°rio
      */
 	public void setId(String id) {
+		
 		try{
 			this.id = id;
 		}
@@ -92,19 +93,20 @@ public class Usuario implements Comparable<Usuario>{
 		catch( Exception e){
 			System.err.println( e.getMessage() );
 		}
+	
 	}
 	
 	/**
-     * MÈtodo get do atributo nome
-     * @return nome do usu·rio
+     * M√©todo get do atributo nome
+     * @return nome do usu√°rio
      */
 	public String getNome() {
 		return this.nome;
 	}
 	
 	/**
-     * MÈtodo set do atributo nome
-     * @param nome Nome do usu·rio
+     * M√©todo set do atributo nome
+     * @param nome Nome do usu√°rio
      */
 	public void setNome(String nome) {
 		
@@ -120,16 +122,16 @@ public class Usuario implements Comparable<Usuario>{
 	}
 	
 	/**
-     * MÈtodo get do atributo senha
-     * @return senha Senha do usu·rio
+     * M√©todo get do atributo senha
+     * @return senha Senha do usu√°rio
      */
 	public String getSenha() {
 		return this.senha;
 	}
 	
 	/**
-     * MÈtodo set do atributo senha
-     * @param senha Senha do usu·rio
+     * M√©todo set do atributo senha
+     * @param senha Senha do usu√°rio
      */
 	public void setSenha(String senha) {
 		
@@ -145,16 +147,16 @@ public class Usuario implements Comparable<Usuario>{
 	}
 	
 	/**
-     * MÈtodo get do atributo vip
-     * @return Status do acesso do usu·rio
+     * M√©todo get do atributo vip
+     * @return Status do acesso do usu√°rio
      */
 	public Boolean isVip() {
 		return this.vip;
 	}
 	
 	/**
-     * MÈtodo set do atributo vip
-     * @param vip Status do acesso do usu·rio
+     * M√©todo set do atributo vip
+     * @param vip Status do acesso do usu√°rio
      */
 	public void setVip(Boolean vip) {
 		
@@ -171,10 +173,10 @@ public class Usuario implements Comparable<Usuario>{
 	
 	/**
 	 * @brief   Compara dois objetos da classe Usuario
-	 * @param   usuario   Objeto da classe Usuario usada na comparaÁ„o
-	 * @return  -1 indica que o objeto atual È menor que o objeto usuario
-	 *          0 indica que ambos objetos s„o iguais
-	 *          1 indica que o objeto atual È maior que o objeto usuario
+	 * @param   usuario   Objeto da classe Usuario usada na compara√ß√£o
+	 * @return  -1 indica que o objeto atual √© menor que o objeto usu√°rio
+	 *          0 indica que ambos objetos s√£o iguais
+	 *          1 indica que o objeto atual √© maior que o objeto usu√°rio
 	 */ 
 	  public int compareTo( Usuario usuario ){
 	    

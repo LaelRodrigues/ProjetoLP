@@ -3,7 +3,7 @@ package arvoreBinariaDeBusca;
 import classes.Usuario;
 
 /**
- * Representa uma ·rvore de busca bin·ria (ABB) 
+ * Representa uma √°rvore de busca bin√°ria (ABB) 
  * @see     NodeABB
  * @see		No
  * @author  Samuel Lucas de Moura Ferino
@@ -14,13 +14,13 @@ public class ABB {
 
     // -> ATRIBUTOS
     
-    private NoABB raiz;  // -> NÛ raiz da ABB
-    private int quantidadeDeNos;	// -> Quantidade de nÛ que compıem a ABB
+    private NoABB raiz;  // -> N√≥ raiz da ABB
+    private int quantidadeDeNos;	// -> Quantidade de n√≥s que comp√µem a ABB
     
-    // -> M…TODOS
+    // -> M√âTODOS
     
     /**
-     * Construtor padr„o
+     * Construtor padr√£o
      */
     public ABB(){
         this.raiz = new NoABB();
@@ -28,33 +28,33 @@ public class ABB {
     }
     
     /**
-     * MÈtodo get do atributo raiz
-     * @return Raiz da ·rvore
+     * M√©todo get do atributo raiz
+     * @return Raiz da √°rvore
      */
     public NoABB getRaiz(){ 
     	return this.raiz; 
     }
 
     /**
-     * MÈtodo get do atributo quantidadeDeNos
-     * @return Quantidade de nÛs que compıem a ·rvore
+     * M√©todo get do atributo quantidadeDeNos
+     * @return Quantidade de n√≥s que comp√µem a √°rvore
      */
     public int getQuantidadeDeNos(){ 
     	return this.quantidadeDeNos; 
     }
     
     /**
-     * Buscando o nÛ com a chave correspondente entrada - O(log n)
-     * @param usuario Usu·rio a ser buscado na ABB
-     * @return True caso tenha encontrado algum nÛ com a correspondente chave sen„o false
+     * Buscando o n√≥ com a chave correspondente entrada - O(log n)
+     * @param usuario Usu√°rio a ser buscado na ABB
+     * @return {@code true} caso tenha encontrado algum n√≥ com a correspondente chave sen√£o {@code false}
      */
     public boolean busca(Usuario usuario){
     	
-    	if(this.quantidadeDeNos == 0) { // -> A ·rvore È vazia
+    	if(this.quantidadeDeNos == 0) { // -> A √°rvore √© vazia
     		return false;
     	}
     	
-    	// -> NÛs auxiliares usados na busca
+    	// -> N√≥s auxiliares usados na busca
     	NoABB aux = this.raiz;
         NoABB auxPai = null;
         
@@ -62,10 +62,10 @@ public class ABB {
 
             auxPai = aux;
 
-            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na sub·rvore direita
+            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na sub√°rvore direita
                 aux = aux.getDireito();
             }
-            else{							// -> Procurando na sub·rvore esquerda
+            else{							// -> Procurando na sub√°rvore esquerda
                 aux = aux.getEsquerdo();
             }    
             
@@ -80,17 +80,17 @@ public class ABB {
     }
     
     /**
-     * Buscando o nÛ com a chave correspondente entrada - O(log n)
-     * @param usuario Usu·rio a ser buscado na ABB
-     * @return Usuario se existir ou null sen„o
+     * Buscando o n√≥ com a chave correspondente entrada - O(log n)
+     * @param usuario Usu√°rio a ser buscado na ABB
+     * @return Usuario se existir ou {@code null} caso contr√°rio
      */
     public Usuario buscaLocal(Usuario usuario) throws NullPointerException {
     	
-    	if(this.quantidadeDeNos == 0) { // -> A ·rvore È vazia
+    	if(this.quantidadeDeNos == 0) { // -> A √°rvore √© vazia
     		return null;
     	}
     	
-    	// -> NÛs auxiliares usados na busca
+    	// -> N√≥s auxiliares usados na busca
     	NoABB aux = this.raiz;
         NoABB auxPai = null;
         
@@ -98,10 +98,10 @@ public class ABB {
 
             auxPai = aux;
 
-            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na sub·rvore direita
+            if( usuario.compareTo( aux.getUsuario() ) == 1 ){ 	// -> Procurando na sub√°rvore direita
                 aux = aux.getDireito();
             }
-            else{							// -> Procurando na sub·rvore esquerda
+            else{							// -> Procurando na sub√°rvore esquerda
                 aux = aux.getEsquerdo();
             }    
             
@@ -116,13 +116,13 @@ public class ABB {
     }
     
     /**
-     * Insere um nÛ na ABB caso ele n„o exista previamente 
-     * @param usuario Usu·rio a ser adicionado ‡ ABB
-     * @return True caso seja inserido com sucesso sen„o false
+     * Insere um n√≥ na ABB caso ele n√£o exista previamente 
+     * @param usuario Usu√°rio a ser adicionado na ABB
+     * @return {@code true} caso seja inserido com sucesso sen√£o {@code false}
      */
     public boolean insere(Usuario usuario){
     	
-    	if(this.quantidadeDeNos == 0) { // -> Primeira inserÁ„o na ABB
+    	if(this.quantidadeDeNos == 0) { // -> Primeira inser√ß√£o na ABB
     	
     		if( this.raiz == null) {
     			this.raiz = new NoABB();
@@ -133,14 +133,14 @@ public class ABB {
     		return true;
     	}
     	
-        if( busca(usuario) == true ){	// -> NÛ j· existe na ABB
+        if( busca(usuario) == true ){	// -> N√≥ j√° existe na ABB
         	return false;
         }
         
         NoABB aux = this.raiz;
         NoABB auxPai = null;
         
-        while( aux != null ){     // -> BUSCANDO LOCAL ONDE O N” SER¡ INSERIDO E ARMAZENANDO NA VARI¡VEL "auxPai"
+        while( aux != null ){     // -> BUSCANDO LOCAL ONDE O N√≥ SER√Å INSERIDO E ARMAZENANDO NA VARI√ÅVEL "auxPai"
         	
         	auxPai = aux;
         	
@@ -155,10 +155,10 @@ public class ABB {
         
         NoABB novoNo = new NoABB(usuario);
         
-        if( usuario.compareTo(auxPai.getUsuario() ) == 1){   // -> … o filho direito de "auxPai" 
+        if( usuario.compareTo(auxPai.getUsuario() ) == 1){   // -> √© o filho direito de "auxPai" 
         	auxPai.setDireito(novoNo);
         }
-        else{   						// -> … o filho esquerdo de "auxPai"
+        else{   						// -> √â o filho esquerdo de "auxPai"
         	auxPai.setEsquerdo(novoNo);
         }    
         
@@ -168,23 +168,23 @@ public class ABB {
     }
     
     /**
-     * Remove um nÛ na ABB caso ele exista previamente 
-     * @param usuario	Usu·rio a ser excluÌdo
-     * @return True caso seja removido com sucesso sen„o false
+     * Remove um n√≥ na ABB caso ele exista previamente 
+     * @param usuario	Usu√°rio a ser exclu√≠do
+     * @return {@code true} caso seja removido com sucesso sen√£o {@code false}
      */
 	public boolean remove(Usuario usuario){
 		
 		if(this.quantidadeDeNos == 0 ){  // -> ABB vazia	
 			return false;
 		}
-		if( busca(usuario) == false ){  // -> NÛ com chave correspondente n„o encontrado
+		if( busca(usuario) == false ){  // -> N√≥ com chave correspondente n√£o foi encontrado
 			return false;
 		}
 
         NoABB aux = this.raiz;
         NoABB auxPai = null;
         
-        while( usuario.compareTo(aux.getUsuario()) != 0 ){     // -> BUSCANDO LOCAL ONDE DO N” QUE SER¡  E ARMAZENANDO NA VARI¡VEL "auxPai"
+        while( usuario.compareTo(aux.getUsuario()) != 0 ){     // -> BUSCANDO O N√ì QUE SER√Å REMOVIDO E ARMAZENANDO NA VARI√ÅVEL "auxPai"
         	
         	auxPai = aux;
         	
@@ -197,10 +197,10 @@ public class ABB {
 
         }
 		
-        if( aux.getEsquerdo() == null ){	// -> O nÛ a ser removido, "aux", n„o tem filho ‡ esquerda
+        if( aux.getEsquerdo() == null ){	// -> O n√≥ a ser removido, "aux", n√≥ n√£o tem filho √† esquerda
         	transplant(aux, aux.getDireito() );
         }
-        else if( aux.getDireito() == null ){	// -> O nÛ a ser removido, "aux", n„o tem filho ‡ direita
+        else if( aux.getDireito() == null ){	// -> O n√≥ a ser removido, "aux", n√£o tem filho √† direita
         	transplant(aux, aux.getEsquerdo() );
         }
         else{
@@ -236,11 +236,12 @@ public class ABB {
 	    
 	}	
 	
-	// ->     **M…TODOS PRIVADOS**
+	// ->     **M√âTODOS PRIVADOS**
 	
 	/**
-	 * Percorre as sub·rvores de x em InOrdem
-	 * @param x	NÛ que a partir do qual ser· feito o percorrimento
+	 * Percorre as sub√°rvores de x em InOrdem
+	 * @param 	x	N√≥ que a partir do qual ser√° feito o percorrimento
+	 * @return	String contendo todos os dados dos usu√°rio percorridos em ordem
 	 */
 	private String inOrdem(NoABB x){
 		
@@ -266,21 +267,22 @@ public class ABB {
 	}
 	
 	/**
-     * Substitui uma sub·rvore como um filho de seu pai por outra sub·rvore
-     * @param   u 	NÛ que ser· substituÌdo pelo nÛ v
-     * @param   v 	NÛ que substituir· o nÛ u
+     * Substitui uma sub√°rvore como um filho de seu pai por outra sub√°rvore
+     * @param   u 	N√≥ que ser√° substitu√≠do pelo n√≥ v
+     * @param   v 	N√≥ que substituir√° o n√≥ u
      */
 	private void transplant(NoABB u, NoABB v) {
-		if( u.getPai() == null ){ // -> Caso em que ser· removida a raiz por isso "v" ser· a nova raiz 		
+		
+		if( u.getPai() == null ){ // -> Caso em que ser√° removida a raiz por isso "v" ser√° a nova raiz 		
 				this.raiz = v;
 	    }
-        else if( u == u.getPai().getEsquerdo() ){ /// "u" È o filho ‡ esquerda
+        else if( u == u.getPai().getEsquerdo() ){ /// "u" √© o filho √† esquerda
           u.getPai().setEsquerdo(v);
         }
-        else{ /// "u" È o filho ‡ direita
+        else{ /// "u" √© o filho √† direita
           u.getPai().setDireito(v);
         }
-        if(v != null){ /// J· que foi movido um filho n„o nulo, falta dizer quem È o pai dele
+        if(v != null){ /// J√° que foi movido um filho n√£o nulo, falta dizer quem √© o pai dele
           v.setPai( u.getPai() );
         }
 	}

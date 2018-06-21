@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import javazoom.jl.player.Player;
 
 /**
- * Representa o ato de tocar música
+ * Representa o ato de tocar mÃºsica
  * @see     Musica
  * @author	Robson Lael
  * @version 0.0.1

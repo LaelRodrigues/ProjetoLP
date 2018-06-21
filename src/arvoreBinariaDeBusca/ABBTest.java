@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Testando os métodos da classe ABB com JUnit5")
+@DisplayName("Testando os mÃ©todos da classe ABB com JUnit5")
 public class ABBTest{
 	
 	private ABB arvore;
@@ -18,31 +18,39 @@ public class ABBTest{
 	}
 	
 	@Test
-	@DisplayName("Testando o método insere")
+	@DisplayName("Testando o mÃ©todo insere")
 	public void insereTest(){
-		assertEquals( true, arvore.insere( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da inserção do 3 é true... Está correto?" );
-		assertEquals( true, arvore.insere( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da inserção do 4 é true... Está correto?" );
-		assertEquals( false, arvore.insere( new Usuario("usuario1", "Lucas", "sa", false)), "O resultado esperado da inserção do 3 é false... Está correto?" );
-		assertEquals( false, arvore.insere( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da inserção do 4 é false... Está correto?" );
+		
+		assertEquals( true, arvore.insere( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da inserÃ§Ã£o do 3 Ã© true... EstÃ¡ correto?" );
+		assertEquals( true, arvore.insere( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da inserÃ§Ã£o do 4 Ã© true... EstÃ¡ correto?" );
+		assertEquals( false, arvore.insere( new Usuario("usuario1", "Lucas", "sa", false)), "O resultado esperado da inserÃ§Ã£o do 3 Ã© false... EstÃ¡ correto?" );
+		assertEquals( false, arvore.insere( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da inserÃ§Ã£o do 4 Ã© false... EstÃ¡ correto?" );
+
 	}
 
 	@Test
-	@DisplayName("Testando o método busca")
+	@DisplayName("Testando o mÃ©todo busca")
 	public void buscaTest(){
-		assertEquals( false, arvore.busca(new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da busca pelo 3 é false... Está correto?" );
+	
+		assertEquals( false, arvore.busca(new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da busca pelo 3 Ã© false... EstÃ¡ correto?" );
+		
 		arvore.insere(new Usuario("usuario1", "Lucas", "sa", false) );
-		assertEquals( true, arvore.busca( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da busca pelo 3 é true... Está correto?" );
-		assertEquals( false, arvore.busca( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da busca pelo 4 é false... Está correto?" );
+		
+		assertEquals( true, arvore.busca( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da busca pelo 3 Ã© true... Estï¿½ correto?" );
+		assertEquals( false, arvore.busca( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da busca pelo 4 Ã© false... Estï¿½ correto?" );
 		
 	}
 	
 	@Test
-	@DisplayName("Testando o método remove")
+	@DisplayName("Testando o mÃ©todo remove")
 	public void removeTest(){
-		assertEquals( false, arvore.remove( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da remoção do 3 é false... Está correto?" );
+		
+		assertEquals( false, arvore.remove( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da remoÃ§Ã£o do 3 Ã© false... Estï¿½ correto?" );
+		
 		arvore.insere( new Usuario("usuario1", "Lucas", "sa", false) );
-		assertEquals( true, arvore.remove( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da remoção do 3 é true... Está correto?" );
-		assertEquals( false, arvore.remove( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da remoção do 4 é false... Está correto?" );
+		
+		assertEquals( true, arvore.remove( new Usuario("usuario1", "Lucas", "sa", false) ), "O resultado esperado da remoÃ§Ã£o do 3 Ã© true... Estï¿½ correto?" );
+		assertEquals( false, arvore.remove( new Usuario("usuario2", "Moura", "fea", true) ), "O resultado esperado da remoÃ§Ã£o do 4 Ã© false... Estï¿½ correto?" );
 		
 	}
 	

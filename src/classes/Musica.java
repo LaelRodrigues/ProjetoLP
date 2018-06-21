@@ -1,7 +1,7 @@
 package classes;
 
 /**
- * Representa uma música
+ * Representa uma mÃºsica
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
  * @since   08.06.2018
@@ -9,18 +9,18 @@ package classes;
  */
 public class Musica {
 	
-	private String nome;
-	private String caminho;
+	private String nome; // -> Nome da mÃºsica
+	private String caminho; // -> Caminho do local na mÃ©moria do computado no qual a mÃºsica estÃ¡ armazenada
 	
 	/**
-     * Construtor padrão
+     * Construtor padrÃ£o
      */
 	public Musica(){}
 	
 	/**
      * Construtor parametrizado
-     * @param	nome Nome da música
-     * @param 	caminho Caminho do local onde a música foi armazenada
+     * @param	nome Nome da mÃºsica
+     * @param 	caminho Caminho do local onde a mÃºsica foi armazenada
      */
 	public Musica(String nome, String caminho) {
 		
@@ -40,16 +40,16 @@ public class Musica {
 	}
 	
 	/**
-     * Método get do atributo nome
-     * @return Nome da música
+     * MÃ©todo get do atributo nome
+     * @return Nome da mÃºsica
      */
 	public String getNome() {
 		return nome;
 	}
 	
 	/**
-     * Método set do atributo nome
-     * @param nome 	Nome da música
+     * MÃ©todo set do atributo nome
+     * @param nome 	Nome da mÃºsica
      */
 	public void setNome(String nome) {
 		
@@ -66,16 +66,16 @@ public class Musica {
 	}
 	
 	/**
-     * Método get do atributo caminho
-     * @return Caminho da música
+     * MÃ©todo get do atributo caminho
+     * @return Caminho da mÃºsica
      */
 	public String getCaminho() {
 		return caminho;
 	}
 	
 	/**
-     * Método set do atributo caminho
-     * @param caminho Caminho da música
+     * MÃ©todo set do atributo caminho
+     * @param caminho Caminho da mÃºsica
      */
 	public void setCaminho(String caminho) {
 		try{

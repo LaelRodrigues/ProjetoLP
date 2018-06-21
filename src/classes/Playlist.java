@@ -11,11 +11,11 @@ import java.util.ArrayList;
  */
 public class Playlist {
 
-	private String nomeDoAutor;
-	private ArrayList<Musica> musicas;
+	private String nomeDoAutor; // -> Nome do autor (Usuário) da playlist
+	private ArrayList<Musica> musicas; // -> Lista de músicas
 
 	/**
-	 * Construtor padrao
+	 * Construtor padrão
 	 */
 	public Playlist(){
 		this.nomeDoAutor = new String();
@@ -23,7 +23,7 @@ public class Playlist {
 	}
 	
 	/**
-	 * M�todo get do atributo nomeDoAutor
+	 * Método get do atributo nomeDoAutor
 	 * @return	Nome do autor da playlist
 	 */
 	public String getNomeDoAutor(){
@@ -31,8 +31,8 @@ public class Playlist {
 	}
 
 	/**
-	 * M�todo get do atributo musicas
-	 * @return	Array com as musicas contidas na playlist
+	 * Método get do atributo musicas
+	 * @return	Array com as másicas contidas na playlist
 	 */
 	public ArrayList<Musica> getMusicas(){
 		return this.musicas;
