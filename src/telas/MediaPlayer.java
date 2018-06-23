@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import classes.Musica;
 import classes.TocarMusica;
 import classes.Usuario;
+import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.awt.Image;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 
@@ -34,7 +36,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
 import javax.swing.JPanel;
@@ -83,7 +90,6 @@ public class MediaPlayer{
 	public MediaPlayer( Usuario usuarioLogadoAtual ) {
 		
 		this.usuarioLogadoAtual = usuarioLogadoAtual;
-		
 		initialize();
 		botaoPlayPause();
 		barraProgresso();
@@ -197,8 +203,7 @@ public class MediaPlayer{
 		play.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				tocarMusica();
-			}
-			 
+			}			 
 		});
 		frmPlayer.getContentPane().add(play);
 		play.setBorderPainted(false);
@@ -617,10 +622,14 @@ public class MediaPlayer{
 		modeloLista.addElement("music2");	
 		
 		listaMusicas = new JList<>(modeloLista);
+		JScrollPane barraRolagem = new JScrollPane(listaMusicas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 		
 		listaMusicas.setSelectedIndex(0); //setando o item padrao do JList para a primeira musica
 		listaMusicas.setBounds(199, 53, 225, 436);
-		frmPlayer.getContentPane().add(listaMusicas);
+		barraRolagem.setBounds(199, 53, 225, 436);
+		frmPlayer.getContentPane().add(barraRolagem);
+		//frmPlayer.getContentPane().add(listaMusicas);
 		
 		listaMusicas.addKeyListener(new KeyListener() {
 			@Override
@@ -640,13 +649,17 @@ public class MediaPlayer{
 			
 		
 		listaMusicas.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				contador = 0;
 				if(e.getClickCount() == 2 && m!= null) {
 					nomeMusicaLista = (String)listaMusicas.getModel()
 				    .getElementAt(listaMusicas.locationToIndex(e.getPoint()));
 					startMusica = true;
-					m.getPlayer().close();
+					if(m.isAlive()) {
+						m.resume();
+						m.getPlayer().close();
+					}
 					tocarMusica();
 					return;
 				}
