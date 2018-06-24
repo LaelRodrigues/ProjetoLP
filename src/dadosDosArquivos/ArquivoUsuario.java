@@ -4,6 +4,7 @@ import classes.Usuario;
 import java.util.ArrayList;
 import java.util.HashSet;
 import arvoreBinariaDeBusca.ABB;
+
 /**
  * Realiza a manipulacao de arquivo relacionada a classe usuario
  * @see		Usuario
@@ -51,7 +52,6 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 			senha = i.split(";")[2].split(":")[1];
 			vip = i.split(";")[3].split(":")[1];
 			
-			System.out.println("LINHA 54 - "+vip);
 			
 			//vip = vip.substring(0, vip.length()-2); // -> RETIRANDO O "\n"
 			
@@ -69,13 +69,12 @@ public class ArquivoUsuario extends TipoManipulacaoArquivo{
 	}
 	
 	/**
-	 * Atualiza o arquivo usuario.txt que cont�m os antigas usuarios cadastrados
-	 * @return	True se o arquivo usuarios.txt foi atualizado corretamente senao false
+	 * Atualiza o arquivo usuario.txt que contém os antigas usuarios cadastrados
+	 * @return	{@code true} se o arquivo usuarios.txt foi atualizado corretamente senao {@code false}
 	 */
 	@Override
 	public boolean criaOuAtualiza() {	
 		
-		System.out.println("LINHA 76 - " + atributosConvertidosEmString() );
 		return salvarArquivo("./arquivos.txt/usuarios", atributosConvertidosEmString() );	
 	} 
 		

@@ -1,7 +1,6 @@
 package telas;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -11,13 +10,13 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.UIManager;
 
 import dadosDosArquivos.ArquivoUsuario;
 import arvoreBinariaDeBusca.ABB;
 import classes.Usuario;
 import javax.swing.JRadioButton;
-	
+
+
 /**
  * Representa a tela de cadastro
  * @author	Samuel Lucas de Moura Ferino
@@ -35,6 +34,7 @@ public class Cadastro {
 	private JRadioButton rdbtnNao;
 	
 	private ABB arvoreUsuarios;
+	
 	private ArquivoUsuario arqUsuario;
 	
 	/** 

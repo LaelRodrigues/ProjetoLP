@@ -4,7 +4,7 @@ import no.No;
 import classes.Usuario;
 
 /**
- * Representa um nó de uma árvore binária
+ * Representa um nï¿½ de uma ï¿½rvore binï¿½ria
  * @see     No
  * @author  Samuel Lucas de Moura Ferino
  * @since   05.06.2018 
@@ -14,12 +14,12 @@ public class NoABB extends No{
 
 	// -> ATRIBUTOS
 	
-	private Usuario usuario;  // -> Chave do nó
+	private Usuario usuario;  // -> Chave do nï¿½
 	
-	// -> MÉTODOS
+	// -> Mï¿½TODOS
 
     /**
-     * Construtor padrão
+     * Construtor padrï¿½o
      */
 	public NoABB(){
 		super();
@@ -27,16 +27,16 @@ public class NoABB extends No{
 	}
 
     /**
-     * Constrói o nó a partir de usuario dado (Construtor parametrizado)
-     * @param usuario Conteúdo da chave
+     * Constrï¿½i o nï¿½ a partir de usuario dado (Construtor parametrizado)
+     * @param usuario Conteï¿½do da chave
      */
     public NoABB(Usuario usuario){
  
     	super();
     	
     	try{
-    		if( !(usuario instanceof Usuario) ){  // -> O argumento está errado
-    			throw new IllegalArgumentException("O nó deve ter a chave do tipo usuário");
+    		if( !(usuario instanceof Usuario) ){  // -> O argumento estï¿½ errado
+    			throw new IllegalArgumentException("O nï¿½ deve ter a chave do tipo usuï¿½rio");
     		}
     		else{
     			this.usuario = usuario;	
@@ -52,8 +52,8 @@ public class NoABB extends No{
     }
     
     /**
-     * Constrói o nó a partir de usuario dado (Construtor parametrizado)
-     * @param usuario Conteúdo da chave
+     * ConstrÃ³i o nÃ³ a partir de usuÃ¡rio dado (Construtor parametrizado)
+     * @param usuario ConteÃ©do da chave
      * @param 
      */
     public NoABB(NoABB pai, NoABB esquerdo, NoABB direito, Usuario usuario){
@@ -61,8 +61,8 @@ public class NoABB extends No{
     	super(pai, esquerdo, direito);
     	
     	try{
-    		if( !(usuario instanceof Usuario) ){  // -> O argumento está errado
-    			throw new IllegalArgumentException("O nó deve ter a chave do tipo usuário");
+    		if( !(usuario instanceof Usuario) ){  // -> O argumento estÃ¡ errado
+    			throw new IllegalArgumentException("O nï¿½ deve ter a chave do tipo usuï¿½rio");
     		}
     		else{
     			this.usuario = usuario;	
@@ -78,14 +78,14 @@ public class NoABB extends No{
     }
     	
     /**
-     * Método get do atributo usuario
-     * @return  Chave do nó
+     * Mï¿½todo get do atributo usuario
+     * @return  Chave do nï¿½
      */
 	public Usuario getUsuario(){ return this.usuario; }
 	
 	/**
-     * Método set do atributo chave
-     * @param  chave Chave do nó
+     * Mï¿½todo set do atributo chave
+     * @param  chave Chave do nï¿½
      */
     public void setUsuario(Usuario usuario){ 
     	
@@ -102,48 +102,48 @@ public class NoABB extends No{
     }
    
 	/**
-	 * Método get do atributo pai da super classe
-	 * @return	Nó pai
+	 * Mï¿½todo get do atributo pai da super classe
+	 * @return	Nï¿½ pai
 	 */
 	public NoABB getPai(){
 		return (NoABB)getPai(); 
 	}
 	
 	/**
-	 * Método set do atributo pai da super classe
-	 * @return	pai	Nó pai
+	 * Mï¿½todo set do atributo pai da super classe
+	 * @return	pai	Nï¿½ pai
 	 */
 	public void setPai( NoABB pai){
 		setPai(pai); 
 	}	
 	
 	/**
-	 * Método get do atributo esquerdo da super classe
-	 * @return	Nó filho à esquerda
+	 * Mï¿½todo get do atributo esquerdo da super classe
+	 * @return	Nï¿½ filho ï¿½ esquerda
 	 */
 	public NoABB getEsquerdo(){
 		return (NoABB)getFilhoEsquerdo(); 
 	}
 	
 	/**
-	 * Método set do atributo esquerdo da super classe
-	 * @return	esquerdo	Nó filho à esquerda
+	 * Mï¿½todo set do atributo esquerdo da super classe
+	 * @return	esquerdo	Nï¿½ filho ï¿½ esquerda
 	 */
 	public void setEsquerdo( NoABB esquerdo){
 		setFilhoEsquerdo(esquerdo); 
 	}
 	
 	/**
-	 * Método get do atributo direito da super classe
-	 * @return	Nó filho à direita
+	 * Mï¿½todo get do atributo direito da super classe
+	 * @return	Nï¿½ filho ï¿½ direita
 	 */
 	public NoABB getDireito(){
 		return (NoABB)getFilhoDireito(); 
 	}
 	
 	/**
-	 * Método set do atributo direito da super classe
-	 * @return	esquerdo	Nó filho à direita
+	 * Mï¿½todo set do atributo direito da super classe
+	 * @return	esquerdo	Nï¿½ filho ï¿½ direita
 	 */
 	public void setDireito( NoABB direito){
 		setFilhoDireito(direito); 

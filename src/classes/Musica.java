@@ -88,4 +88,9 @@ public class Musica {
 			System.err.println(e.getMessage() );
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "nome:" + this.nome + ";caminho:" + this.caminho + ";\n";
+	}
 }

@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import classes.Musica;
 import classes.TocarMusica;
 import classes.Usuario;
-import javafx.scene.layout.Border;
+//import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
