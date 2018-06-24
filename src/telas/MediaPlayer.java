@@ -5,8 +5,7 @@ import javax.swing.JFrame;
 import classes.Musica;
 import classes.TocarMusica;
 import classes.Usuario;
-import dadosDosArquivos.ArquivoMusica;
-//import javafx.scene.layout.Border;
+import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
@@ -77,13 +76,11 @@ public class MediaPlayer{
 	boolean startMusica = true;
 	String nomeMusicaLista, nomeTemporario;
 	DefaultListModel<String> modeloLista;
-	
 	private Usuario usuarioLogadoAtual;
 	
 	JButton addDiretorio, addArquivo, novaPlaylist;
 	JButton play, botaoAnterior, botaoProximo;
 	JList<String> listaMusicas;
-	private ArquivoMusica arqMusica; 
 	
 	ArrayList<Musica> musicas;
 	/** 
@@ -92,8 +89,6 @@ public class MediaPlayer{
 	public MediaPlayer( Usuario usuarioLogadoAtual ) {
 		
 		this.usuarioLogadoAtual = usuarioLogadoAtual;
-		this.arqMusica = new ArquivoMusica();
-		musicas = arqMusica.getListaMusicas();
 		initialize();
 		botaoPlayPause();
 		barraProgresso();
@@ -174,13 +169,11 @@ public class MediaPlayer{
      * Adiciona um bot�o com a fun��o de play/pause na tela
      */
 	private void botaoPlayPause() {
-		/*Musica m1 = new Musica("music","/home/lael/music");
+		Musica m1 = new Musica("music","/home/lael/music");
 		Musica m2 = new Musica("music2","/home/lael/music2");
 		musicas = new ArrayList<>();
 		musicas.add(m1);
-		musicas.add(m2);*/
-		
-		//musicas = arqMusica.getListaMusicas();
+		musicas.add(m2);
 		
 		nomeMusicaLista = musicas.get(0).getNome();
 		
@@ -304,20 +297,8 @@ public class MediaPlayer{
 				        modeloLista.addElement(nome);
 						Musica m = new Musica(nome, caminho);
 						musicas.add(m);
-						boolean a =  arqMusica.criaOuAtualiza();
-				    }				}
-				
-				/*FileNameExtensionFilter filter = new FileNameExtensionFilter(
-				"Arquivos com extensão mp3", "mp3");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(null);
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					String nomeMusica = chooser.getSelectedFile().getName();
-					String caminho = chooser.getSelectedFile().getAbsolutePath();
-					modeloLista.addElement(chooser.getSelectedFile().getName());
-					Musica m = new Musica(nomeMusica, caminho);
-					musicas.add(m);
-				}*/
+				    }
+				}
 			}
 		});
 		addDiretorio.setBackground(new Color(255, 255, 255));
@@ -382,7 +363,6 @@ public class MediaPlayer{
 					modeloLista.addElement(nomeMusica);
 					Musica m = new Musica(nomeMusica, caminho);
 					musicas.add(m);
-					boolean a =  arqMusica.criaOuAtualiza();
 				}
 			}
 		});
@@ -624,9 +604,9 @@ public class MediaPlayer{
 	private void ListaDeMusicas() {
 		
 		modeloLista = new DefaultListModel<>();
-		for(int i = 0; i < musicas.size(); i++) {
-			modeloLista.addElement(musicas.get(i).getNome());
-		}
+		modeloLista.addElement("music");
+		System.out.println(modeloLista.get(0));
+		modeloLista.addElement("music2");	
 		listaMusicas = new JList<>(modeloLista);
 		JScrollPane barraRolagem = new JScrollPane(listaMusicas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -645,7 +625,6 @@ public class MediaPlayer{
 					int posicao = listaMusicas.getSelectedIndex();
 					modeloLista.remove(posicao);
 					musicas.remove(posicao);
-					boolean a =  arqMusica.criaOuAtualiza();
 				}
 				if(e.getKeyCode() ==  KeyEvent.VK_DOWN) {
 					int posicaoSelecao = listaMusicas.getSelectedIndex();

@@ -3,6 +3,7 @@ package dadosDosArquivos;
 
 // -> MANIPULA��O DE ARQUIVO
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 
@@ -23,12 +24,11 @@ public abstract class TipoManipulacaoArquivo{
     protected void lerArquivo(String nomeDoArquivo) throws NullPointerException{
       
     	//String conteudo = new String("");
-        
+    	
         try{
-
             BufferedReader buffReader = new BufferedReader(new FileReader( nomeDoArquivo ));
             String linha = new String();
-
+            
             while( buffReader.ready() ){              // -> LENDO CADA LINHA  
                 linha = buffReader.readLine();
                 this.conteudoArquivo += linha + "\n";

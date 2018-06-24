@@ -38,7 +38,7 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 
 		String nome = new String();
 		String caminho = new String();
-		
+	
 		String musicasLinhaPorLinha[] = this.conteudoArquivo.split("\n");
 		
 		for(String i: musicasLinhaPorLinha){
