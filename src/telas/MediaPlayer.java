@@ -619,8 +619,8 @@ public class MediaPlayer{
 		
 		modeloLista = new DefaultListModel<>();
 		modeloLista.addElement("music");
+		System.out.println(modeloLista.get(0));
 		modeloLista.addElement("music2");	
-		
 		listaMusicas = new JList<>(modeloLista);
 		JScrollPane barraRolagem = new JScrollPane(listaMusicas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -631,6 +631,7 @@ public class MediaPlayer{
 		frmPlayer.getContentPane().add(barraRolagem);
 		//frmPlayer.getContentPane().add(listaMusicas);
 		
+			
 		listaMusicas.addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -638,6 +639,26 @@ public class MediaPlayer{
 					int posicao = listaMusicas.getSelectedIndex();
 					modeloLista.remove(posicao);
 					musicas.remove(posicao);
+				}
+				if(e.getKeyCode() ==  KeyEvent.VK_DOWN) {
+					int posicaoSelecao = listaMusicas.getSelectedIndex();
+					if(posicaoSelecao == musicas.size()-1) {
+						nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+						return;
+
+					}
+					posicaoSelecao += 1;
+					nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+				}
+				if(e.getKeyCode() ==  KeyEvent.VK_UP) {
+					int posicaoSelecao = listaMusicas.getSelectedIndex();
+					if(posicaoSelecao == 0) {
+						nomeMusicaLista = musicas.get(0).getNome();
+						return;
+
+					}
+					posicaoSelecao -= 1;
+					nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
 				}
 			}
 			@Override
