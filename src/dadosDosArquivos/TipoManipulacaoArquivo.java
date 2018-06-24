@@ -46,7 +46,6 @@ public abstract class TipoManipulacaoArquivo{
             System.err.println( e.getMessage() );
           //  return null;
         }
-
     }
     
     /**

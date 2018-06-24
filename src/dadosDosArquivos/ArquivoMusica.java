@@ -39,7 +39,6 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 		String nome = new String();
 		String caminho = new String();
 		
-		
 		String musicasLinhaPorLinha[] = this.conteudoArquivo.split("\n");
 		
 		for(String i: musicasLinhaPorLinha){
@@ -61,10 +60,8 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 			stringMusicas += musica.toString();
 		}
 		
-		
 		return stringMusicas;
 	}
-
 	
 	/**
 	 * Método get do atributo listaUsuarios
@@ -97,14 +94,14 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 		
 	}
 	
-	
 	/**
 	 * Atualiza o arquivo musicas.txt que contém as antigas musicas cadastradas
 	 * @return	{@code true} se o arquivo musicas.txt foi atualizado corretamente senão {@code false}
 	 */
 	@Override
-	protected boolean criaOuAtualiza() {
-		return salvarArquivo("./arquivos.txt/usuarios", atributosConvertidosEmString() );	
+	public boolean criaOuAtualiza() {
+		return salvarArquivo("./arquivos.txt/musicas", atributosConvertidosEmString() );	
 	}
+	
 
 }
