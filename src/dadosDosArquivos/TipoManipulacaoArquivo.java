@@ -55,7 +55,7 @@ public abstract class TipoManipulacaoArquivo{
      */
 	protected boolean salvarArquivo(String nomeArquivo, String conteudoArquivo){
 		
-		if(!this.conteudoArquivo.equals("")) {
+		if(!conteudoArquivo.equals("")) {
 			this.conteudoArquivo = conteudoArquivo;
 		}
 	

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import classes.Musica;
 import classes.TocarMusica;
 import classes.Usuario;
+import dadosDosArquivos.ArquivoMusica;
 import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
@@ -77,18 +78,21 @@ public class MediaPlayer{
 	String nomeMusicaLista, nomeTemporario;
 	DefaultListModel<String> modeloLista;
 	private Usuario usuarioLogadoAtual;
+	private ArquivoMusica arqMusicas;
 	
 	JButton addDiretorio, addArquivo, novaPlaylist;
 	JButton play, botaoAnterior, botaoProximo;
 	JList<String> listaMusicas;
 	
 	ArrayList<Musica> musicas;
+	
 	/** 
 	 * Construtor padrão 
 	 */
 	public MediaPlayer( Usuario usuarioLogadoAtual ) {
 		
 		this.usuarioLogadoAtual = usuarioLogadoAtual;
+		arqMusicas = new ArquivoMusica();
 		initialize();
 		botaoPlayPause();
 		barraProgresso();
@@ -169,13 +173,12 @@ public class MediaPlayer{
      * Adiciona um bot�o com a fun��o de play/pause na tela
      */
 	private void botaoPlayPause() {
-		Musica m1 = new Musica("music","/home/lael/music");
-		Musica m2 = new Musica("music2","/home/lael/music2");
-		musicas = new ArrayList<>();
-		musicas.add(m1);
-		musicas.add(m2);
+		musicas = arqMusicas.getListaMusicas();
 		
-		nomeMusicaLista = musicas.get(0).getNome();
+		File arquivo =  new File("./arquivos.txt/musicas.txt");
+		if(arquivo.length() > 0) {
+			validarArquivo();
+		}
 		
 		contador = 0;
 		play = new JButton("");
@@ -297,6 +300,11 @@ public class MediaPlayer{
 				        modeloLista.addElement(nome);
 						Musica m = new Musica(nome, caminho);
 						musicas.add(m);
+						File arquivo =  new File("./arquivos.txt/musicas.txt");
+						if(arquivo.length() == 0) {
+							validarArquivo();
+						}
+						arqMusicas.criaOuAtualiza();
 				    }
 				}
 			}
@@ -363,6 +371,11 @@ public class MediaPlayer{
 					modeloLista.addElement(nomeMusica);
 					Musica m = new Musica(nomeMusica, caminho);
 					musicas.add(m);
+					File file =  new File("./arquivos.txt/musicas.txt");
+					if(file.length() == 0) {
+						validarArquivo();
+					}
+					arqMusicas.criaOuAtualiza();
 				}
 			}
 		});
@@ -604,9 +617,9 @@ public class MediaPlayer{
 	private void ListaDeMusicas() {
 		
 		modeloLista = new DefaultListModel<>();
-		modeloLista.addElement("music");
-		System.out.println(modeloLista.get(0));
-		modeloLista.addElement("music2");	
+		for(int i = 0; i < musicas.size(); i++) {
+			modeloLista.addElement(musicas.get(i).getNome());
+		}
 		listaMusicas = new JList<>(modeloLista);
 		JScrollPane barraRolagem = new JScrollPane(listaMusicas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -625,6 +638,7 @@ public class MediaPlayer{
 					int posicao = listaMusicas.getSelectedIndex();
 					modeloLista.remove(posicao);
 					musicas.remove(posicao);
+					arqMusicas.criaOuAtualiza();
 				}
 				if(e.getKeyCode() ==  KeyEvent.VK_DOWN) {
 					int posicaoSelecao = listaMusicas.getSelectedIndex();
@@ -685,5 +699,8 @@ public class MediaPlayer{
 			}
 		}
 		return caminhoAtualizado;
+	}
+	public void validarArquivo() {
+		nomeMusicaLista = musicas.get(0).getNome();
 	}
 }

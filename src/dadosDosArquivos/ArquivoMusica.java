@@ -1,6 +1,8 @@
 package dadosDosArquivos;
 
 import arvoreTrie.Trie;
+
+import java.io.File;
 import java.util.ArrayList;
 import classes.Musica;
 
@@ -28,6 +30,11 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 		this.nomesMusicas = new Trie();
 		this.listaMusicas = new ArrayList<Musica>();
 		
+		File arquivo =  new File("./arquivos.txt/musicas.txt");
+		if(arquivo.length() == 0) {
+			return;
+		}
+		
 		lerArquivo("./arquivos.txt/musicas.txt");
 		tratamentoStringLeitura();
 	}
@@ -36,19 +43,22 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 	@Override
 	protected void tratamentoStringLeitura() {
 
-		String nome = new String();
+		String nome = new String();	
 		String caminho = new String();
-	
+		
+		File arquivo = new File("./arquivo.txt/musicas.txt");
+		if(arquivo.length() == 0) {
+			
+		}
+		
 		String musicasLinhaPorLinha[] = this.conteudoArquivo.split("\n");
 		
 		for(String i: musicasLinhaPorLinha){
 			nome = i.split(";")[0].split(":")[1];
 			caminho = i.split(";")[1].split(":")[1];
 			
-			listaMusicas.add( new Musica( nome, caminho ) );
-			
+			listaMusicas.add( new Musica( nome, caminho ) );	
 		}
-		
 	}
 
 	@Override
@@ -91,7 +101,6 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 		}
 		
 		return false;
-		
 	}
 	
 	/**
@@ -102,6 +111,4 @@ public class ArquivoMusica extends TipoManipulacaoArquivo {
 	public boolean criaOuAtualiza() {
 		return salvarArquivo("./arquivos.txt/musicas", atributosConvertidosEmString() );	
 	}
-	
-
 }
