@@ -10,11 +10,11 @@ import classes.Usuario;
  * @since   05.06.2018
  * @version 0.0.1
  */
-public class ABB {
+public class ABB<T> {
 
     // -> ATRIBUTOS
     
-    private NoABB raiz;  // -> Nó raiz da ABB
+    private NoABB<T> raiz;  // -> Nó raiz da ABB
     private int quantidadeDeNos;	// -> Quantidade de nós que compõem a ABB
     
     // -> MÉTODOS
@@ -23,7 +23,7 @@ public class ABB {
      * Construtor padrão
      */
     public ABB(){
-        this.raiz = new NoABB();
+        this.raiz = new NoABB<T>(null);
         this.quantidadeDeNos = 0;
     }
     
@@ -31,7 +31,7 @@ public class ABB {
      * Método get do atributo raiz
      * @return Raiz da árvore
      */
-    public NoABB getRaiz(){ 
+    public NoABB<T> getRaiz(){ 
     	return this.raiz; 
     }
 
@@ -48,15 +48,15 @@ public class ABB {
      * @param usuario Usuário a ser buscado na ABB
      * @return {@code true} caso tenha encontrado algum nó com a correspondente chave senão {@code false}
      */
-    public boolean busca(Usuario usuario){
+    public boolean busca(T chave){
     	
     	if(this.quantidadeDeNos == 0) { // -> A árvore é vazia
     		return false;
     	}
     	
     	// -> Nós auxiliares usados na busca
-    	NoABB aux = this.raiz;
-        NoABB auxPai = null;
+    	NoABB<T> aux = this.raiz;
+        NoABB<T> auxPai = null;
         
         while( aux != null && aux.getUsuario().compareTo(usuario) != 0 ){     
 
@@ -249,9 +249,7 @@ public class ABB {
 			
 			String ladoEsquerdo = inOrdem( x.getEsquerdo() );
 			
-			String centro = ("id:" + x.getUsuario().getId() + ";" + "nome:" + 
-						x.getUsuario().getNome() + ";" + "senha:" + x.getUsuario().getSenha() + ";" + 
-							"vip:" + x.getUsuario().isVip() + ";\n");
+			String centro = x.toString();
 			
 			
 			String ladoDireito = inOrdem( x.getDireito() );
@@ -271,7 +269,7 @@ public class ABB {
      * @param   u 	Nó que será substituído pelo nó v
      * @param   v 	Nó que substituirá o nó u
      */
-	private void transplant(NoABB u, NoABB v) {
+	private void transplant(NoABB<T> u, NoABB<T> v) {
 		
 		if( u.getPai() == null ){ // -> Caso em que será removida a raiz por isso "v" será a nova raiz 		
 				this.raiz = v;

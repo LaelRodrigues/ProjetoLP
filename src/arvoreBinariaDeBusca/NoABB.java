@@ -1,51 +1,39 @@
 package arvoreBinariaDeBusca;
 
-import no.No;
-import classes.Usuario;
-
 /**
- * Representa um n� de uma �rvore bin�ria
+ * Representa um nó genérico de uma árvore binária 
  * @see     No
  * @author  Samuel Lucas de Moura Ferino
  * @since   05.06.2018 
  * @version 0.0.2
  */
-public class NoABB extends No{
+public class NoABB<T>{
 
 	// -> ATRIBUTOS
 	
-	private Usuario usuario;  // -> Chave do n�
-	
-	// -> M�TODOS
+	private T chave;  // -> Chave do nó
+	private NoABB<T> pai;   // -> Endereço do nó pai
+    private NoABB<T> filhoEsquerdo;  // -> Endereço do nó filho à esquerda
+    private NoABB<T> filhoDireito;   // -> Enderereço do nó filho à direita
+    
+	// -> MÉTODOS
 
     /**
-     * Construtor padr�o
+     * Constrói o nó a partir de um objeto dado (Construtor parametrizado)
+     * @param chave Conteúdo da chave
      */
-	public NoABB(){
-		super();
-		this.usuario = new Usuario();
-	}
-
-    /**
-     * Constr�i o n� a partir de usuario dado (Construtor parametrizado)
-     * @param usuario Conte�do da chave
-     */
-    public NoABB(Usuario usuario){
+    public NoABB(T chave ){
  
     	super();
     	
     	try{
-    		if( !(usuario instanceof Usuario) ){  // -> O argumento est� errado
-    			throw new IllegalArgumentException("O n� deve ter a chave do tipo usu�rio");
-    		}
-    		else{
-    			this.usuario = usuario;	
-    		}
+    		this.chave = chave;	
+    
     	}
-    	catch(IllegalArgumentException e){
-    		System.err.println( e.getMessage() );
-        }
     	catch(NullPointerException e){
+    		System.err.println( e.getMessage() );
+    	}
+    	catch( Exception e){
     		System.err.println( e.getMessage() );
     	}
     	
@@ -56,41 +44,38 @@ public class NoABB extends No{
      * @param usuario Conteédo da chave
      * @param 
      */
-    public NoABB(NoABB pai, NoABB esquerdo, NoABB direito, Usuario usuario){
- 
-    	super(pai, esquerdo, direito);
+    public NoABB(NoABB<T> pai, NoABB<T> filhoEsquerdo, NoABB<T> filhoDireito, T chave ){
     	
     	try{
-    		if( !(usuario instanceof Usuario) ){  // -> O argumento está errado
-    			throw new IllegalArgumentException("O n� deve ter a chave do tipo usu�rio");
-    		}
-    		else{
-    			this.usuario = usuario;	
-    		}
+    		this.pai = pai;
+    		this.filhoEsquerdo = filhoEsquerdo;
+    		this.filhoDireito = filhoDireito;
+    		this.chave = chave;   			
+    		
     	}
-    	catch(IllegalArgumentException e){
-    		System.err.println( e.getMessage() );
-        }
     	catch(NullPointerException e){
+    		System.err.println( e.getMessage() );
+    	}
+    	catch( Exception e){
     		System.err.println( e.getMessage() );
     	}
     	
     }
     	
     /**
-     * M�todo get do atributo usuario
-     * @return  Chave do n�
+     * Método get do atributo chave
+     * @return  Chave do nó
      */
-	public Usuario getUsuario(){ return this.usuario; }
+	public T getChave(){ return this.chave; }
 	
 	/**
-     * M�todo set do atributo chave
-     * @param  chave Chave do n�
+     * Método set do atributo chave
+     * @param  chave Chave do nó
      */
-    public void setUsuario(Usuario usuario){ 
+    public void setChave( T chave){ 
     	
     	try {
-    		this.usuario = usuario;
+    		this.chave = chave; 
     	}
 		catch( NullPointerException e){
 			System.err.println( e.getMessage() );
@@ -102,51 +87,51 @@ public class NoABB extends No{
     }
    
 	/**
-	 * M�todo get do atributo pai da super classe
-	 * @return	N� pai
+	 * Método get do atributo pai
+	 * @return	Nó pai
 	 */
-	public NoABB getPai(){
-		return (NoABB)getPai(); 
+	public NoABB<T> getPai(){
+		return this.pai; 
 	}
 	
 	/**
-	 * M�todo set do atributo pai da super classe
-	 * @return	pai	N� pai
+	 * Método set do atributo pai
+	 * @return	pai	Nó pai
 	 */
-	public void setPai( NoABB pai){
-		setPai(pai); 
+	public void setPai( NoABB<T> pai){
+		this.pai = pai; 
 	}	
 	
 	/**
-	 * M�todo get do atributo esquerdo da super classe
-	 * @return	N� filho � esquerda
+	 * Método get do atributo esquerdo
+	 * @return	Filho esquerda
 	 */
-	public NoABB getEsquerdo(){
-		return (NoABB)getFilhoEsquerdo(); 
+	public NoABB<T> getEsquerdo(){
+		return this.filhoEsquerdo; 
 	}
 	
 	/**
-	 * M�todo set do atributo esquerdo da super classe
-	 * @return	esquerdo	N� filho � esquerda
+	 * Método set do atributo esquerdo
+	 * @return	esquerdo	Nó filho é esquerda
 	 */
-	public void setEsquerdo( NoABB esquerdo){
-		setFilhoEsquerdo(esquerdo); 
+	public void setEsquerdo( NoABB<T> filhoEsquerdo ){
+		this.filhoEsquerdo = filhoEsquerdo; 
 	}
 	
 	/**
-	 * M�todo get do atributo direito da super classe
-	 * @return	N� filho � direita
+	 * Método get do atributo direito
+	 * @return	Nó filho é direita
 	 */
-	public NoABB getDireito(){
-		return (NoABB)getFilhoDireito(); 
+	public NoABB<T> getDireito(){
+		return this.filhoDireito; 
 	}
 	
 	/**
-	 * M�todo set do atributo direito da super classe
-	 * @return	esquerdo	N� filho � direita
+	 * Método set do atributo direito
+	 * @return	esquerdo	Nó filho à direita
 	 */
-	public void setDireito( NoABB direito){
-		setFilhoDireito(direito); 
+	public void setDireito( NoABB<T> filhoDireito){
+		this.filhoDireito = filhoDireito; 
 	}
 	
 }
