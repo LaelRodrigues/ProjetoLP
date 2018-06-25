@@ -25,6 +25,9 @@ public class TocarMusica extends Thread {
 		this.mp3 = mp3;
 	}
 	
+	/**
+     * Funcao para executar uma musica
+     */
 	public void run() {
 		try {	
 			FileInputStream fis = new FileInputStream(mp3);

@@ -1,6 +1,6 @@
 package telas;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame;	
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -46,7 +46,10 @@ public class Login {
 		BotaoAcesso();
 
 	}
-
+	
+	/**
+     * Inicializa a tela da classe Login
+     */
 	private void initialize() {
 		frmTelaDeLogin = new JFrame();
 		frmTelaDeLogin.setTitle("Tela de acesso");
@@ -57,6 +60,9 @@ public class Login {
 		frmTelaDeLogin.getContentPane().setLayout(null);
 	}
 	
+	/**
+     * Adiciona um rótulo para o campo de texto ID do usuario
+     */
 	public void LabelUsuario() {
 		
 		JLabel lblUsurio = new JLabel("ID");
@@ -65,6 +71,9 @@ public class Login {
 		frmTelaDeLogin.getContentPane().add(lblUsurio);
 	}
 	
+	/**
+     * Adiciona um rótulo para o campo de senha do usuario
+     */
 	public void LabelSenha() {
 		
 		JLabel lblSenha = new JLabel("Senha");
@@ -73,6 +82,9 @@ public class Login {
 		frmTelaDeLogin.getContentPane().add(lblSenha);
 	}
 	
+	/**
+     * Adiciona um campo de texto onde sera digitado o ID do usuario
+     */
 	public void CampoTextoUsuario(){
 		
 		textField = new JTextField();
@@ -81,6 +93,10 @@ public class Login {
 		textField.setColumns(10);
 	}
 	
+
+	/**
+     * Adiciona um campo de texto onde sera digitada a senha do usuario
+     */
 	public void CampoTextoSenha(){
 		
 		passwordField = new JPasswordField();
@@ -88,6 +104,12 @@ public class Login {
 		frmTelaDeLogin.getContentPane().add(passwordField);
 	}
 	
+
+	/**
+     * Adicina um botao com a funcao de verificar o login(se esta cadastrado
+     * ou nao), se estiver um nova tela sera gerada, senao será ixibido na 
+     * tela uma mensagem de erro
+     */
 	public void BotaoAcesso() {
 		
 		JButton btnEntrar = new JButton("Entrar");
@@ -135,7 +157,9 @@ public class Login {
 		btnEntrar.setBounds(269, 182, 82, 23);
 		frmTelaDeLogin.getContentPane().add(btnEntrar);
 	}
-	
+	/**
+     * @return A tela de login
+     */
 	public JFrame getFrame() {
 		return frmTelaDeLogin;
 	}
