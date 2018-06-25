@@ -6,7 +6,7 @@ import classes.Musica;
 import classes.TocarMusica;
 import classes.Usuario;
 import dadosDosArquivos.ArquivoMusica;
-import javafx.scene.layout.Border;
+//import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;

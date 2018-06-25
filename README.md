@@ -10,15 +10,15 @@ Neste repositório contém a implementação de um reprodutor de mp3 usando a li
  	Contém a implementação da TAD árvore de busca binária  
  	
  
- - arvoreDePatricia [ :construction: _Imcompleto_ ]  
- 	Contém a implementação da TAD árvore de patrícia  
+ - arvoreTrie [ :construction: _Completo_ ]  
+ 	Contém a implementação da TAD árvore digital ( ***trie***)  
   
  - classes  
  	Contém as classes usadas na reprodução das músicas 
-  
- - no [ :heavy_check_mark:_Adicionado_ ]  
-   	Contém a classe abstrata nó que contém a essências dos nós das árvore de binária de busca e árvore de patrícia  
-    
+ 	
+ - dadosDosArquivos  
+ 	Contém as classes usada na manipulação de arquivo	
+     
  - telas [ :construction: _Imcompleto_ ]  
  	Contém as classes que implementam a GUI  
   
