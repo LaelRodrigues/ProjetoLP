@@ -113,6 +113,7 @@ public class Cadastro {
 				
 				String loginTemporaria = textFieldID.getText();
 				String nomeTemporario = textFieldNomeUsuario.getText();
+				@SuppressWarnings("deprecation")
 				String senhaTemporaria = passwordFieldSenha.getText();
 				boolean modoDeAcesso;
 				
@@ -152,8 +153,7 @@ public class Cadastro {
 					arvoreUsuarios.insere( new Usuario(loginTemporaria, nomeTemporario, senhaTemporaria, modoDeAcesso) );
 					arqUsuario.add( new Usuario(loginTemporaria, nomeTemporario, senhaTemporaria, modoDeAcesso) );
 					
-					boolean a = arqUsuario.criaOuAtualiza();
-					System.out.println("LINHA 156" + a);
+					arqUsuario.criaOuAtualiza();
 					
 					frmTelaDeCadastro.setVisible(false);
 				}

@@ -9,7 +9,6 @@ import dadosDosArquivos.ArquivoMusica;
 //import javafx.scene.layout.Border;
 import javazoom.jl.player.Player;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,46 +18,20 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.awt.Image;
-import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
-
-import arvoreBinariaDeBusca.NoABB;
 import javax.swing.JSeparator;
-import javax.swing.JSpinner;
-import javax.swing.JTextPane;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JCheckBoxMenuItem;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-
-import javax.swing.SwingConstants;
-import javax.swing.JSlider;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
-import javax.swing.JToolBar;
-import javax.swing.RepaintManager;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
-import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JScrollBar;
 
 /**
  * Implementacão da tela onde as músicas seram reproduzidas
@@ -84,7 +57,7 @@ public class MediaPlayer{
 	JButton play, botaoAnterior, botaoProximo;
 	JList<String> listaMusicas;
 	
-	ArrayList<Musica> musicas;
+	private ArrayList<Musica> musicas;
 	
 	/** 
 	 * Construtor padrão 
@@ -170,15 +143,10 @@ public class MediaPlayer{
 	}
 	
 	/**
-     * Adiciona um bot�o com a fun��o de play/pause na tela
+     * Adiciona um botao com a funcao de play/pause na tela
      */
 	private void botaoPlayPause() {
 		musicas = arqMusicas.getListaMusicas();
-		
-		File arquivo =  new File("./arquivos.txt/musicas.txt");
-		if(arquivo.length() > 0) {
-			validarArquivo();
-		}
 		
 		contador = 0;
 		play = new JButton("");
@@ -238,6 +206,9 @@ public class MediaPlayer{
 
 	}
 	
+	/**
+     * Adiciona um botao com a funcao de adicionar PlayLists
+     */
 	private void botaoAddPlayLists(){
 		JButton addPlayList = new JButton("");
 		addPlayList.addActionListener(new ActionListener() {
@@ -281,7 +252,7 @@ public class MediaPlayer{
 	}
 		
 	/**
-     * Adiciona um botao na tela com a função de adicionar diretório
+     * Adiciona um botao na tela com a função de adicionar diretórios de musicas
      */
 	private void botaoAddDiretorio() {
 
@@ -302,10 +273,11 @@ public class MediaPlayer{
 						musicas.add(m);
 						File arquivo =  new File("./arquivos.txt/musicas.txt");
 						if(arquivo.length() == 0) {
-							validarArquivo();
+							primeiraMusica();
 						}
 						arqMusicas.criaOuAtualiza();
 				    }
+				    ListaDeMusicas();
 				}
 			}
 		});
@@ -353,7 +325,7 @@ public class MediaPlayer{
 	}
 	
 	/**
-     * Adiciona um botão na tela com a função de adicionar um arquivo
+     * Adiciona um botão na tela com a função de adicionar um arquivo de Musica
      */
 	private void botaoAddArquivo() {
 
@@ -373,9 +345,10 @@ public class MediaPlayer{
 					musicas.add(m);
 					File file =  new File("./arquivos.txt/musicas.txt");
 					if(file.length() == 0) {
-						validarArquivo();
+						primeiraMusica();
 					}
 					arqMusicas.criaOuAtualiza();
+					ListaDeMusicas();
 				}
 			}
 		});
@@ -433,10 +406,6 @@ public class MediaPlayer{
 	private void listaDePlaylists() {
 		
 	}
-	
-	private void rotuloListaDeMusicas() {
-		
-	}
 	/**
      * @return A tela do reprodutor de musica
      */
@@ -444,7 +413,9 @@ public class MediaPlayer{
 		return frmPlayer;
 	}
 	
-	
+	/**
+     * Adiciona um botao com a funcao de volta a musica 
+     */
 	public void botaoAnteriorMusica() {
 		
 		botaoAnterior = new JButton("");
@@ -479,7 +450,9 @@ public class MediaPlayer{
 		botaoAnterior.setFocusPainted( false );
 		
 	}
-	
+	/**
+     * Adiciona um botao com a funcao de tocar a proxima musica
+     */
 	public void botaoProximaMusica() {
 		botaoProximo = new JButton("");
 		botaoProximo.setBounds(130, 450, 43, 43);
@@ -514,6 +487,10 @@ public class MediaPlayer{
 		botaoProximo.setFocusPainted( false );
 	}
 	
+	@SuppressWarnings("deprecation")
+	/**
+     * Funcao responsavel por tocar a proxima musica
+     */
 	public void proximaMusica() {
 		try {
 			int posicaoSelecao = listaMusicas.getSelectedIndex();
@@ -546,6 +523,9 @@ public class MediaPlayer{
 	}
 	
 	@SuppressWarnings("deprecation")
+	/**
+     * Funcao responsavel por tocar uma musica
+     */
 	public void tocarMusica() {
 	
 		if(startMusica) {
@@ -601,6 +581,10 @@ public class MediaPlayer{
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	/**
+     * Funcao responsavel por tocar a musica anterior
+     */
 	public void anteriorMusica() {
 
 		try {
@@ -634,7 +618,15 @@ public class MediaPlayer{
 			System.out.println("selecione primerio a musica!");
 		}
 	}
+	/**
+     * Adiciona um JList e JScroollPane onde a ficara a lista de musicas
+     */
 	private void ListaDeMusicas() {
+		
+		File arquivo =  new File("./arquivos.txt/musicas.txt");
+		if(arquivo.length() > 0) {
+			primeiraMusica();
+		}
 		
 		modeloLista = new DefaultListModel<>();
 		for(int i = 0; i < musicas.size(); i++) {
@@ -709,7 +701,9 @@ public class MediaPlayer{
 			}
 		});
 	}
-
+	/**
+     * Funcao para percorrer a lista de musicas
+     */
 	public String PercorrerListaMusica(ArrayList<Musica> musicas) {
 		String caminhoAtualizado="";
 		for(int i = 0; i < musicas.size(); i++) {
@@ -720,7 +714,10 @@ public class MediaPlayer{
 		}
 		return caminhoAtualizado;
 	}
-	public void validarArquivo() {
+	/**
+     * Define a primeira musica como padrao no JList
+     */
+	public void primeiraMusica() {
 		nomeMusicaLista = musicas.get(0).getNome();
 	}
 }

@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.UIManager;
 
 import dadosDosArquivos.ArquivoUsuario;
 import arvoreBinariaDeBusca.ABB;
@@ -100,6 +99,7 @@ public class Login {
 			
 				
 				String loginTemporaria = textField.getText();
+				@SuppressWarnings("deprecation")
 				String senhaTemporaria = passwordField.getText();
 								
 				arvoreUsuarios = arqUsuario.getListaUsuarios();
