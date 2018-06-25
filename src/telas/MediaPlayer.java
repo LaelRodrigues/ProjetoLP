@@ -520,10 +520,20 @@ public class MediaPlayer{
 			if(posicaoSelecao == musicas.size()-1) {
 				listaMusicas.setSelectedIndex(0);
 				nomeMusicaLista = musicas.get(0).getNome();
+				if(m.isAlive()) {
+					m.resume();
+					m.getPlayer().close();
+				}
+				tocarMusica();
 			} else {	
 				posicaoSelecao += 1;
 				listaMusicas.setSelectedIndex(posicaoSelecao);
 				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+				if(m.isAlive()) {
+					m.resume();
+					m.getPlayer().close();
+				}
+				tocarMusica();
 			}
 			if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 0) {
 				contador = 0;
@@ -598,12 +608,22 @@ public class MediaPlayer{
 				int ultimaMusica = musicas.size()-1;
 				listaMusicas.setSelectedIndex(ultimaMusica);
 				nomeMusicaLista = musicas.get(ultimaMusica).getNome();
+				if(m.isAlive()) {
+					m.resume();
+					m.getPlayer().close();
+				}
+				tocarMusica();
 				return;
 			}else { 
 				int posicaoSelecao = listaMusicas.getSelectedIndex();
 				posicaoSelecao -= 1;
 				listaMusicas.setSelectedIndex(posicaoSelecao);
 				nomeMusicaLista = musicas.get(posicaoSelecao).getNome();
+				if(m.isAlive()) {
+					m.resume();
+					m.getPlayer().close();
+				}
+				tocarMusica();
 			}
 			if(nomeMusicaLista.equals(nomeTemporario) && contador % 2 == 0) {
 				contador = 0;
