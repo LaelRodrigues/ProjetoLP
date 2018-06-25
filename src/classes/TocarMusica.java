@@ -9,14 +9,18 @@ import javazoom.jl.player.Player;
  * Representa o ato de tocar música
  * @see     Musica
  * @author	Robson Lael
- * @version 0.0.1
+ * @since 	10.06.2018
+ * @version 0.0.2
  */
 public class TocarMusica extends Thread {
 	
 	private File mp3;
 	public Player player;
 	
-	
+	/**
+     * Funcao que informa o caminho da musica que sera tocada
+     * @param caminho da musica
+     */
 	public void tocar(File mp3) {
 		this.mp3 = mp3;
 	}

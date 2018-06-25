@@ -38,8 +38,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @see     MediaPlayer
  * @author	Robson Lael
  * @author 	Samuel Lucas de Moura Ferino
- * @since   06.06.2018
- * @version 0.0.3
+ * @since   25.06.2018
+ * @version 0.0.5
  */
 public class MediaPlayer{
 	
@@ -277,7 +277,7 @@ public class MediaPlayer{
 						}
 						arqMusicas.criaOuAtualiza();
 				    }
-				    ListaDeMusicas();
+				    listaMusicas.setSelectedIndex(0);
 				}
 			}
 		});
@@ -346,9 +346,9 @@ public class MediaPlayer{
 					File file =  new File("./arquivos.txt/musicas.txt");
 					if(file.length() == 0) {
 						primeiraMusica();
+						listaMusicas.setSelectedIndex(0);
 					}
 					arqMusicas.criaOuAtualiza();
-					ListaDeMusicas();
 				}
 			}
 		});
@@ -633,15 +633,14 @@ public class MediaPlayer{
 			modeloLista.addElement(musicas.get(i).getNome());
 		}
 		listaMusicas = new JList<>(modeloLista);
-		JScrollPane barraRolagem = new JScrollPane(listaMusicas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
+		JScrollPane barraRolagem = new JScrollPane(listaMusicas, 
+		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
 		listaMusicas.setSelectedIndex(0); //setando o item padrao do JList para a primeira musica
 		listaMusicas.setBounds(199, 53, 225, 436);
 		barraRolagem.setBounds(199, 53, 225, 436);
 		frmPlayer.getContentPane().add(barraRolagem);
 		//frmPlayer.getContentPane().add(listaMusicas);
-		
 			
 		listaMusicas.addKeyListener(new KeyListener() {
 			@Override

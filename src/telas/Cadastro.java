@@ -20,7 +20,8 @@ import javax.swing.JRadioButton;
 /**
  * Representa a tela de cadastro
  * @author	Samuel Lucas de Moura Ferino
- * @since 	20.06.2018
+ * @author 	Robson Lael de Melo Rodrigues
+ * @since 	25.06.2018
  * @version 0.0.3
  */
 public class Cadastro {

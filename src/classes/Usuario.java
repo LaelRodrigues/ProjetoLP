@@ -4,8 +4,8 @@ package classes;
  * Implementação da classe do Usuario 
  * @see     Usuario
  * @author	Robson Lael
- * @since   07.06.2018
- * @version 0.0.1
+ * @since   22.06.2018
+ * @version 0.0.3
  */
 public class Usuario implements Comparable<Usuario>{
 	
